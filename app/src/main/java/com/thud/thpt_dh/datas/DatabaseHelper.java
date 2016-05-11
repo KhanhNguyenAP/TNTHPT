@@ -1,4 +1,4 @@
-package dulieu;
+package com.thud.thpt_dh.datas;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

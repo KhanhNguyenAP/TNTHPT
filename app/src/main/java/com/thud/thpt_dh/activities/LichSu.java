@@ -1,4 +1,4 @@
-package com.thud.thpt_dh;
+package com.thud.thpt_dh.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,9 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import xuly.CustomGridView;
+import com.thud.thpt_dh.R;
+
+import com.thud.thpt_dh.customcontrols.CustomGridView;
 
 public class LichSu extends AppCompatActivity
 {

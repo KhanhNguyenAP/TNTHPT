@@ -1,11 +1,10 @@
-package xuly;
+package com.thud.thpt_dh.customcontrols;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.io.IOException;
-import java.sql.Connection;
 
 public class DataDB
 {

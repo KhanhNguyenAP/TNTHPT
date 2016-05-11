@@ -1,4 +1,4 @@
-package xuly;
+package com.thud.thpt_dh.customcontrols;
 
 /**
  * Created by Le on 10/10/2015.

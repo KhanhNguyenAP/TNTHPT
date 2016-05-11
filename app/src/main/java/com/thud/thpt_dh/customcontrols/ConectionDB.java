@@ -1,4 +1,4 @@
-package xuly;
+package com.thud.thpt_dh.customcontrols;
 
 import android.content.Context;
 import android.database.SQLException;

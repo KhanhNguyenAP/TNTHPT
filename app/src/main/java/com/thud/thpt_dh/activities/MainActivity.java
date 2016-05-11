@@ -1,5 +1,4 @@
-package com.thud.thpt_dh;
-    import android.app.Fragment;
+package com.thud.thpt_dh.activities;
     import android.content.Intent;
     import android.os.Bundle;
     import android.support.design.widget.NavigationView;
@@ -15,9 +14,11 @@ package com.thud.thpt_dh;
     import android.widget.GridView;
     import android.widget.Toast;
 
-    import leftmenu.HuongDanSuDung;
-    import leftmenu.QuyCheThi;
-    import xuly.CustomGridView;
+    import com.thud.thpt_dh.R;
+
+    import com.thud.thpt_dh.fragment.HuongDanSuDung;
+    import com.thud.thpt_dh.fragment.QuyCheThi;
+    import com.thud.thpt_dh.customcontrols.CustomGridView;
 
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
