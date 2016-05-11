@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Ôn Thi THPT - ĐH</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!--Main content-->
+    <string name="setting">Cài Đặt</string>
+    <string name="toanhoc">Kiến Thức Toán Học</string>
+    <string name="anhvan">Kiến Thức Anh Văn</string>
+    <string name="nguvan">Kiến Thức Ngữ Văn</string>
+    <string name="hoahoc">Kiến Thức Hóa Học</string>
+    <string name="vatly">Kiến Thức Vật Lý</string>
+    <string name="lichsu">Kiến Thức Lịch Sử</string>
+    <string name="dialy">Kiến Thức Địa Lý</string>
+    <string name="sinhhoc">Kiến Thức Sinh Học</string>
+    <string name="toan_10">Toan_10</string>
+
+    <!--Left menu-->
+    <string name="quychethi">Quy chế thi</string>
+    <string name="quantrong">Quan trọng</string>
+    <string name="hdsd">Hướng dẫn sử dụng</string>
+    <string name="lichsu_left">Lịch sử</string>
+    <string name="gioithieu">Giới thiệu</string>
+    <string name="gopy">Góp ý</string>
+    <string name="danhgia">Đánh giá</string>
+    <string name="action_settings">Cài đặt</string>
+    
+    <!--Header-->    
+    <string name="thongtincanhan">Thông tin cá nhân</string>
+    <string name="dangxuat">Đăng xuất</string>
+</resources>

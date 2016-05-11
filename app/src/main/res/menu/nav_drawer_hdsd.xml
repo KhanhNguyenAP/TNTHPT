@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/item_navigation_drawer_home"
+            android:icon="@drawable/home"
+            android:title="Trang chủ" />
+        <item
+            android:id="@+id/item_navigation_drawer_quyche"
+            android:icon="@drawable/quyche"
+            android:title="Quy chế thi"/>
+        <item
+            android:checked="true"
+            android:id="@+id/item_navigation_drawer_hdsd"
+            android:icon="@drawable/hdsd"
+            android:title="Hướng dẫn sử dụng"/>
+        <item
+            android:id="@+id/item_navigation_drawer_lichsu"
+            android:icon="@drawable/ilichsu"
+            android:title="Lịch sử" />
+        <item
+            android:id="@+id/item_navigation_drawer_about"
+            android:icon="@drawable/about"
+            android:title="Giới thiệu" />
+        <item
+            android:id="@+id/item_navigation_drawer_gopy"
+            android:icon="@drawable/gopy"
+            android:title="Góp ý" />
+        <item
+            android:id="@+id/item_navigation_drawer_star"
+            android:icon="@drawable/star"
+            android:title="Đánh giá" />
+        <item
+            android:id="@+id/item_navigation_drawer_settings"
+            android:icon="@drawable/setting"
+            android:title="Cài đặt" />
+        <item
+            android:id="@+id/item_navigation_drawer_thoat"
+            android:icon="@drawable/thoat"
+            android:title="Thoát" />
+    </group>
+</menu>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:checked="true"
+            android:id="@+id/item_navigation_drawer_home_anhvan"
+            android:icon="@drawable/home"
+            android:title="Trang chủ" />
+        <item
+            android:checked="true"
+            android:id="@+id/item_navigation_drawer_anhvan10"
+            android:icon="@drawable/anhvan10"
+            android:title="Anh Văn 10" />
+        <item
+            android:checked="true"
+            android:id="@+id/item_navigation_drawer_anhvan11"
+            android:icon="@drawable/anhvan11"
+            android:title="Anh Văn 11" />
+        <item
+            android:checked="true"
+            android:id="@+id/item_navigation_drawer_anhvan12"
+            android:icon="@drawable/anhvan12"
+            android:title="Anh Văn 12" />
+    </group>
+</menu>
