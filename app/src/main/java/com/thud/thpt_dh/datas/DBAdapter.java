@@ -10,14 +10,14 @@ import android.database.sqlite.SQLiteDatabase;
  */
 public class DBAdapter
 {
-    public static DatabaseHelper DbHelper;
+    public static DBHelper DbHelper;
     public static SQLiteDatabase db;
     private final Context context;
 
     public DBAdapter(Context context)
     {
         this.context = context;
-        DbHelper = new DatabaseHelper(context);
+        DbHelper = new DBHelper(context);
     }
 
     public DBAdapter open() throws SQLException

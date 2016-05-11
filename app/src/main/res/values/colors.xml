@@ -8,4 +8,6 @@
     <color name="md_pink_500">#e91e63</color>
     <color name="md_white">#ffffff</color>
     <color name="md_red">#D50000</color>
+
+    <color name="bg_black">#000000</color>
 </resources>

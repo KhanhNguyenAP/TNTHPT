@@ -29,4 +29,10 @@
     <!--Header-->    
     <string name="thongtincanhan">Thông tin cá nhân</string>
     <string name="dangxuat">Đăng xuất</string>
+
+    <!--Sync data-->
+    <string name="title_download_data">Syncing data...</string>
+    <string name="msg_can_not_connect_to_network">Network is not available.</string>
+    <string name="msg_download_data">All data has now been downloaded</string>
+    <string name="msg_data_has_been_saved">Data has been saved.</string>
 </resources>
