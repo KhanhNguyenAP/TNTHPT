@@ -44,74 +44,73 @@ public class DBHelper extends SQLiteOpenHelper{
 
     private SQLiteDatabase database;
 
-    private static final String sql_baigiai = "CREATE TABLE IF NOT EXISTS " + TABLE_BAIGIAI + "(" +
+    public static final String sql_baigiai = "CREATE TABLE IF NOT EXISTS " + TABLE_BAIGIAI + "(" +
            BaiGiai.ID + " TEXT PRIMARY KEY, " +
            BaiGiai.TENBAIGIAI + " TEXT, " +
            BaiGiai.NOIDUNGBG + " TEXT )";
 
-    private static final String sql_baihoc = "CREATE TABLE IF NOT EXISTS " + TABLE_BAIHOC + "(" +
+    public static final String sql_baihoc = "CREATE TABLE IF NOT EXISTS " + TABLE_BAIHOC + "(" +
             BaiHoc.ID + " TEXT PRIMARY KEY, " +
             BaiHoc.TENBH + " TEXT, " +
             BaiHoc.MACHUONG + " TEXT )";
 
-    private static final String sql_cauhoi = "CREATE TABLE IF NOT EXISTS " + TABLE_CAUHOI + "(" +
+    public static final String sql_cauhoi = "CREATE TABLE IF NOT EXISTS " + TABLE_CAUHOI + "(" +
             CauHoi.ID + " TEXT PRIMARY KEY, " +
-            CauHoi.TENCH + " TEXT, " +
             CauHoi.LOAI + " TEXT, " +
             CauHoi.MADETHI + " TEXT, " +
             CauHoi.NOIDUNGCH + " TEXT )";
 
-    private static final String sql_chitietbaihoc = "CREATE TABLE IF NOT EXISTS " + TABLE_CHITIETBAIHOC + "(" +
+    public static final String sql_chitietbaihoc = "CREATE TABLE IF NOT EXISTS " + TABLE_CHITIETBAIHOC + "(" +
             ChiTietBaiHoc.ID + " TEXT PRIMARY KEY, " +
             ChiTietBaiHoc.MABAIHOC + " TEXT, " +
             ChiTietBaiHoc.NOIDUNGCTBH + " TEXT, " +
             ChiTietBaiHoc.TENCTBH + " TEXT )";
 
-    private static final String sql_chuong = "CREATE TABLE IF NOT EXISTS " + TABLE_CHUONG + "(" +
+    public static final String sql_chuong = "CREATE TABLE IF NOT EXISTS " + TABLE_CHUONG + "(" +
             Chuong.ID + " TEXT PRIMARY KEY, " +
             Chuong.TENCHUONG + " TEXT, " +
             Chuong.MAMON + " TEXT )";
 
-    private static final String sql_congthuc = "CREATE TABLE IF NOT EXISTS " + TABLE_CONGTHUC + "(" +
+    public static final String sql_congthuc = "CREATE TABLE IF NOT EXISTS " + TABLE_CONGTHUC + "(" +
             CongThuc.ID + " TEXT PRIMARY KEY, " +
             CongThuc.MACTBH + " TEXT, " +
             CongThuc.NOIDUNGCT + " TEXT, " +
             CongThuc.TENCT + " TEXT )";
 
-    private static final String sql_dapan = "CREATE TABLE IF NOT EXISTS " + TABLE_DAPAN + "(" +
+    public static final String sql_dapan = "CREATE TABLE IF NOT EXISTS " + TABLE_DAPAN + "(" +
             DapAn.ID + " TEXT PRIMARY KEY, " +
             DapAn.MACAUHOI + " TEXT, " +
             DapAn.DUNGSAI + " INTEGER, " +
             DapAn.NOIDUNGDA + " TEXT )";
 
-    private static final String sql_dethithu = "CREATE TABLE IF NOT EXISTS " + TABLE_DETHITHU + "(" +
+    public static final String sql_dethithu = "CREATE TABLE IF NOT EXISTS " + TABLE_DETHITHU + "(" +
             DeThiThu.ID + " TEXT PRIMARY KEY, " +
             DeThiThu.MAMONHOC + " TEXT, " +
             DeThiThu.SOLUONG + " INTEGER, " +
             DeThiThu.TENDE + " TEXT )";
 
-    private static final String sql_dieukien = "CREATE TABLE IF NOT EXISTS " + TABLE_DIEUKIEN + "(" +
+    public static final String sql_dieukien = "CREATE TABLE IF NOT EXISTS " + TABLE_DIEUKIEN + "(" +
             DieuKien.ID + " TEXT PRIMARY KEY, " +
             DieuKien.NOIDUNGDK + " TEXT, " +
             DieuKien.TENDK + " TEXT )";
 
-    private static final String sql_dinhly = "CREATE TABLE IF NOT EXISTS " + TABLE_DINHLY + "(" +
+    public static final String sql_dinhly = "CREATE TABLE IF NOT EXISTS " + TABLE_DINHLY + "(" +
             DinhLy.ID + " TEXT PRIMARY KEY, " +
             DinhLy.TENDL + " TEXT, " +
             DinhLy.MABAIHOC + " TEXT, " +
             DinhLy.NOIDUNGDL + " TEXT )";
 
-    private static final String sql_hinhanh = "CREATE TABLE IF NOT EXISTS " + TABLE_HINHANH + "(" +
+    public static final String sql_hinhanh = "CREATE TABLE IF NOT EXISTS " + TABLE_HINHANH + "(" +
             HinhAnh.ID + " TEXT PRIMARY KEY, " +
             HinhAnh.MABAIGIAI + " TEXT, " +
             HinhAnh.HINHANH + " TEXT, " +
             HinhAnh.MACHITIETBAIHOC + " TEXT )";
 
-    private static final String sql_monhoc = "CREATE TABLE IF NOT EXISTS " + TABLE_MONHOC + "(" +
+    public static final String sql_monhoc = "CREATE TABLE IF NOT EXISTS " + TABLE_MONHOC + "(" +
             MonHoc.ID + " TEXT PRIMARY KEY, " +
             MonHoc.TENMON + " TEXT )";
 
-    private static final String sql_vidu = "CREATE TABLE IF NOT EXISTS " + TABLE_VIDU + "(" +
+    public static final String sql_vidu = "CREATE TABLE IF NOT EXISTS " + TABLE_VIDU + "(" +
             ViDu.ID + " TEXT PRIMARY KEY, " +
             ViDu.NOIDUNGVD + " TEXT, " +
             ViDu.MACONGTHUC + " TEXT, " +
@@ -201,4 +200,19 @@ public class DBHelper extends SQLiteOpenHelper{
             Log.e(Def.ERROR, e.getMessage());
         }
     }
+
+    /**
+     *Drop and Create table
+     */
+    public void DropAndCreateTable(SQLiteDatabase db, String oldTable, String newTable){
+        try{
+            db.execSQL("DROP TABLE IF EXISTS " + oldTable);
+            db.execSQL(newTable);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Log.e(Def.ERROR, e.getMessage());
+        }
+
+    }//--end DropAllTable
 }

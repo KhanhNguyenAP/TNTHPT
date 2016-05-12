@@ -6,9 +6,10 @@ import com.google.gson.annotations.SerializedName;
  * Created by khanh on 5/11/2016.
  */
 public class BaiGiai {
-    public static final String ID = "id";
-    public static final String TENBAIGIAI = "tenbaigiai";
-    public static final String NOIDUNGBG = "noidungbg";
+    public static final String TENBANG = "BAIGIAI";
+    public static final String ID = "ID";
+    public static final String TENBAIGIAI = "TENBAIGIAI";
+    public static final String NOIDUNGBG = "NOIDUNGBAIGIAI";
 
     @SerializedName("objectId")
     private String id;
@@ -18,6 +19,12 @@ public class BaiGiai {
 
     @SerializedName("NOIDUNGBAIGIAI")
     private String noidungbg;
+
+    public BaiGiai(String id, String tenbaigiai, String noidungbg){
+        this.id = id;
+        this.tenbaigiai = tenbaigiai;
+        this.noidungbg = noidungbg;
+    }
 
     public String getId() {
         return id;

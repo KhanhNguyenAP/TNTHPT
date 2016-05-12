@@ -6,18 +6,43 @@ import android.app.assist.AssistStructure;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.PowerManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.thud.thpt_dh.R;
+import com.thud.thpt_dh.datas.BaiGiaiDAL;
+import com.thud.thpt_dh.datas.BaiHocDAL;
+import com.thud.thpt_dh.datas.CauHoiDAL;
+import com.thud.thpt_dh.datas.ChiTietBaiHocDAL;
+import com.thud.thpt_dh.datas.ChuongDAL;
+import com.thud.thpt_dh.datas.CongThucDAL;
+import com.thud.thpt_dh.datas.DapAnDAL;
+import com.thud.thpt_dh.datas.DeThiThuDAL;
+import com.thud.thpt_dh.datas.DieuKienDAL;
+import com.thud.thpt_dh.datas.DinhLyDAL;
+import com.thud.thpt_dh.datas.HinhAnhDAL;
+import com.thud.thpt_dh.datas.MonHocDAL;
 import com.thud.thpt_dh.model.AllDAL;
+import com.thud.thpt_dh.model.BaiGiai;
+import com.thud.thpt_dh.model.BaiHoc;
+import com.thud.thpt_dh.model.CauHoi;
+import com.thud.thpt_dh.model.ChiTietBaiHoc;
+import com.thud.thpt_dh.model.Chuong;
+import com.thud.thpt_dh.model.CongThuc;
+import com.thud.thpt_dh.model.DapAn;
+import com.thud.thpt_dh.model.DeThiThu;
+import com.thud.thpt_dh.model.DieuKien;
+import com.thud.thpt_dh.model.DinhLy;
+import com.thud.thpt_dh.model.HinhAnh;
 import com.thud.thpt_dh.model.MonHoc;
 import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
 import com.thud.thpt_dh.utils.Preference;
 import com.thud.thpt_dh.utils.dialogs.ToastMessage;
 import com.thud.thpt_dh.utils.interfaces.ActivityInterface;
+import com.thud.thpt_dh.utils.interfaces.Def;
 import com.thud.thpt_dh.utils.interfaces.Flags;
 
 import java.util.ArrayList;
@@ -46,8 +71,8 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
 
         initControl();
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        mWakerLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getName());
-        mWakerLock.acquire();
+        /*mWakerLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getName());
+        mWakerLock.acquire();*/
 
         //create an alert dialog
         alertDialog = alertDialogBuilder.create();
@@ -69,6 +94,29 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
             else {
                 return new Result<String>(ResultStatus.FALSE, null, context.getResources().getString(R.string.msg_can_not_connect_to_network));
             }
+
+            getBaiGiai();
+            getBaiHoc();
+            publishProgress(1);
+            getCauHoi();
+            publishProgress(2);
+            getChiTietBaiHoc();
+            getChuong();
+            publishProgress(3);
+            getCongThuc();
+            publishProgress(4);
+            getDapAn();
+            publishProgress(5);
+            getDeThiThu();
+            publishProgress(6);
+            getDieuKien();
+            publishProgress(7);
+            getDinhLy();
+            publishProgress(8);
+            getHinhAnh();
+            publishProgress(9);
+            getMonHoc();
+            return new Result<String>(ResultStatus.TRUE, null);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -128,10 +176,251 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
         text_view_percent.setText(progressNumber*10+"%");
     }
 
-    //get MonHoc
+    //get BaiGiai
+    private boolean getBaiGiai(){
+        try {
+            Result<ArrayList<BaiGiai>> resultBaiGiai = new BaiGiaiDAL(context).getAllBaiGiai();
+            if (resultBaiGiai.getKey() == ResultStatus.TRUE &&
+                    resultBaiGiai.getValue() != null &&
+                    resultBaiGiai.getValue().size() > 0){
+                ArrayList<BaiGiai> baiGiais = resultBaiGiai.getValue();
+
+                Result<String> result = new AllDAL(context).saveAll(baiGiais);
+                Log.i(Def.INFO, result.getMessage());
+
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    //get BaiHoc
+    private boolean getBaiHoc(){
+        try {
+            Result<ArrayList<BaiHoc>> resultBaiHoc = new BaiHocDAL(context).getAllBaiHoc();
+            if (resultBaiHoc.getKey() == ResultStatus.TRUE &&
+                    resultBaiHoc.getValue() != null &&
+                    resultBaiHoc.getValue().size() > 0){
+                ArrayList<BaiHoc> baiHocs = resultBaiHoc.getValue();
+
+                Result<String> result = new AllDAL(context).saveAll(baiHocs);
+                Log.i(Def.INFO, result.getMessage());
+
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //get CauHoi
+    private boolean getCauHoi(){
+        try {
+            Result<ArrayList<CauHoi>> resultCauHoi = new CauHoiDAL(context).getAllCauHoi();
+            if (resultCauHoi.getKey() == ResultStatus.TRUE &&
+                    resultCauHoi.getValue() != null &&
+                    resultCauHoi.getValue().size() > 0){
+                ArrayList<CauHoi> cauHois = resultCauHoi.getValue();
+
+                Result<String> result = new AllDAL(context).saveAll(cauHois);
+                Log.i(Def.INFO, result.getMessage());
+
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //get ChiTietBaiHoc
+    private boolean getChiTietBaiHoc(){
+        try {
+            Result<ArrayList<ChiTietBaiHoc>> resultChiTietBaiHoc = new ChiTietBaiHocDAL(context).getAllChiTietBaiHoc();
+            if (resultChiTietBaiHoc.getKey() == ResultStatus.TRUE &&
+                    resultChiTietBaiHoc.getValue() != null &&
+                    resultChiTietBaiHoc.getValue().size() > 0){
+                ArrayList<ChiTietBaiHoc> chiTietBaiHocs = resultChiTietBaiHoc.getValue();
+
+                Result<String> result = new AllDAL(context).saveAll(chiTietBaiHocs);
+                Log.i(Def.INFO, result.getMessage());
+
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //get Chuong
+    private boolean getChuong(){
+        try {
+            Result<ArrayList<Chuong>> resultChuong = new ChuongDAL(context).getAllChuong();
+            if (resultChuong.getKey() == ResultStatus.TRUE &&
+                    resultChuong.getValue() != null &&
+                    resultChuong.getValue().size() > 0){
+                ArrayList<Chuong> chuongs = resultChuong.getValue();
+
+                Result<String> result = new AllDAL(context).saveAll(chuongs);
+                Log.i(Def.INFO, result.getMessage());
+
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //get CongThuc
+    private boolean getCongThuc(){
+        try {
+            Result<ArrayList<CongThuc>> resultCongThuc = new CongThucDAL(context).getAllCongThuc();
+            if (resultCongThuc.getKey() == ResultStatus.TRUE &&
+                    resultCongThuc.getValue() != null &&
+                    resultCongThuc.getValue().size() > 0){
+                ArrayList<CongThuc> congThucs = resultCongThuc.getValue();
+
+                Result<String> result = new AllDAL(context).saveAll(congThucs);
+                Log.i(Def.INFO, result.getMessage());
+
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //get DapAn
+    private boolean getDapAn(){
+        try {
+            Result<ArrayList<DapAn>> resultDapAn = new DapAnDAL(context).getAllDapAn();
+            if (resultDapAn.getKey() == ResultStatus.TRUE &&
+                    resultDapAn.getValue() != null &&
+                    resultDapAn.getValue().size() > 0){
+                ArrayList<DapAn> dapAns = resultDapAn.getValue();
+
+                Result<String> result = new AllDAL(context).saveAll(dapAns);
+                Log.i(Def.INFO, result.getMessage());
+
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //get DapAn
+    private boolean getDeThiThu(){
+        try {
+            Result<ArrayList<DeThiThu>> resultDeThiThu = new DeThiThuDAL(context).getAllDeThiThu();
+            if (resultDeThiThu.getKey() == ResultStatus.TRUE &&
+                    resultDeThiThu.getValue() != null &&
+                    resultDeThiThu.getValue().size() > 0){
+                ArrayList<DeThiThu> deThiThus = resultDeThiThu.getValue();
+
+                Result<String> result = new AllDAL(context).saveAll(deThiThus);
+                Log.i(Def.INFO, result.getMessage());
+
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //get DieuKien
+    private boolean getDieuKien(){
+        try {
+            Result<ArrayList<DieuKien>> resultDieuKien = new DieuKienDAL(context).getAllDieuKien();
+            if (resultDieuKien.getKey() == ResultStatus.TRUE &&
+                    resultDieuKien.getValue() != null &&
+                    resultDieuKien.getValue().size() > 0){
+                ArrayList<DieuKien> dieuKiens = resultDieuKien.getValue();
+
+                Result<String> result = new AllDAL(context).saveAll(dieuKiens);
+                Log.i(Def.INFO, result.getMessage());
+
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //get DinhLy
+    private boolean getDinhLy(){
+        try {
+            Result<ArrayList<DinhLy>> resultDinhLy = new DinhLyDAL(context).getAllDinhLy();
+            if (resultDinhLy.getKey() == ResultStatus.TRUE &&
+                    resultDinhLy.getValue() != null &&
+                    resultDinhLy.getValue().size() > 0){
+                ArrayList<DinhLy> dinhLies = resultDinhLy.getValue();
+
+                Result<String> result = new AllDAL(context).saveAll(dinhLies);
+                Log.i(Def.INFO, result.getMessage());
+
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //get HinhAnh
+    private boolean getHinhAnh(){
+        try {
+            Result<ArrayList<HinhAnh>> resultHinhAnh = new HinhAnhDAL(context).getAllHinhAnh();
+            if (resultHinhAnh.getKey() == ResultStatus.TRUE &&
+                    resultHinhAnh.getValue() != null &&
+                    resultHinhAnh.getValue().size() > 0){
+                ArrayList<HinhAnh> hinhAnhs = resultHinhAnh.getValue();
+
+                Result<String> result = new AllDAL(context).saveAll(hinhAnhs);
+                Log.i(Def.INFO, result.getMessage());
+
+            }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //get HinhAnh
     private boolean getMonHoc(){
         try {
+            Result<ArrayList<MonHoc>> resultMonHoc = new MonHocDAL(context).getAllMonHoc();
+            if (resultMonHoc.getKey() == ResultStatus.TRUE &&
+                    resultMonHoc.getValue() != null &&
+                    resultMonHoc.getValue().size() > 0){
+                ArrayList<MonHoc> monHocs = resultMonHoc.getValue();
 
+                Result<String> result = new AllDAL(context).saveAll(monHocs);
+                Log.i(Def.INFO, result.getMessage());
+
+            }
             return true;
         }
         catch (Exception e){

@@ -6,10 +6,11 @@ import com.google.gson.annotations.SerializedName;
  * Created by khanh on 5/11/2016.
  */
 public class CongThuc {
-    public static final String ID = "id";
-    public static final String MACTBH = "mactbh";
-    public static final String NOIDUNGCT = "noidungct";
-    public static final String TENCT = "tenct";
+    public static final String TENBANG = "CONGTHUC";
+    public static final String ID = "ID";
+    public static final String MACTBH = "MACTBH";
+    public static final String NOIDUNGCT = "NOIDUNGCT";
+    public static final String TENCT = "TENCT";
 
     @SerializedName("objectId")
     private String id;
@@ -22,6 +23,13 @@ public class CongThuc {
 
     @SerializedName("TENCT")
     private String tenct;
+
+    public CongThuc(String id, String mactbh, String tenct, String noidungct){
+        this.id = id;
+        this.mactbh = mactbh;
+        this.tenct = tenct;
+        this.noidungct = noidungct;
+    }
 
     public String getId() {
         return id;

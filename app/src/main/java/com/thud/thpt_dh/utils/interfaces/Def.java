@@ -6,5 +6,6 @@ package com.thud.thpt_dh.utils.interfaces;
 public class Def {
 
     public static final String ERROR = "ERROR";
+    public static final String INFO = "INFO";
     public static final String STRING_EMPTY = "";
 }

@@ -6,19 +6,25 @@ import com.google.gson.annotations.SerializedName;
  * Created by khanh on 5/11/2016.
  */
 public class DieuKien {
-
-    public static final String ID = "id";
-    public static final String TENDK = "tendk";
-    public static final String NOIDUNGDK = "noidungdk";
+    public static final String TENBANG = "DIEUKIEN";
+    public static final String ID = "ID";
+    public static final String TENDK = "TENDK";
+    public static final String NOIDUNGDK = "NOIDUNGDK";
 
     @SerializedName("objectId")
     private String id;
 
     @SerializedName("TENDK")
-    private String temdk;
+    private String tendk;
 
     @SerializedName("NOIDUNGDK")
     private String noidungdk;
+
+    public DieuKien(String id, String tendk, String noidungdk){
+        this.id = id;
+        this.tendk = tendk;
+        this.noidungdk = noidungdk;
+    }
 
     public String getId() {
         return id;
@@ -28,12 +34,12 @@ public class DieuKien {
         this.id = id;
     }
 
-    public String getTemdk() {
-        return temdk;
+    public String getTendk() {
+        return tendk;
     }
 
     public void setTemdk(String temdk) {
-        this.temdk = temdk;
+        this.tendk = temdk;
     }
 
     public String getNoidungdk() {

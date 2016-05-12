@@ -1,5 +1,6 @@
 package com.thud.thpt_dh.activities;
     import android.content.Intent;
+    import android.os.AsyncTask;
     import android.os.Bundle;
     import android.support.design.widget.NavigationView;
     import android.support.v4.view.GravityCompat;
@@ -19,6 +20,7 @@ package com.thud.thpt_dh.activities;
     import com.thud.thpt_dh.fragment.HuongDanSuDung;
     import com.thud.thpt_dh.fragment.QuyCheThi;
     import com.thud.thpt_dh.customcontrols.CustomGridView;
+    import com.thud.thpt_dh.utils.async.SaveAllDataFromSerVer;
 
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Main Menu
         onContentGridView();
+        new SaveAllDataFromSerVer(MainActivity.this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     public void onContentGridView(){

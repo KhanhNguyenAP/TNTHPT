@@ -6,8 +6,9 @@ import com.google.gson.annotations.SerializedName;
  * Created by khanh on 5/11/2016.
  */
 public class MonHoc {
+    public static final String TENBANG = "MONHOC";
     public static final String ID = "id";
-    public static final String TENMON = "tenmon";
+    public static final String TENMON = "TENMON";
 
     @SerializedName("objectId")
     private String id;
@@ -17,6 +18,11 @@ public class MonHoc {
 
     public String getId() {
         return id;
+    }
+
+    public MonHoc(String id, String tenmon){
+        this.id = id;
+        this.tenmon = tenmon;
     }
 
     public void setId(String id) {

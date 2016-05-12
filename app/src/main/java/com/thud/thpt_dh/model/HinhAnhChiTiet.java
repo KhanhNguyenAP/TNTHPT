@@ -19,6 +19,12 @@ public class HinhAnhChiTiet {
     @SerializedName("url")
     private String url;
 
+    public HinhAnhChiTiet(String type, String name, String url){
+        this.type = type;
+        this.name = name;
+        this.url = url;
+    }
+
     public String getType() {
         return type;
     }
