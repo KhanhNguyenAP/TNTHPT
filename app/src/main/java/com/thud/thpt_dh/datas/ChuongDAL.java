@@ -37,6 +37,7 @@ public class ChuongDAL {
         final ArrayList<Chuong> arr_Chuong = new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(""+Chuong.TENBANG);
+        query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {

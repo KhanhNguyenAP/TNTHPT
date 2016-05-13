@@ -39,6 +39,7 @@ public class BaiGiaiDAL {
     public Result<ArrayList<BaiGiai>> getAllBaiGiai() {
         final ArrayList<BaiGiai> arr_BaiGiai = new ArrayList<>();
         ParseQuery<ParseObject> query = ParseQuery.getQuery(""+BaiGiai.TENBANG);
+        query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {

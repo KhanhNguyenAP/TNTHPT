@@ -38,6 +38,7 @@ public class MonHocDAL {
         final ArrayList<MonHoc> arr_MonHoc = new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(""+MonHoc.TENBANG);
+        query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {

@@ -39,6 +39,7 @@ public class HinhAnhDAL {
         final ArrayList<HinhAnh> arr_HinhAnh = new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(""+HinhAnh.TENBANG);
+        query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {

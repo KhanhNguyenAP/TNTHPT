@@ -37,6 +37,7 @@ public class BaiHocDAL {
         final ArrayList<BaiHoc> arr_BaiHoc = new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(""+BaiHoc.TENBANG);
+        query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {

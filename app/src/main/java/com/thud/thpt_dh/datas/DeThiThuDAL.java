@@ -37,6 +37,7 @@ public class DeThiThuDAL {
         final ArrayList<DeThiThu> arr_DeThiThu = new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(""+DeThiThu.TENBANG);
+        query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {

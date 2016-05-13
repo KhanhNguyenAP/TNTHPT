@@ -202,7 +202,7 @@ public class DBHelper extends SQLiteOpenHelper{
     }
 
     /**
-     *Drop and Create table
+     * Drop and Create table
      */
     public void DropAndCreateTable(SQLiteDatabase db, String oldTable, String newTable){
         try{
@@ -213,6 +213,5 @@ public class DBHelper extends SQLiteOpenHelper{
             e.printStackTrace();
             Log.e(Def.ERROR, e.getMessage());
         }
-
     }//--end DropAllTable
 }

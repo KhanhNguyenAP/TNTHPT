@@ -2,7 +2,6 @@ package com.thud.thpt_dh.utils.async;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.assist.AssistStructure;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.PowerManager;
@@ -57,7 +56,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private TextView text_view_percent, text_view_title;
     private ProgressBar progress_custom;
     private Context context;
-    private PowerManager.WakeLock mWakerLock;
     private Preference preference;
     private  int countDataComplete = 0;
 
@@ -71,8 +69,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
 
         initControl();
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        /*mWakerLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getName());
-        mWakerLock.acquire();*/
 
         //create an alert dialog
         alertDialog = alertDialogBuilder.create();

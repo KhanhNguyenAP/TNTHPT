@@ -37,6 +37,7 @@ public class CauHoiDAL {
         final ArrayList<CauHoi> arr_CauHoi = new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(""+CauHoi.TENBANG);
+        query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {

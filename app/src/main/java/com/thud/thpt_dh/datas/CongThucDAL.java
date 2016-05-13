@@ -37,6 +37,7 @@ public class CongThucDAL {
         final ArrayList<CongThuc> arr_CongThuc = new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(""+CongThuc.TENBANG);
+        query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {

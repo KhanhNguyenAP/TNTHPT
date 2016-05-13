@@ -37,6 +37,7 @@ public class ChiTietBaiHocDAL {
         final ArrayList<ChiTietBaiHoc> arr_CTBH = new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(""+ChiTietBaiHoc.TENBANG);
+        query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {

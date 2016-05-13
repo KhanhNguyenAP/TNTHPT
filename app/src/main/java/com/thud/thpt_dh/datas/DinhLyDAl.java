@@ -38,6 +38,7 @@ public class DinhLyDAL {
         final ArrayList<DinhLy> arr_DinhLy = new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(""+DinhLy.TENBANG);
+        query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {

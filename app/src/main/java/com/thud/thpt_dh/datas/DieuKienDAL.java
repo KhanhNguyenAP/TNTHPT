@@ -37,6 +37,7 @@ public class DieuKienDAL {
         final ArrayList<DieuKien> arr_DieuKien = new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(""+DieuKien.TENBANG);
+        query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
