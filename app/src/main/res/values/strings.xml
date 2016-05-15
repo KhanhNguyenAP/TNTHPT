@@ -35,4 +35,36 @@
     <string name="msg_can_not_connect_to_network">Network is not available.</string>
     <string name="msg_download_data">All data has now been downloaded</string>
     <string name="msg_data_has_been_saved">Data has been saved.</string>
+
+    <string name="img_setting_drawer">image setting drawer</string>
+    <string name="img_log">img logo</string>
+    <string name="img_back">img back</string>
+    <string name="img_button_menu">img button menu</string>
+
+    <!--List Môn Học-->
+    <string-array name="array_setting">
+        <item>Trang Chủ</item>
+        <item>Toán</item>
+        <item>Ngữ Văn</item>
+        <item>Anh Văn</item>
+        <item>Sinh Học</item>
+        <item>Vật Lý</item>
+        <item>Hóa Học</item>
+        <item>Lịch Sử</item>
+        <item>Địa Lý</item>
+        <item>Thoát</item>
+    </string-array>
+
+    <string name="title_setting_trangchu">Trang Chủ</string>
+    <string name="title_setting_toan">Toán</string>
+    <string name="title_setting_nguvan">Ngữ Văn</string>
+    <string name="title_setting_anhvan">Anh Văn</string>
+    <string name="title_setting_sinhoc">Sinh Học</string>
+    <string name="title_setting_vatly">Vật Lý</string>
+    <string name="title_setting_hoahoc">Hóa Học</string>
+    <string name="title_setting_lichsu">Lịch Sử</string>
+    <string name="title_setting_dialy">Địa Lý</string>
+    <string name="title_setting_thoat">Thoát</string>
+
+    <string name="msg_time_out">Sorry you are not connected to the internet.</string>
 </resources>

@@ -10,9 +10,6 @@ import android.widget.Toast;
 import com.thud.thpt_dh.R;
 import com.thud.thpt_dh.utils.interfaces.Def;
 
-/**
- * Created by khanh on 5/12/2016.
- */
 public class ToastMessage {
     private Context context;
 
@@ -20,13 +17,14 @@ public class ToastMessage {
         this.context = context;
     }
 
-    public  void showToast(String message){
-        try {
-            Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+    public void showToast(String message){
+        try{
+            Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
             View view = toast.getView();
             view.setBackgroundResource(R.color.bg_black);
             TextView text = (TextView) view.findViewById(android.R.id.message);
             text.setTextColor(Color.WHITE);
+            /*here you can do anything with text*/
             toast.show();
         }
         catch (Exception e){
@@ -34,4 +32,5 @@ public class ToastMessage {
             e.printStackTrace();
         }
     }
+
 }

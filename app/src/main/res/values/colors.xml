@@ -10,4 +10,7 @@
     <color name="md_red">#D50000</color>
 
     <color name="bg_black">#000000</color>
+    <color name="bg_white">#ffffff</color>
+    <color name="md_blue_light_50">#E1F5FE</color>
+    <color name="md_blue_light_100">#B3E5FC</color>
 </resources>
