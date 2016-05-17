@@ -1,8 +1,6 @@
 package com.thud.thpt_dh.fragment;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,8 +14,11 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.thud.thpt_dh.R;
+import com.thud.thpt_dh.adapters.BaiHocAdapter;
 import com.thud.thpt_dh.adapters.ChuongAdapter;
+import com.thud.thpt_dh.datas.BaiHocDAL;
 import com.thud.thpt_dh.datas.ChuongDAL;
+import com.thud.thpt_dh.model.BaiHoc;
 import com.thud.thpt_dh.model.Chuong;
 import com.thud.thpt_dh.model.MonHoc;
 import com.thud.thpt_dh.model.Result;
@@ -31,11 +32,11 @@ import java.util.ArrayList;
 /**
  * Created by KhanhNguyen on 5/15/2016.
  */
-public class FragToanHoc extends Fragment implements ActivityInterface {
+public class FragDeTailToanHoc extends Fragment implements ActivityInterface {
     private View view;
     private ListView lst_toanhoc;
-    private ArrayList<Chuong> array_chuong = new ArrayList<>();
-    private ChuongAdapter chuong_list_adapter;
+    private ArrayList<BaiHoc> array_baihoc = new ArrayList<>();
+    private BaiHocAdapter baihoc_list_adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -68,18 +69,17 @@ public class FragToanHoc extends Fragment implements ActivityInterface {
 
     @Override
     public void setEventForControl() {
-       lst_toanhoc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-           @Override
-           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               Flags.machuong = array_chuong.get(position).getId();
-               showDeTail();
-           }
-       });
+        lst_toanhoc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
     }
 
     @Override
     public void getData(String... params) {
-        new apiGetChuong().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new apiGetBaiHoc().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     @Override
@@ -87,37 +87,28 @@ public class FragToanHoc extends Fragment implements ActivityInterface {
 
     }
 
-    private  class apiGetChuong extends AsyncTask<String, Void, Result<ArrayList<Chuong>>>{
+    private  class apiGetBaiHoc extends AsyncTask<String, Void, Result<ArrayList<BaiHoc>>>{
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
         }
 
         @Override
-        protected Result<ArrayList<Chuong>> doInBackground(String... strings) {
-            return new ChuongDAL(getActivity()).getAllChuongFromLocal(Def.Toan);
+        protected Result<ArrayList<BaiHoc>> doInBackground(String... strings) {
+            return new BaiHocDAL(getActivity()).getAllBaiHocFromLocal(Flags.machuong);
         }
 
         @Override
-        protected void onPostExecute(Result<ArrayList<Chuong>> arrayListResult){
+        protected void onPostExecute(Result<ArrayList<BaiHoc>> arrayListResult){
             super.onPostExecute(arrayListResult);
             if (arrayListResult.getKey() == ResultStatus.TRUE){
-                array_chuong = arrayListResult.getValue();
+                array_baihoc = arrayListResult.getValue();
 
-                if(array_chuong != null){
-                    chuong_list_adapter = new ChuongAdapter(getActivity(), array_chuong);
-                    lst_toanhoc.setAdapter(chuong_list_adapter);
+                if(array_baihoc != null){
+                    baihoc_list_adapter = new BaiHocAdapter(getActivity(), array_baihoc);
+                    lst_toanhoc.setAdapter(baihoc_list_adapter);
                 }
             }
         }
     }
-
-    public void showDeTail(){
-        FragmentManager fragmentManager = getActivity().getFragmentManager();
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        Fragment fragDeTailToanHoc = new FragDeTailToanHoc();
-        fragmentTransaction.replace(R.id.fra_toanhoc, fragDeTailToanHoc, "Toan Hoc");
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        fragmentTransaction.commit();
-    }//--end showSuppliers
 }

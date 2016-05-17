@@ -5,4 +5,6 @@ package com.thud.thpt_dh.utils.interfaces;
  */
 public class Flags {
     public static int synch_data = 0;
+    public static String machuong = Def.STRING_EMPTY;
+
 }

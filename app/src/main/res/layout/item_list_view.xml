@@ -4,9 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/layout_padding_55">
+    android:background="@color/md_blue_light_50"
+    android:paddingTop="@dimen/layout_padding_55"
+    android:paddingLeft="@dimen/layout_padding_10"
+    android:paddingRight="@dimen/layout_padding_10">
     <ListView
         android:id="@+id/lst_list_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 </LinearLayout>

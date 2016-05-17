@@ -2,6 +2,7 @@ package com.thud.thpt_dh.datas;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
@@ -93,5 +94,27 @@ public class BaiHocDAL {
         }
 
         return new Result<String>(ResultStatus.FALSE, null);
+    }
+
+    public Result<ArrayList<BaiHoc>> getAllBaiHocFromLocal(String machuong){
+        database = dbHelper.getReadableDatabase();
+        ArrayList<BaiHoc> baiHocs = new ArrayList<>();
+        try {
+            String query_baihoc = "SELECT * FROM " + BaiHoc.TENBANG + " WHERE " + BaiHoc.MACHUONG + " = '" +machuong +"'";
+            Cursor cursor = database.rawQuery(query_baihoc, null);
+            if(cursor != null && cursor.moveToFirst()){
+                do{
+                    BaiHoc baiHoc = DbModel.getBaiHoc(cursor);
+                    baiHocs.add(baiHoc);
+                }while (cursor.moveToNext());
+            }
+
+            database.close();
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            Log.e(Def.ERROR, ex.getMessage());
+        }
+        return  new Result<ArrayList<BaiHoc>>(ResultStatus.TRUE, baiHocs);
     }
 }
