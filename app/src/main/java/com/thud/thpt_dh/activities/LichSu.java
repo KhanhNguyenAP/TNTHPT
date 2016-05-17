@@ -59,9 +59,7 @@ public class LichSu extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.menu_lich_su, menu);
+    public boolean onCreateOptionsMenu(Menu menu)  {
         return true;
     }
 
@@ -77,44 +75,6 @@ public class LichSu extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupNavigationDrawerContent(NavigationView navigationView)
-    {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener()
-                {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem)
-                    {
-                        textView_lichsu = (TextView) findViewById(R.id.textView_lichsu);
-                        switch (menuItem.getItemId()) {
-                            case R.id.item_navigation_drawer_home_lichsu:
-                                menuItem.setChecked(true);
-                                Toast.makeText(LichSu.this, "Return " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
-                                drawerLayout_lichsu.closeDrawer(GravityCompat.START);
-                                Intent intent_lichsu = new Intent(LichSu.this, MainActivity.class);
-                                startActivity(intent_lichsu);
-                                return true;
-
-                            case R.id.item_navigation_drawer_lichsu10:
-                                menuItem.setChecked(true);
-                                textView_lichsu.setText(menuItem.getTitle());
-                                drawerLayout_lichsu.closeDrawer(GravityCompat.START);
-                                return true;
-
-                            case R.id.item_navigation_drawer_lichsu11:
-                                menuItem.setChecked(true);
-                                textView_lichsu.setText(menuItem.getTitle());
-                                drawerLayout_lichsu.closeDrawer(GravityCompat.START);
-                                return true;
-
-                            case R.id.item_navigation_drawer_lichsu12:
-                                menuItem.setChecked(true);
-                                textView_lichsu.setText(menuItem.getTitle());
-                                drawerLayout_lichsu.closeDrawer(GravityCompat.START);
-                                return true;
-                        }
-                        return true;
-                    }
-                });
+    private void setupNavigationDrawerContent(NavigationView navigationView)  {
     }
 }

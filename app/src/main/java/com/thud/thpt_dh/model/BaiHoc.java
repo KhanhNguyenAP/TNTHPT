@@ -26,6 +26,9 @@ public class BaiHoc {
         this.tenbh = tenbh;
     }
 
+    public BaiHoc(){
+    }
+
     public String getId() {
         return id;
     }

@@ -48,6 +48,10 @@ public class DieuKienDAL {
                                 ob.getString(""+DieuKien.NOIDUNGDK));
                         arr_DieuKien.add(dieuKien);
                     }
+
+                    if (arr_DieuKien.size() >0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_DieuKien);
+                    }
                 }
             }
         });
@@ -67,7 +71,7 @@ public class DieuKienDAL {
                 ContentValues DieuKienDb = DbModel.getContentValueDieuKien(dieuKien);
 
                 //insert database
-                database.insert(dbHelper.TABLE_DIEUKIEN, null, DieuKienDb);
+                database.insert(DieuKien.TENBANG, null, DieuKienDb);
             }
 
             database.setTransactionSuccessful();

@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by khanh on 5/11/2016.
  */
 public class ViDu {
+    public static final String TENBANG= "VIDU";
     public static final String ID = "id";
     public static final String MACONGTHUC = "macongthuc";
     public static final String NOIDUNGVD = "noidungvd";

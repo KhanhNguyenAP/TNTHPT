@@ -51,6 +51,10 @@ public class HinhAnhDAL {
                                 ob.getString(""+HinhAnh.MACHITIETBAIHOC));
                         arr_HinhAnh.add(hinhAnh);
                     }
+
+                    if (arr_HinhAnh.size() >0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_HinhAnh);
+                    }
                 }
             }
         });
@@ -70,7 +74,7 @@ public class HinhAnhDAL {
                 ContentValues HinhAnhDb = DbModel.getContentValueHinhAnh(hinhAnh);
 
                 //insert database
-                database.insert(dbHelper.TABLE_HINHANH, null, HinhAnhDb);
+                database.insert(HinhAnh.TENBANG, null, HinhAnhDb);
             }
 
             database.setTransactionSuccessful();

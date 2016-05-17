@@ -31,6 +31,9 @@ public class ChiTietBaiHoc {
         this.noidungctbh = noidungctbh;
     }
 
+    public ChiTietBaiHoc(){
+    }
+
     public String getId() {
         return id;
     }

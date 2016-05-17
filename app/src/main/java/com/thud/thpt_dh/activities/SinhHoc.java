@@ -59,17 +59,13 @@ public class SinhHoc extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.menu_sinh_hoc, menu);
+    public boolean onCreateOptionsMenu(Menu menu){
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
             case android.R.id.home:
                 drawerLayout_sinhhoc.openDrawer(GravityCompat.START);
                 return true;
@@ -77,44 +73,6 @@ public class SinhHoc extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupNavigationDrawerContent(NavigationView navigationView)
-    {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener()
-                {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem)
-                    {
-                        textView_sinhhoc = (TextView) findViewById(R.id.textView_sinhhoc);
-                        switch (menuItem.getItemId()) {
-                            case R.id.item_navigation_drawer_home_toan:
-                                menuItem.setChecked(true);
-                                Toast.makeText(SinhHoc.this, "Return " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
-                                drawerLayout_sinhhoc.closeDrawer(GravityCompat.START);
-                                Intent intent_sinhhoc = new Intent(SinhHoc.this, MainActivity.class);
-                                startActivity(intent_sinhhoc);
-                                return true;
-
-                            case R.id.item_navigation_drawer_sinhhoc10:
-                                menuItem.setChecked(true);
-                                textView_sinhhoc.setText(menuItem.getTitle());
-                                drawerLayout_sinhhoc.closeDrawer(GravityCompat.START);
-                                return true;
-
-                            case R.id.item_navigation_drawer_sinhhoc11:
-                                menuItem.setChecked(true);
-                                textView_sinhhoc.setText(menuItem.getTitle());
-                                drawerLayout_sinhhoc.closeDrawer(GravityCompat.START);
-                                return true;
-
-                            case R.id.item_navigation_drawer_sinhhoc12:
-                                menuItem.setChecked(true);
-                                textView_sinhhoc.setText(menuItem.getTitle());
-                                drawerLayout_sinhhoc.closeDrawer(GravityCompat.START);
-                                return true;
-                        }
-                        return true;
-                    }
-                });
+    private void setupNavigationDrawerContent(NavigationView navigationView){
     }
 }

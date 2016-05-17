@@ -32,6 +32,9 @@ public class HinhAnh {
         this.mactbg = mactbg;
     }
 
+    public HinhAnh(){
+    }
+
     public String getId() {
         return id;
     }

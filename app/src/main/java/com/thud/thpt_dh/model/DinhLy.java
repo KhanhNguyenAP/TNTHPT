@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class DinhLy {
     public static final String TENBANG = "DINHLY";
-    public static final String ID = "id";
+    public static final String ID = "ID";
     public static final String MABAIHOC = "MABAIHOC";
     public static final String TENDL = "TENDL";
     public static final String NOIDUNGDL = "NOIDUNGDL";
@@ -29,6 +29,9 @@ public class DinhLy {
         this.mabaihoc = mabaihoc;
         this.tendl = tendl;
         this.noidungdl = noidungdl;
+    }
+
+    public DinhLy(){
     }
 
     public String getId() {

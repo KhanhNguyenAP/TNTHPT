@@ -59,17 +59,13 @@ public class NguVan extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.menu_ngu_van, menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case android.R.id.home:
                 drawerLayout_nguvan.openDrawer(GravityCompat.START);
                 return true;
@@ -77,44 +73,6 @@ public class NguVan extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupNavigationDrawerContent(NavigationView navigationView)
-    {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener()
-                {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem)
-                    {
-                        textView_nguvan = (TextView) findViewById(R.id.textView_nguvan);
-                        switch (menuItem.getItemId()) {
-                            case R.id.item_navigation_drawer_home_nguvan:
-                                menuItem.setChecked(true);
-                                Toast.makeText(NguVan.this, "Return " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
-                                drawerLayout_nguvan.closeDrawer(GravityCompat.START);
-                                Intent intent_nguvan = new Intent(NguVan.this, MainActivity.class);
-                                startActivity(intent_nguvan);
-                                return true;
-
-                            case R.id.item_navigation_drawer_nguvan10:
-                                menuItem.setChecked(true);
-                                textView_nguvan.setText(menuItem.getTitle());
-                                drawerLayout_nguvan.closeDrawer(GravityCompat.START);
-                                return true;
-
-                            case R.id.item_navigation_drawer_nguvan11:
-                                menuItem.setChecked(true);
-                                textView_nguvan.setText(menuItem.getTitle());
-                                drawerLayout_nguvan.closeDrawer(GravityCompat.START);
-                                return true;
-
-                            case R.id.item_navigation_drawer_nguvan12:
-                                menuItem.setChecked(true);
-                                textView_nguvan.setText(menuItem.getTitle());
-                                drawerLayout_nguvan.closeDrawer(GravityCompat.START);
-                                return true;
-                        }
-                        return true;
-                    }
-                });
+    private void setupNavigationDrawerContent(NavigationView navigationView)  {
     }
 }

@@ -26,6 +26,9 @@ public class Chuong {
         this.tenchuong = tenchuong;
     }
 
+    public Chuong() {
+    }
+
     public String getId() {
         return id;
     }

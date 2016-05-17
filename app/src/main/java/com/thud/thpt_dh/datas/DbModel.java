@@ -1,6 +1,8 @@
 package com.thud.thpt_dh.datas;
 
 import android.content.ContentValues;
+import android.database.Cursor;
+import android.view.animation.DecelerateInterpolator;
 
 import com.thud.thpt_dh.model.BaiGiai;
 import com.thud.thpt_dh.model.BaiHoc;
@@ -33,6 +35,15 @@ public class DbModel {
         return baigiaiDb;
     }
 
+    public static BaiGiai getBaiGiai(Cursor cursor){
+        BaiGiai baiGiai = new BaiGiai();
+        baiGiai.setId(cursor.getString(cursor.getColumnIndex(BaiGiai.ID)));
+        baiGiai.setTenbaigiai(cursor.getString(cursor.getColumnIndex(BaiGiai.TENBAIGIAI)));
+        baiGiai.setNoidungbg(cursor.getString(cursor.getColumnIndex(BaiGiai.NOIDUNGBG)));
+
+        return baiGiai;
+    }
+
     /*
     * @author: KhanhNguyen
     * @function: getContentValueBaiHoc
@@ -44,6 +55,15 @@ public class DbModel {
         baiHocDb.put(BaiHoc.TENBH, baiHoc.getTenbh());
 
         return baiHocDb;
+    }
+
+    public static BaiHoc getBaiHoc(Cursor cursor){
+        BaiHoc baiHoc = new BaiHoc();
+        baiHoc.setId(cursor.getString(cursor.getColumnIndex(BaiHoc.ID)));
+        baiHoc.setMachuong(cursor.getString(cursor.getColumnIndex(BaiHoc.MACHUONG)));
+        baiHoc.setTenbh(cursor.getString(cursor.getColumnIndex(BaiHoc.TENBH)));
+
+        return baiHoc;
     }
 
     /*
@@ -60,6 +80,16 @@ public class DbModel {
         return cauhoiDb;
     }
 
+    public static CauHoi getCauHoi(Cursor cursor){
+        CauHoi cauHoi = new CauHoi();
+        cauHoi.setId(cursor.getString(cursor.getColumnIndex(CauHoi.ID)));
+        cauHoi.setMadethi(cursor.getString(cursor.getColumnIndex(CauHoi.MADETHI)));
+        cauHoi.setLoai(cursor.getInt(cursor.getColumnIndex(CauHoi.LOAI)));
+        cauHoi.setNoidungch(cursor.getString(cursor.getColumnIndex(CauHoi.NOIDUNGCH)));
+
+        return cauHoi;
+    }
+
     /*
     * @author: KhanhNguyen
     * @function: getContentValueChiTietBaiHoc
@@ -74,6 +104,16 @@ public class DbModel {
         return CTBHDb;
     }
 
+    public static ChiTietBaiHoc getChiTietBaiHoc(Cursor cursor){
+        ChiTietBaiHoc chiTietBaiHoc = new ChiTietBaiHoc();
+        chiTietBaiHoc.setId(cursor.getString(cursor.getColumnIndex(ChiTietBaiHoc.ID)));
+        chiTietBaiHoc.setMabaihoc(cursor.getString(cursor.getColumnIndex(ChiTietBaiHoc.MABAIHOC)));
+        chiTietBaiHoc.setTenctbh(cursor.getString(cursor.getColumnIndex(ChiTietBaiHoc.TENCTBH)));
+        chiTietBaiHoc.setNoidungctbh(cursor.getString(cursor.getColumnIndex(ChiTietBaiHoc.NOIDUNGCTBH)));
+
+        return chiTietBaiHoc;
+    }
+
     /*
     * @author: KhanhNguyen
     * @function: getContentValueChuong
@@ -85,6 +125,15 @@ public class DbModel {
         ChuongDb.put(Chuong.TENCHUONG, chuong.getTenchuong());
 
         return ChuongDb;
+    }
+
+    public static Chuong getChuong(Cursor cursor){
+        Chuong chuong = new Chuong();
+        chuong.setId(cursor.getString(cursor.getColumnIndex(Chuong.ID)));
+        chuong.setMamon(cursor.getString(cursor.getColumnIndex(Chuong.MAMON)));
+        chuong.setTenchuong(cursor.getString(cursor.getColumnIndex(Chuong.TENCHUONG)));
+
+        return chuong;
     }
 
     /*
@@ -101,6 +150,16 @@ public class DbModel {
         return CongThucDb;
     }
 
+    public static CongThuc getCongThuc(Cursor cursor){
+        CongThuc congThuc = new CongThuc();
+        congThuc.setId(cursor.getString(cursor.getColumnIndex(CongThuc.ID)));
+        congThuc.setMactbh(cursor.getString(cursor.getColumnIndex(CongThuc.MACTBH)));
+        congThuc.setTenct(cursor.getString(cursor.getColumnIndex(CongThuc.TENCT)));
+        congThuc.setNoidungct(cursor.getString(cursor.getColumnIndex(CongThuc.NOIDUNGCT)));
+
+        return congThuc;
+    }
+
     /*
     * @author: KhanhNguyen
     * @function: getContentValueDapAn
@@ -113,6 +172,16 @@ public class DbModel {
         DapAnDb.put(DapAn.NOIDUNGDA, dapAn.getNoidungda());
 
         return DapAnDb;
+    }
+
+    public static DapAn getDapAn(Cursor cursor){
+        DapAn dapAn = new DapAn();
+        dapAn.setId(cursor.getString(cursor.getColumnIndex(DapAn.ID)));
+        dapAn.setDung(cursor.getInt(cursor.getColumnIndex(DapAn.DUNGSAI)));
+        dapAn.setMacauhoi(cursor.getString(cursor.getColumnIndex(DapAn.MACAUHOI)));
+        dapAn.setNoidungda(cursor.getString(cursor.getColumnIndex(DapAn.NOIDUNGDA)));
+
+        return dapAn;
     }
 
     /*
@@ -129,6 +198,16 @@ public class DbModel {
         return DeThiThuDb;
     }
 
+    public static DeThiThu getDeThihu(Cursor cursor){
+        DeThiThu deThiThu = new DeThiThu();
+        deThiThu.setId(cursor.getString(cursor.getColumnIndex(DeThiThu.ID)));
+        deThiThu.setManonhoc(cursor.getString(cursor.getColumnIndex(DeThiThu.MAMONHOC)));
+        deThiThu.setSoluong(cursor.getInt(cursor.getColumnIndex(DeThiThu.SOLUONG)));
+        deThiThu.setTende(cursor.getString(cursor.getColumnIndex(DeThiThu.TENDE)));
+
+        return deThiThu;
+    }
+
     /*
     * @author: KhanhNguyen
     * @function: getContentValueDieuKien
@@ -141,6 +220,16 @@ public class DbModel {
 
         return DieuKienDb;
     }
+
+    public static DieuKien getDieuKien(Cursor cursor){
+        DieuKien dieuKien = new DieuKien();
+        dieuKien.setId(cursor.getString(cursor.getColumnIndex(DieuKien.ID)));
+        dieuKien.setNoidungdk(cursor.getString(cursor.getColumnIndex(DieuKien.NOIDUNGDK)));
+        dieuKien.setTemdk(cursor.getString(cursor.getColumnIndex(DieuKien.TENDK)));
+
+        return dieuKien;
+    }
+
 
     /*
     * @author: KhanhNguyen
@@ -156,6 +245,16 @@ public class DbModel {
         return DinhLyDb;
     }
 
+    public static DinhLy getDinhLy(Cursor cursor){
+        DinhLy dinhLy = new DinhLy();
+        dinhLy.setId(cursor.getString(cursor.getColumnIndex(DinhLy.ID)));
+        dinhLy.setMabaihoc(cursor.getString(cursor.getColumnIndex(DinhLy.MABAIHOC)));
+        dinhLy.setTendl(cursor.getString(cursor.getColumnIndex(DinhLy.TENDL)));
+        dinhLy.setNoidungdl(cursor.getString(cursor.getColumnIndex(DinhLy.NOIDUNGDL)));
+
+        return dinhLy;
+    }
+
     /*
     * @author: KhanhNguyen
     * @function: getContentValueMonHoc
@@ -164,9 +263,20 @@ public class DbModel {
         ContentValues MonHocDb = new ContentValues();
         MonHocDb.put(MonHoc.ID, monHoc.getId());
         MonHocDb.put(MonHoc.TENMON, monHoc.getTenmon());
+        MonHocDb.put(MonHoc.MAMON, monHoc.getMamon());
 
         return MonHocDb;
     }
+
+    public static MonHoc getMonHoc(Cursor cursor){
+        MonHoc monHoc = new MonHoc();
+        monHoc.setId(cursor.getString(cursor.getColumnIndex(MonHoc.ID)));
+        monHoc.setTenmon(cursor.getString(cursor.getColumnIndex(MonHoc.TENMON)));
+        monHoc.setMamon(cursor.getInt(cursor.getColumnIndex(MonHoc.MAMON)));
+
+        return monHoc;
+    }
+
 
     /*
     * @author: KhanhNguyen
@@ -181,4 +291,14 @@ public class DbModel {
 
         return HinhAnhDb;
     }
+
+    /*public static HinhAnh getHinhAnh(Cursor cursor){
+        HinhAnh hinhAnh = new HinhAnh();
+        hinhAnh.setId(cursor.getString(cursor.getColumnIndex(HinhAnh.ID)));
+        hinhAnh.setHinhanh(cursor.getString(cursor.getColumnIndex(HinhAnh.HINHANH)));
+        hinhAnh.setMabaigiai(cursor.getString(cursor.getColumnIndex(HinhAnh.MABAIGIAI)));
+        hinhAnh.setMactbg(cursor.getString(cursor.getColumnIndex(HinhAnh.MACHITIETBAIHOC)));
+
+        return hinhAnh;
+    }*/
 }

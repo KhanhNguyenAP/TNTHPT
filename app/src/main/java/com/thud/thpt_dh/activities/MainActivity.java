@@ -13,14 +13,12 @@ package com.thud.thpt_dh.activities;
     import android.view.View;
     import android.widget.AdapterView;
     import android.widget.GridView;
-    import android.widget.Toast;
 
     import com.thud.thpt_dh.R;
 
-    import com.thud.thpt_dh.fragment.HuongDanSuDung;
-    import com.thud.thpt_dh.fragment.QuyCheThi;
     import com.thud.thpt_dh.customcontrols.CustomGridView;
     import com.thud.thpt_dh.utils.async.SaveAllDataFromSerVer;
+    import com.thud.thpt_dh.utils.interfaces.Flags;
 
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
@@ -28,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
     ActionBar actionBar;
 
     GridView grid;
-    String[] TenMon = {"Toán", "Ngữ Văn", "Anh Văn", "Sinh Học","Vật Lý", "Hóa", "Lịch Sử", "Địa Lý", "Thoát"};
+    String[] TenMon = {"Toán", "Ngữ Văn", "Anh Văn", "Sinh Học","Vật Lý", "Hóa", "Lịch Sử", "Địa Lý"};
     int[] Icon = {R.drawable.toan, R.drawable.nguvan, R.drawable.anhvan,
             R.drawable.sinh, R.drawable.vatly, R.drawable.hoa,
-            R.drawable.lichsu, R.drawable.dialy, R.drawable.exit};
+            R.drawable.lichsu, R.drawable.dialy};
 
     @Override
     protected void onCreate(Bundle savedInstanceState)   {
@@ -56,7 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Main Menu
         onContentGridView();
-        new SaveAllDataFromSerVer(MainActivity.this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        if (Flags.synch_data == 0){
+            new SaveAllDataFromSerVer(MainActivity.this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            Flags.synch_data = 1;
+        }
     }
 
     public void onContentGridView(){
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_setting, menu);
         return true;
     }
 
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem)
                     {
                         switch (menuItem.getItemId())  {
-                            case R.id.item_navigation_drawer_home:
+                            /*case R.id.item_navigation_drawer_home:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
@@ -140,42 +141,7 @@ public class MainActivity extends AppCompatActivity {
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 intent = new Intent(MainActivity.this, QuyCheThi.class);
                                 startActivity(intent);
-                                return true;
-                            case R.id.item_navigation_drawer_hdsd:
-                                menuItem.setChecked(true);
-                                Toast.makeText(MainActivity.this,menuItem.getTitle().toString() + " đang thực thi", Toast.LENGTH_SHORT).show();
-                                drawerLayout.closeDrawer(GravityCompat.START);
-                                intent = new Intent(MainActivity.this, HuongDanSuDung.class);
-                                startActivity(intent);
-                                return true;
-                            case R.id.item_navigation_drawer_lichsu:
-                                menuItem.setChecked(true);
-                                Toast.makeText(MainActivity.this,menuItem.getTitle().toString() + " đang thực thi", Toast.LENGTH_SHORT).show();
-                                drawerLayout.closeDrawer(GravityCompat.START);
-                                intent = new Intent(MainActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                return true;
-                            case R.id.item_navigation_drawer_about:
-                                menuItem.setChecked(true);
-                                Toast.makeText(MainActivity.this,menuItem.getTitle().toString() + " đang thực thi", Toast.LENGTH_SHORT).show();
-                                drawerLayout.closeDrawer(GravityCompat.START);
-                                intent = new Intent(MainActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                return true;
-                            case R.id.item_navigation_drawer_star:
-                                menuItem.setChecked(true);
-                                Toast.makeText(MainActivity.this,menuItem.getTitle().toString() + " đang thực thi", Toast.LENGTH_SHORT).show();
-                                drawerLayout.closeDrawer(GravityCompat.START);
-                                intent = new Intent(MainActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                return true;
-                            case R.id.item_navigation_drawer_settings:
-                                menuItem.setChecked(true);
-                                Toast.makeText(MainActivity.this,menuItem.getTitle().toString() + " đang thực thi", Toast.LENGTH_SHORT).show();
-                                drawerLayout.closeDrawer(GravityCompat.START);
-                                intent = new Intent(MainActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                return true;
+                                return true;*/
                         }
                         return true;
                     }

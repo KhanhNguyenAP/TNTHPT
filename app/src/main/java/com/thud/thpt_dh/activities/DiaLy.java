@@ -59,17 +59,13 @@ public class DiaLy extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.menu_dia_ly, menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
             case android.R.id.home:
                 drawerLayout_dialy.openDrawer(GravityCompat.START);
                 return true;
@@ -77,44 +73,6 @@ public class DiaLy extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupNavigationDrawerContent(NavigationView navigationView)
-    {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener()
-                {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem)
-                    {
-                        textView_dialy = (TextView) findViewById(R.id.textView_dialy);
-                        switch (menuItem.getItemId()) {
-                            case R.id.item_navigation_drawer_home_dialy:
-                                menuItem.setChecked(true);
-                                Toast.makeText(DiaLy.this, "Return " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
-                                drawerLayout_dialy.closeDrawer(GravityCompat.START);
-                                Intent intent_dialy = new Intent(DiaLy.this, MainActivity.class);
-                                startActivity(intent_dialy);
-                                return true;
-
-                            case R.id.item_navigation_drawer_dialy10:
-                                menuItem.setChecked(true);
-                                textView_dialy.setText(menuItem.getTitle());
-                                drawerLayout_dialy.closeDrawer(GravityCompat.START);
-                                return true;
-
-                            case R.id.item_navigation_drawer_dialy11:
-                                menuItem.setChecked(true);
-                                textView_dialy.setText(menuItem.getTitle());
-                                drawerLayout_dialy.closeDrawer(GravityCompat.START);
-                                return true;
-
-                            case R.id.item_navigation_drawer_dialy12:
-                                menuItem.setChecked(true);
-                                textView_dialy.setText(menuItem.getTitle());
-                                drawerLayout_dialy.closeDrawer(GravityCompat.START);
-                                return true;
-                        }
-                        return true;
-                    }
-                });
+    private void setupNavigationDrawerContent(NavigationView navigationView) {
     }
 }

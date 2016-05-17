@@ -60,7 +60,7 @@ public class AnhVan extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.menu_anh_van, menu);
+        getMenuInflater().inflate(R.menu.menu_setting, menu);
         return true;
     }
 
@@ -86,31 +86,13 @@ public class AnhVan extends AppCompatActivity
                     {
                         textView_anhvan = (TextView) findViewById(R.id.textView_anhvan);
                         switch (menuItem.getItemId()) {//Khi nhan vao nut hom thi se tro ve man hinh chinh
-                            case R.id.item_navigation_drawer_home_toan:
+                           /* case R.id.item_navigation_drawer_home_toan:
                                 menuItem.setChecked(true);
                                 Toast.makeText(AnhVan.this, "Return " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
                                 drawerLayout_anhvan.closeDrawer(GravityCompat.START);
                                 Intent intent_anhvan = new Intent(AnhVan.this, MainActivity.class);
                                 startActivity(intent_anhvan);
-                                return true;
-
-                            case R.id.item_navigation_drawer_anhvan10://Hien thi anh van lop 10 khi chon
-                                menuItem.setChecked(true);
-                                textView_anhvan.setText(menuItem.getTitle());
-                                drawerLayout_anhvan.closeDrawer(GravityCompat.START);
-                                return true;
-
-                            case R.id.item_navigation_drawer_anhvan11:
-                                menuItem.setChecked(true);
-                                textView_anhvan.setText(menuItem.getTitle());
-                                drawerLayout_anhvan.closeDrawer(GravityCompat.START);
-                                return true;
-
-                            case R.id.item_navigation_drawer_anhvan12:
-                                menuItem.setChecked(true);
-                                textView_anhvan.setText(menuItem.getTitle());
-                                drawerLayout_anhvan.closeDrawer(GravityCompat.START);
-                                return true;
+                                return true;*/
                         }
                         return true;
                     }

@@ -31,6 +31,9 @@ public class DapAn {
         this.noidungda = noidungda;
     }
 
+    public DapAn(){
+    }
+
     public String getId() {
         return id;
     }

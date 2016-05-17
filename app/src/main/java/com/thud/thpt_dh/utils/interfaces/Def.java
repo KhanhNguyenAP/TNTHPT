@@ -18,4 +18,15 @@ public class Def {
     public static final String TAG_SETTING_MONDIA = "MONDIA";
     public static final String TAG_SETTING_MONLY = "MONVATLY";
     public static final String TAG_SETTING_MONHOA = "MONHOA";
+
+    public static final int Toan = 1;
+    public static final int NguVan = 2;
+    public static final int AnhVan = 3;
+    public static final int VatLy = 4;
+    public static final int HoaHoc = 5;
+    public static final int SinhHoc = 6;
+    public static final int LichSu = 7;
+    public static final int DiaLy = 8;
+
+    public static final int TIME_DELAY_FOR_CLICK = 500;
 }

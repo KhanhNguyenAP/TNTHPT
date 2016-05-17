@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TNTHPT.iml" filepath="$PROJECT_DIR$/TNTHPT.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ONTHI.iml" filepath="$PROJECT_DIR$/ONTHI.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

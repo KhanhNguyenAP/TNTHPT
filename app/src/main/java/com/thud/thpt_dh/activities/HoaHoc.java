@@ -58,9 +58,7 @@ public class HoaHoc extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.menu_hoa_hoc, menu);
+    public boolean onCreateOptionsMenu(Menu menu)   {
         return true;
     }
 
@@ -76,44 +74,6 @@ public class HoaHoc extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupNavigationDrawerContent(NavigationView navigationView)
-    {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener()
-                {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem)
-                    {
-                        textView_hoahoc = (TextView) findViewById(R.id.textView_hoahoc);
-                        switch (menuItem.getItemId()) {
-                            case R.id.item_navigation_drawer_home_hoahoc:
-                                menuItem.setChecked(true);
-                                Toast.makeText(HoaHoc.this, "Return " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
-                                drawerLayout_hoahoc.closeDrawer(GravityCompat.START);
-                                Intent intent_hoahoc = new Intent(HoaHoc.this, MainActivity.class);
-                                startActivity(intent_hoahoc);
-                                return true;
-
-                            case R.id.item_navigation_drawer_hoahoc10:
-                                menuItem.setChecked(true);
-                                textView_hoahoc.setText(menuItem.getTitle());
-                                drawerLayout_hoahoc.closeDrawer(GravityCompat.START);
-                                return true;
-
-                            case R.id.item_navigation_drawer_hoahoc11:
-                                menuItem.setChecked(true);
-                                textView_hoahoc.setText(menuItem.getTitle());
-                                drawerLayout_hoahoc.closeDrawer(GravityCompat.START);
-                                return true;
-
-                            case R.id.item_navigation_drawer_hoahoc12:
-                                menuItem.setChecked(true);
-                                textView_hoahoc.setText(menuItem.getTitle());
-                                drawerLayout_hoahoc.closeDrawer(GravityCompat.START);
-                                return true;
-                        }
-                        return true;
-                    }
-                });
+    private void setupNavigationDrawerContent(NavigationView navigationView) {
     }
 }

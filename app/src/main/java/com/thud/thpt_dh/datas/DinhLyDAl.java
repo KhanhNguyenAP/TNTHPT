@@ -50,6 +50,10 @@ public class DinhLyDAL {
                                 ob.getString(""+DinhLy.NOIDUNGDL));
                         arr_DinhLy.add(dinhLy);
                     }
+
+                    if (arr_DinhLy.size() >0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_DinhLy);
+                    }
                 }
             }
         });
@@ -69,7 +73,7 @@ public class DinhLyDAL {
                 ContentValues DinhLyDb = DbModel.getContentValueDinhLy(dinhLy);
 
                 //insert database
-                database.insert(dbHelper.TABLE_DINHLY, null, DinhLyDb);
+                database.insert(DinhLy.TENBANG, null, DinhLyDb);
             }
 
             database.setTransactionSuccessful();

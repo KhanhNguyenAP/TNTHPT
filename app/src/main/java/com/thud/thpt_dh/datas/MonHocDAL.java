@@ -45,8 +45,13 @@ public class MonHocDAL {
                 if ( e ==  null){
                     for (ParseObject ob : objects){
                         MonHoc monHoc = new MonHoc(ob.getObjectId(),
-                                ob.getString(""+MonHoc.TENMON));
+                                ob.getString(""+MonHoc.TENMON),
+                                ob.getInt(""+MonHoc.MAMON));
                         arr_MonHoc.add(monHoc);
+                    }
+
+                    if (arr_MonHoc.size() > 0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_MonHoc);
                     }
                 }
             }
@@ -67,7 +72,7 @@ public class MonHocDAL {
                 ContentValues MonHocDb = DbModel.getContentValueMonHoc(monHoc);
 
                 //insert database
-                database.insert(dbHelper.TABLE_MONHOC, null, MonHocDb);
+                database.insert(MonHoc.TENBANG, null, MonHocDb);
             }
 
             database.setTransactionSuccessful();

@@ -49,6 +49,10 @@ public class DapAnDAL {
                                 ob.getString(""+DapAn.NOIDUNGDA));
                         arr_DapAn.add(dapAn);
                     }
+
+                    if (arr_DapAn.size() >0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_DapAn);
+                    }
                 }
             }
         });
@@ -68,7 +72,7 @@ public class DapAnDAL {
                 ContentValues DapAnDb = DbModel.getContentValueDapAn(dapAn);
 
                 //insert database
-                database.insert(dbHelper.TABLE_DAPAN, null, DapAnDb);
+                database.insert(DapAn.TENBANG, null, DapAnDb);
             }
 
             database.setTransactionSuccessful();

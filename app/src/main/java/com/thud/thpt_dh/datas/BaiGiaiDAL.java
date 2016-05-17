@@ -50,6 +50,10 @@ public class BaiGiaiDAL {
                                                     ob.getString(""+BaiGiai.NOIDUNGBG));
                         arr_BaiGiai.add(baiGiai);
                     }
+
+                    if (arr_BaiGiai.size() > 0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_BaiGiai);
+                    }
                 }
             }
         });
@@ -69,7 +73,7 @@ public class BaiGiaiDAL {
                 ContentValues baigiaiDb = DbModel.getContentValueBaiGiai(baiGiai);
 
                 //insert database
-                database.insert(dbHelper.TABLE_BAIGIAI, null, baigiaiDb);
+                database.insert(BaiGiai.TENBANG, null, baigiaiDb);
             }
 
             database.setTransactionSuccessful();

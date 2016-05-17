@@ -49,6 +49,10 @@ public class CauHoiDAL {
                                 ob.getString(""+CauHoi.NOIDUNGCH));
                         arr_CauHoi.add(cauHoi);
                     }
+
+                    if (arr_CauHoi.size() >0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_CauHoi);
+                    }
                 }
             }
         });
@@ -68,7 +72,7 @@ public class CauHoiDAL {
                 ContentValues cauHoiDb = DbModel.getContentValueCauHoi(cauHoi);
 
                 //insert database
-                database.insert(dbHelper.TABLE_BAIHOC, null, cauHoiDb);
+                database.insert(CauHoi.TENBANG, null, cauHoiDb);
             }
 
             database.setTransactionSuccessful();

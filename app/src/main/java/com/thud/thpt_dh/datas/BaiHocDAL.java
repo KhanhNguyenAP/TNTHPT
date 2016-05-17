@@ -3,6 +3,7 @@ package com.thud.thpt_dh.datas;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
 import com.parse.FindCallback;
@@ -28,7 +29,8 @@ public class BaiHocDAL {
 
     public BaiHocDAL(Context current){
         this.context = current;
-        dbHelper = new DBHelper(context);
+
+        dbHelper =  new DBHelper(context);
         database = dbHelper.getWritableDatabase();
     }
 
@@ -48,6 +50,10 @@ public class BaiHocDAL {
                                 ob.getString(""+BaiHoc.TENBH));
                         arr_BaiHoc.add(baiHoc);
                     }
+
+                    if (arr_BaiHoc.size() > 0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_BaiHoc);
+                    }
                 }
             }
         });
@@ -61,19 +67,24 @@ public class BaiHocDAL {
     public Result<String> insertBaiHocFromLocal(ArrayList<BaiHoc> baiHocs){
         try {
             database = dbHelper.getWritableDatabase();
-            database.beginTransaction();
+            if (database!=null) {
+                try {
+                    database.beginTransaction();
 
-            for(BaiHoc baiHoc : baiHocs){
-                ContentValues baihocDb = DbModel.getContentValueBaiHoc(baiHoc);
+                    for (BaiHoc baiHoc : baiHocs) {
+                        ContentValues baihocDb = DbModel.getContentValueBaiHoc(baiHoc);
+                        database.insert(BaiHoc.TENBANG, null, baihocDb);
+                    }
 
-                //insert database
-                database.insert(dbHelper.TABLE_BAIHOC, null, baihocDb);
+                    database.setTransactionSuccessful();
+                    database.endTransaction();
+                    database.close();
+                }catch (SQLiteException e)
+                {
+                    e.printStackTrace();
+                    Log.e(Def.ERROR, e.getMessage());
+                }
             }
-
-            database.setTransactionSuccessful();
-            database.endTransaction();
-            database.close();
-
             return new Result<String>(ResultStatus.TRUE, context.getResources().getString(R.string.msg_data_has_been_saved));
         }
         catch (Exception e){

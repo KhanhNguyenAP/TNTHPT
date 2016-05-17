@@ -26,6 +26,9 @@ public class BaiGiai {
         this.noidungbg = noidungbg;
     }
 
+    public BaiGiai(){
+    }
+
     public String getId() {
         return id;
     }

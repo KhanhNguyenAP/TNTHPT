@@ -3,37 +3,60 @@
     <group android:checkableBehavior="single">
         <item
             android:checked="true"
-            android:id="@+id/item_navigation_drawer_home"
+            android:id="@+id/item_navigation_drawer_trangchu"
             android:icon="@drawable/home"
-            android:title="Trang chủ" />
+            android:title="@string/left_trangchu" />
+
         <item
-            android:id="@+id/item_navigation_drawer_quyche"
+            android:id="@+id/item_navigation_drawer_montoan"
             android:icon="@drawable/quyche"
-            android:title="Quy chế thi"/>
+            android:title="@string/left_montoan"/>
+
         <item
-            android:id="@+id/item_navigation_drawer_hdsd"
+            android:id="@+id/item_navigation_drawer_monnguvan"
             android:icon="@drawable/hdsd"
-            android:title="Hướng dẫn sử dụng"/>
+            android:title="@string/left_monnguvan"/>
+
         <item
-            android:id="@+id/item_navigation_drawer_lichsu"
+            android:id="@+id/item_navigation_drawer_monanhvan"
             android:icon="@drawable/ilichsu"
-            android:title="Lịch sử" />
+            android:title="@string/left_monanhvan" />
+
         <item
-            android:id="@+id/item_navigation_drawer_about"
+            android:id="@+id/item_navigation_drawer_monvatly"
             android:icon="@drawable/about"
-            android:title="Giới thiệu" />
+            android:title="@string/left_monvatly" />
+
         <item
-            android:id="@+id/item_navigation_drawer_gopy"
+            android:id="@+id/item_navigation_drawer_monhoahoc"
             android:icon="@drawable/gopy"
-            android:title="Góp ý" />
+            android:title="@string/left_monhoahoc" />
+
         <item
-            android:id="@+id/item_navigation_drawer_star"
+            android:id="@+id/item_navigation_drawer_monsinhoc"
+            android:icon="@drawable/gopy"
+            android:title="@string/left_monsinhhoc" />
+
+        <item
+            android:id="@+id/item_navigation_drawer_monlichsu"
             android:icon="@drawable/star"
-            android:title="Đánh giá" />
+            android:title="@string/left_monlichsu" />
+
         <item
-            android:id="@+id/item_navigation_drawer_settings"
+            android:id="@+id/item_navigation_drawer_mondialy"
             android:icon="@drawable/setting"
-            android:title="Cài đặt" />
+            android:title="@string/left_mondialy" />
+
+        <item
+            android:id="@+id/item_navigation_drawer_dethi"
+            android:icon="@drawable/setting"
+            android:title="@string/left_dethi" />
+
+        <item
+            android:id="@+id/item_navigation_drawer_yeuthich"
+            android:icon="@drawable/yeuthich"
+            android:title="@string/left_yeuthich" />
+
         <item
             android:id="@+id/item_navigation_drawer_thoat"
             android:icon="@drawable/thoat"

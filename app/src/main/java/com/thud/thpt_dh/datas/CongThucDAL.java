@@ -49,6 +49,10 @@ public class CongThucDAL {
                                 ob.getString(""+CongThuc.NOIDUNGCT));
                         arr_CongThuc.add(congthuc);
                     }
+
+                    if (arr_CongThuc.size() >0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_CongThuc);
+                    }
                 }
             }
         });
@@ -68,7 +72,7 @@ public class CongThucDAL {
                 ContentValues CongThucDb = DbModel.getContentValueCongThuc(congThuc);
 
                 //insert database
-                database.insert(dbHelper.TABLE_CHUONG, null, CongThucDb);
+                database.insert(CongThuc.TENBANG, null, CongThucDb);
             }
 
             database.setTransactionSuccessful();

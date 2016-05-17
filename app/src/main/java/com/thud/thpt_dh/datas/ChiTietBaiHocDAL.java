@@ -49,6 +49,10 @@ public class ChiTietBaiHocDAL {
                                 ob.getString(""+ChiTietBaiHoc.NOIDUNGCTBH));
                         arr_CTBH.add(CTBH);
                     }
+
+                    if (arr_CTBH.size() >0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_CTBH);
+                    }
                 }
             }
         });
@@ -68,7 +72,7 @@ public class ChiTietBaiHocDAL {
                 ContentValues CTBHDb = DbModel.getContentValueChiTietBaiHoc(chiTietBaiHoc);
 
                 //insert database
-                database.insert(dbHelper.TABLE_CHITIETBAIHOC, null, CTBHDb);
+                database.insert(ChiTietBaiHoc.TENBANG, null, CTBHDb);
             }
 
             database.setTransactionSuccessful();

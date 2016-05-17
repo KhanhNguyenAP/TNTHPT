@@ -31,6 +31,9 @@ public class CauHoi {
         this.noidungch = noidungch;
     }
 
+    public CauHoi(){
+    }
+
     public String getId() {
         return id;
     }

@@ -31,6 +31,9 @@ public class DeThiThu {
         this.soluong = soluong;
     }
 
+    public DeThiThu(){
+    }
+
     public String getId() {
         return id;
     }

@@ -26,6 +26,9 @@ public class DieuKien {
         this.noidungdk = noidungdk;
     }
 
+    public DieuKien(){
+    }
+
     public String getId() {
         return id;
     }

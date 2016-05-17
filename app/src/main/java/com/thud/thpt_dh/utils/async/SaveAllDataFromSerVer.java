@@ -23,7 +23,7 @@ import com.thud.thpt_dh.datas.DieuKienDAL;
 import com.thud.thpt_dh.datas.DinhLyDAL;
 import com.thud.thpt_dh.datas.HinhAnhDAL;
 import com.thud.thpt_dh.datas.MonHocDAL;
-import com.thud.thpt_dh.model.AllDAL;
+import com.thud.thpt_dh.datas.AllDAL;
 import com.thud.thpt_dh.model.BaiGiai;
 import com.thud.thpt_dh.model.BaiHoc;
 import com.thud.thpt_dh.model.CauHoi;
@@ -87,10 +87,7 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
             if (Flags.synch_data == 0){
                 new AllDAL(context).dropAllTable();
             }
-            else {
-                return new Result<String>(ResultStatus.FALSE, null, context.getResources().getString(R.string.msg_can_not_connect_to_network));
-            }
-
+            Flags.synch_data = 1;
             getBaiGiai();
             getBaiHoc();
             publishProgress(1);
@@ -136,7 +133,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
         }
         else {
             new ToastMessage(context).showToast(context.getResources().getString(R.string.msg_download_data));
-            //Flags.synch_data = 1;
         }
     }
 
@@ -176,15 +172,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getBaiGiai(){
         try {
             Result<ArrayList<BaiGiai>> resultBaiGiai = new BaiGiaiDAL(context).getAllBaiGiai();
-            if (resultBaiGiai.getKey() == ResultStatus.TRUE &&
-                    resultBaiGiai.getValue() != null &&
-                    resultBaiGiai.getValue().size() > 0){
-                ArrayList<BaiGiai> baiGiais = resultBaiGiai.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(baiGiais);
-                Log.i(Def.INFO, result.getMessage());
-
-            }
             return true;
         }
         catch (Exception e){
@@ -198,15 +185,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getBaiHoc(){
         try {
             Result<ArrayList<BaiHoc>> resultBaiHoc = new BaiHocDAL(context).getAllBaiHoc();
-            if (resultBaiHoc.getKey() == ResultStatus.TRUE &&
-                    resultBaiHoc.getValue() != null &&
-                    resultBaiHoc.getValue().size() > 0){
-                ArrayList<BaiHoc> baiHocs = resultBaiHoc.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(baiHocs);
-                Log.i(Def.INFO, result.getMessage());
-
-            }
             return true;
         }
         catch (Exception e){
@@ -219,15 +197,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getCauHoi(){
         try {
             Result<ArrayList<CauHoi>> resultCauHoi = new CauHoiDAL(context).getAllCauHoi();
-            if (resultCauHoi.getKey() == ResultStatus.TRUE &&
-                    resultCauHoi.getValue() != null &&
-                    resultCauHoi.getValue().size() > 0){
-                ArrayList<CauHoi> cauHois = resultCauHoi.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(cauHois);
-                Log.i(Def.INFO, result.getMessage());
-
-            }
             return true;
         }
         catch (Exception e){
@@ -240,15 +209,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getChiTietBaiHoc(){
         try {
             Result<ArrayList<ChiTietBaiHoc>> resultChiTietBaiHoc = new ChiTietBaiHocDAL(context).getAllChiTietBaiHoc();
-            if (resultChiTietBaiHoc.getKey() == ResultStatus.TRUE &&
-                    resultChiTietBaiHoc.getValue() != null &&
-                    resultChiTietBaiHoc.getValue().size() > 0){
-                ArrayList<ChiTietBaiHoc> chiTietBaiHocs = resultChiTietBaiHoc.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(chiTietBaiHocs);
-                Log.i(Def.INFO, result.getMessage());
-
-            }
             return true;
         }
         catch (Exception e){
@@ -261,15 +221,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getChuong(){
         try {
             Result<ArrayList<Chuong>> resultChuong = new ChuongDAL(context).getAllChuong();
-            if (resultChuong.getKey() == ResultStatus.TRUE &&
-                    resultChuong.getValue() != null &&
-                    resultChuong.getValue().size() > 0){
-                ArrayList<Chuong> chuongs = resultChuong.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(chuongs);
-                Log.i(Def.INFO, result.getMessage());
-
-            }
             return true;
         }
         catch (Exception e){
@@ -282,15 +233,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getCongThuc(){
         try {
             Result<ArrayList<CongThuc>> resultCongThuc = new CongThucDAL(context).getAllCongThuc();
-            if (resultCongThuc.getKey() == ResultStatus.TRUE &&
-                    resultCongThuc.getValue() != null &&
-                    resultCongThuc.getValue().size() > 0){
-                ArrayList<CongThuc> congThucs = resultCongThuc.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(congThucs);
-                Log.i(Def.INFO, result.getMessage());
-
-            }
             return true;
         }
         catch (Exception e){
@@ -303,15 +245,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getDapAn(){
         try {
             Result<ArrayList<DapAn>> resultDapAn = new DapAnDAL(context).getAllDapAn();
-            if (resultDapAn.getKey() == ResultStatus.TRUE &&
-                    resultDapAn.getValue() != null &&
-                    resultDapAn.getValue().size() > 0){
-                ArrayList<DapAn> dapAns = resultDapAn.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(dapAns);
-                Log.i(Def.INFO, result.getMessage());
-
-            }
             return true;
         }
         catch (Exception e){
@@ -324,15 +257,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getDeThiThu(){
         try {
             Result<ArrayList<DeThiThu>> resultDeThiThu = new DeThiThuDAL(context).getAllDeThiThu();
-            if (resultDeThiThu.getKey() == ResultStatus.TRUE &&
-                    resultDeThiThu.getValue() != null &&
-                    resultDeThiThu.getValue().size() > 0){
-                ArrayList<DeThiThu> deThiThus = resultDeThiThu.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(deThiThus);
-                Log.i(Def.INFO, result.getMessage());
-
-            }
             return true;
         }
         catch (Exception e){
@@ -345,15 +269,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getDieuKien(){
         try {
             Result<ArrayList<DieuKien>> resultDieuKien = new DieuKienDAL(context).getAllDieuKien();
-            if (resultDieuKien.getKey() == ResultStatus.TRUE &&
-                    resultDieuKien.getValue() != null &&
-                    resultDieuKien.getValue().size() > 0){
-                ArrayList<DieuKien> dieuKiens = resultDieuKien.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(dieuKiens);
-                Log.i(Def.INFO, result.getMessage());
-
-            }
             return true;
         }
         catch (Exception e){
@@ -366,15 +281,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getDinhLy(){
         try {
             Result<ArrayList<DinhLy>> resultDinhLy = new DinhLyDAL(context).getAllDinhLy();
-            if (resultDinhLy.getKey() == ResultStatus.TRUE &&
-                    resultDinhLy.getValue() != null &&
-                    resultDinhLy.getValue().size() > 0){
-                ArrayList<DinhLy> dinhLies = resultDinhLy.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(dinhLies);
-                Log.i(Def.INFO, result.getMessage());
-
-            }
             return true;
         }
         catch (Exception e){
@@ -387,15 +293,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private boolean getHinhAnh(){
         try {
             Result<ArrayList<HinhAnh>> resultHinhAnh = new HinhAnhDAL(context).getAllHinhAnh();
-            if (resultHinhAnh.getKey() == ResultStatus.TRUE &&
-                    resultHinhAnh.getValue() != null &&
-                    resultHinhAnh.getValue().size() > 0){
-                ArrayList<HinhAnh> hinhAnhs = resultHinhAnh.getValue();
-
-                Result<String> result = new AllDAL(context).saveAll(hinhAnhs);
-                Log.i(Def.INFO, result.getMessage());
-
-            }
             return true;
         }
         catch (Exception e){
@@ -404,7 +301,7 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
         }
     }
 
-    //get HinhAnh
+    //get Mon Hoc
     private boolean getMonHoc(){
         try {
             Result<ArrayList<MonHoc>> resultMonHoc = new MonHocDAL(context).getAllMonHoc();
@@ -414,7 +311,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
                 ArrayList<MonHoc> monHocs = resultMonHoc.getValue();
 
                 Result<String> result = new AllDAL(context).saveAll(monHocs);
-                Log.i(Def.INFO, result.getMessage());
 
             }
             return true;

@@ -59,17 +59,13 @@ public class VatLy extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.menu_vat_ly, menu);
+    public boolean onCreateOptionsMenu(Menu menu){
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case android.R.id.home:
                 drawerLayout_vatly.openDrawer(GravityCompat.START);
                 return true;
@@ -77,44 +73,6 @@ public class VatLy extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupNavigationDrawerContent(NavigationView navigationView)
-    {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener()
-                {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem)
-                    {
-                        textView_vatly = (TextView) findViewById(R.id.textView_vatly);
-                        switch (menuItem.getItemId()) {
-                            case R.id.item_navigation_drawer_home_vatly:
-                                menuItem.setChecked(true);
-                                Toast.makeText(VatLy.this, "Return " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
-                                drawerLayout_vatly.closeDrawer(GravityCompat.START);
-                                Intent intent_vatly = new Intent(VatLy.this, MainActivity.class);
-                                startActivity(intent_vatly);
-                                return true;
-
-                            case R.id.item_navigation_drawer_vatly10:
-                                menuItem.setChecked(true);
-                                textView_vatly.setText(menuItem.getTitle());
-                                drawerLayout_vatly.closeDrawer(GravityCompat.START);
-                                return true;
-
-                            case R.id.item_navigation_drawer_vatly11:
-                                menuItem.setChecked(true);
-                                textView_vatly.setText(menuItem.getTitle());
-                                drawerLayout_vatly.closeDrawer(GravityCompat.START);
-                                return true;
-
-                            case R.id.item_navigation_drawer_vatly12:
-                                menuItem.setChecked(true);
-                                textView_vatly.setText(menuItem.getTitle());
-                                drawerLayout_vatly.closeDrawer(GravityCompat.START);
-                                return true;
-                        }
-                        return true;
-                    }
-                });
+    private void setupNavigationDrawerContent(NavigationView navigationView)  {
     }
 }

@@ -49,6 +49,10 @@ public class DeThiThuDAL {
                                 ob.getInt(""+DeThiThu.SOLUONG));
                         arr_DeThiThu.add(deThiThu);
                     }
+
+                    if (arr_DeThiThu.size() >0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_DeThiThu);
+                    }
                 }
             }
         });
@@ -68,7 +72,7 @@ public class DeThiThuDAL {
                 ContentValues DeThiThuDb = DbModel.getContentValueDeThiThu(deThiThu);
 
                 //insert database
-                database.insert(dbHelper.TABLE_DETHITHU, null, DeThiThuDb);
+                database.insert(DeThiThu.TENBANG, null, DeThiThuDb);
             }
 
             database.setTransactionSuccessful();

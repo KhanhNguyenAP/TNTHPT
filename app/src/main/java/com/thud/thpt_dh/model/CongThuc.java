@@ -31,6 +31,9 @@ public class CongThuc {
         this.noidungct = noidungct;
     }
 
+    public CongThuc(){
+    }
+
     public String getId() {
         return id;
     }
