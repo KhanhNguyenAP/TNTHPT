@@ -16,6 +16,7 @@ import com.thud.thpt_dh.model.DieuKien;
 import com.thud.thpt_dh.model.DinhLy;
 import com.thud.thpt_dh.model.HinhAnh;
 import com.thud.thpt_dh.model.MonHoc;
+import com.thud.thpt_dh.utils.interfaces.Flags;
 
 /**
  * Created by khanh on 5/12/2016.
@@ -100,6 +101,7 @@ public class DbModel {
         CTBHDb.put(ChiTietBaiHoc.MABAIHOC, CTBH.getMabaihoc());
         CTBHDb.put(ChiTietBaiHoc.TENCTBH, CTBH.getTenctbh());
         CTBHDb.put(ChiTietBaiHoc.NOIDUNGCTBH, CTBH.getNoidungctbh());
+        CTBHDb.put(ChiTietBaiHoc.NOIDUNGCT, CTBH.getNoidungct());
 
         return CTBHDb;
     }
@@ -108,6 +110,7 @@ public class DbModel {
         ChiTietBaiHoc chiTietBaiHoc = new ChiTietBaiHoc();
         chiTietBaiHoc.setId(cursor.getString(cursor.getColumnIndex(ChiTietBaiHoc.ID)));
         chiTietBaiHoc.setMabaihoc(cursor.getString(cursor.getColumnIndex(ChiTietBaiHoc.MABAIHOC)));
+        chiTietBaiHoc.setNoidungct(cursor.getString(cursor.getColumnIndex(ChiTietBaiHoc.NOIDUNGCT)));
         chiTietBaiHoc.setTenctbh(cursor.getString(cursor.getColumnIndex(ChiTietBaiHoc.TENCTBH)));
         chiTietBaiHoc.setNoidungctbh(cursor.getString(cursor.getColumnIndex(ChiTietBaiHoc.NOIDUNGCTBH)));
 

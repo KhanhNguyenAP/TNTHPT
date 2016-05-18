@@ -2,6 +2,7 @@ package com.thud.thpt_dh.datas;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -10,6 +11,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.thud.thpt_dh.R;
+import com.thud.thpt_dh.model.BaiHoc;
 import com.thud.thpt_dh.model.ChiTietBaiHoc;
 import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
@@ -46,7 +48,8 @@ public class ChiTietBaiHocDAL {
                         ChiTietBaiHoc CTBH = new ChiTietBaiHoc(ob.getObjectId(),
                                 ob.getString(""+ChiTietBaiHoc.MABAIHOC),
                                 ob.getString(""+ChiTietBaiHoc.TENCTBH),
-                                ob.getString(""+ChiTietBaiHoc.NOIDUNGCTBH));
+                                ob.getString(""+ChiTietBaiHoc.NOIDUNGCTBH),
+                                ob.getString(""+ChiTietBaiHoc.NOIDUNGCT));
                         arr_CTBH.add(CTBH);
                     }
 
@@ -88,4 +91,30 @@ public class ChiTietBaiHocDAL {
 
         return new Result<String>(ResultStatus.FALSE, null);
     }
+
+    public Result<ArrayList<ChiTietBaiHoc>> getAllChiTietBaiHocFromLocal(String mabaihoc){
+        database = dbHelper.getReadableDatabase();
+        ArrayList<ChiTietBaiHoc> chiTietBaiHocs = new ArrayList<>();
+        try{
+            String query = "SELECT * FROM " + ChiTietBaiHoc.TENBANG + " WHERE "
+                    + ChiTietBaiHoc.MABAIHOC + " = '" + mabaihoc +"'";
+
+            Cursor cursor = database.rawQuery(query, null);
+            if(cursor != null && cursor.moveToFirst()){
+                do{
+                    ChiTietBaiHoc chiTietBaiHoc = DbModel.getChiTietBaiHoc(cursor);
+                    chiTietBaiHocs.add(chiTietBaiHoc);
+                }while (cursor.moveToNext());
+            }
+
+            database.close();
+        }
+        catch (Exception e){
+            Log.e(Def.ERROR, null);
+            e.printStackTrace();
+        }
+
+        return  new Result<ArrayList<ChiTietBaiHoc>>(ResultStatus.TRUE, chiTietBaiHocs);
+    }
+
 }

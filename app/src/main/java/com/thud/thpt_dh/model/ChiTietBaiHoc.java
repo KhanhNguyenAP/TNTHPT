@@ -1,6 +1,8 @@
 package com.thud.thpt_dh.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.parse.Parse;
+import com.parse.ParseFile;
 
 /**
  * Created by khanh on 5/11/2016.
@@ -11,6 +13,7 @@ public class ChiTietBaiHoc {
     public static final String MABAIHOC = "MABAIHOC";
     public static final String TENCTBH = "TENCTBH";
     public static final String NOIDUNGCTBH = "NOIDUNGCTBH";
+    public static final String NOIDUNGCT = "NOIDUNGCT";
 
     @SerializedName("objectId")
     private String id;
@@ -24,11 +27,16 @@ public class ChiTietBaiHoc {
     @SerializedName("NOIDUNGCTBH")
     private String noidungctbh;
 
-    public ChiTietBaiHoc(String id, String mabaihoc, String tenctbh, String noidungctbh){
+    @SerializedName("NOIDUNGCT")
+    private String noidungct;
+
+
+    public ChiTietBaiHoc(String id, String mabaihoc, String tenctbh, String noidungctbh, String noidungct){
         this.id = id;
         this.mabaihoc = mabaihoc;
         this.tenctbh = tenctbh;
         this.noidungctbh = noidungctbh;
+        this.noidungct = noidungct;
     }
 
     public ChiTietBaiHoc(){
@@ -64,5 +72,13 @@ public class ChiTietBaiHoc {
 
     public void setNoidungctbh(String noidungctbh) {
         this.noidungctbh = noidungctbh;
+    }
+
+    public String getNoidungct() {
+        return noidungct;
+    }
+
+    public void setNoidungct(String noidungct) {
+        this.noidungct = noidungct;
     }
 }

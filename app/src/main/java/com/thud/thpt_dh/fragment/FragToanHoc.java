@@ -49,7 +49,7 @@ public class FragToanHoc extends Fragment implements ActivityInterface {
 
         initFlags();
 
-        initControl();;
+        initControl();
 
         setEventForControl();
 
@@ -57,8 +57,16 @@ public class FragToanHoc extends Fragment implements ActivityInterface {
     }
 
     @Override
-    public void initFlags() {
+    public void onResume(){
+        super.onResume();
+        Flags.main_toan = true;
+        Flags.main_nguvan = true;
+        getData();
+    }
 
+    @Override
+    public void initFlags() {
+        Flags.main_toan = true;
     }
 
     @Override
@@ -95,7 +103,7 @@ public class FragToanHoc extends Fragment implements ActivityInterface {
 
         @Override
         protected Result<ArrayList<Chuong>> doInBackground(String... strings) {
-            return new ChuongDAL(getActivity()).getAllChuongFromLocal(Def.Toan);
+            return new ChuongDAL(getActivity()).getAllChuongFromLocal(Flags.chosen_mon);
         }
 
         @Override
@@ -119,5 +127,7 @@ public class FragToanHoc extends Fragment implements ActivityInterface {
         fragmentTransaction.replace(R.id.fra_toanhoc, fragDeTailToanHoc, "Toan Hoc");
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
-    }//--end showSuppliers
+    }
+
+
 }

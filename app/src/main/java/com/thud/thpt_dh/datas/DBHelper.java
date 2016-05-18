@@ -52,6 +52,7 @@ public class DBHelper extends SQLiteOpenHelper{
             ChiTietBaiHoc.ID + " TEXT PRIMARY KEY, " +
             ChiTietBaiHoc.MABAIHOC + " TEXT, " +
             ChiTietBaiHoc.NOIDUNGCTBH + " TEXT, " +
+            ChiTietBaiHoc.NOIDUNGCT + " TEXT, " +
             ChiTietBaiHoc.TENCTBH + " TEXT )";
 
     public static final String sql_chuong = "CREATE TABLE IF NOT EXISTS " + Chuong.TENBANG + "(" +

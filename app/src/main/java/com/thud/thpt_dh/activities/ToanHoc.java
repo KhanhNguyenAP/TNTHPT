@@ -3,6 +3,9 @@ package com.thud.thpt_dh.activities;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -12,13 +15,17 @@ import android.view.MenuItem;
 
 import com.thud.thpt_dh.R;
 
+import com.thud.thpt_dh.fragment.FragDeTailToanHoc;
 import com.thud.thpt_dh.fragment.FragToanHoc;
 import com.thud.thpt_dh.utils.interfaces.ActivityInterface;
+import com.thud.thpt_dh.utils.interfaces.Def;
+import com.thud.thpt_dh.utils.interfaces.Flags;
 
 public class ToanHoc extends BaseActivity implements ActivityInterface {
     DrawerLayout drawerLayout_toan;
     Toolbar toolbar_toan;
     ActionBar actionBar_toan;
+    android.app.FragmentManager fragmentManager = this.getFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,7 @@ public class ToanHoc extends BaseActivity implements ActivityInterface {
             setupNavigationDrawerContent(navigationView_toan);
         }
         setupNavigationDrawerContent(navigationView_toan);
+        Flags.main_toan = false;
 
         FragToanHoc fragToanHoc = (FragToanHoc) getFragmentManager().findFragmentById(R.id.fra_toanhoc);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -44,6 +52,7 @@ public class ToanHoc extends BaseActivity implements ActivityInterface {
         fragmentTransaction.replace(R.id.fra_toanhoc, fragToanHoc, "Toan Hoc");
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
+
     }
 
     @Override
@@ -89,4 +98,35 @@ public class ToanHoc extends BaseActivity implements ActivityInterface {
     public void setData() {
 
     }
+
+    @Override
+    public void onBackPressed(){
+        if(Flags.main_toan == true){
+            finish();
+        }
+        showRangeList(fragmentManager);
+    }
+
+    public static void showRangeList(android.app.FragmentManager fragmentManager){
+        try{
+            android.app.Fragment fragmentRangeList =
+                    fragmentManager.findFragmentByTag(Def.TAG_SETTING_MONTOAN);
+
+            if(fragmentRangeList != null){
+                fragmentManager.beginTransaction().remove(fragmentRangeList).commitAllowingStateLoss();
+            }
+
+            fragmentRangeList = new FragToanHoc();
+            if (Flags.chosen_fragment_vitri == 2){
+                fragmentRangeList = new FragDeTailToanHoc();
+            }
+            fragmentManager.beginTransaction()
+                    .add(R.id.fra_toanhoc, fragmentRangeList, Def.TAG_SETTING_MONTOAN)
+                    .commit();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }//--end showRangeList
 }

@@ -1,30 +1,23 @@
 package com.thud.thpt_dh.fragment;
 
 import android.app.Fragment;
-import android.app.ProgressDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 
 import com.thud.thpt_dh.R;
 import com.thud.thpt_dh.adapters.BaiHocAdapter;
-import com.thud.thpt_dh.adapters.ChuongAdapter;
 import com.thud.thpt_dh.datas.BaiHocDAL;
-import com.thud.thpt_dh.datas.ChuongDAL;
 import com.thud.thpt_dh.model.BaiHoc;
-import com.thud.thpt_dh.model.Chuong;
-import com.thud.thpt_dh.model.MonHoc;
 import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
 import com.thud.thpt_dh.utils.interfaces.ActivityInterface;
-import com.thud.thpt_dh.utils.interfaces.Def;
 import com.thud.thpt_dh.utils.interfaces.Flags;
 
 import java.util.ArrayList;
@@ -59,7 +52,9 @@ public class FragDeTailToanHoc extends Fragment implements ActivityInterface {
 
     @Override
     public void initFlags() {
-
+        Flags.main_toan = false;
+        Flags.main_nguvan = false;
+        Flags.chosen_fragment_vitri = 1;
     }
 
     @Override
@@ -72,7 +67,9 @@ public class FragDeTailToanHoc extends Fragment implements ActivityInterface {
         lst_toanhoc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Flags.mabaihoc = array_baihoc.get(i).getId();
 
+                showDeTail();
             }
         });
     }
@@ -85,6 +82,12 @@ public class FragDeTailToanHoc extends Fragment implements ActivityInterface {
     @Override
     public void setData() {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getData();
     }
 
     private  class apiGetBaiHoc extends AsyncTask<String, Void, Result<ArrayList<BaiHoc>>>{
@@ -110,5 +113,14 @@ public class FragDeTailToanHoc extends Fragment implements ActivityInterface {
                 }
             }
         }
+    }
+
+    public void showDeTail(){
+        FragmentManager fragmentManager = getActivity().getFragmentManager();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        Fragment fragDeTail = new FragDeTailToanHocBaiHoc();
+        fragmentTransaction.replace(R.id.fra_toanhoc, fragDeTail, "Toan Hoc");
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        fragmentTransaction.commit();
     }
 }

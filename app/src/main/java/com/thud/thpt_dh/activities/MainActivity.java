@@ -76,9 +76,11 @@ public class MainActivity extends AppCompatActivity {
                     switch (pos) {
                         case 0:
                             intent = new Intent(MainActivity.this, ToanHoc.class);
+                            Flags.chosen_mon = 1;
                             break;
                         case 1:
-                            intent = new Intent(MainActivity.this, NguVan.class);
+                            intent = new Intent(MainActivity.this, ToanHoc.class);
+                            Flags.chosen_mon = 2;
                             break;
                         case 2:
                             intent = new Intent(MainActivity.this, AnhVan.class);
