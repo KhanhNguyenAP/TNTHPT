@@ -6,15 +6,6 @@
 
     <!--Main content-->
     <string name="setting">Cài Đặt</string>
-    <string name="toanhoc">Ôn Thi THPT - ĐH</string>
-    <string name="anhvan">Ôn Thi THPT - ĐH</string>
-    <string name="nguvan">Kiến Thức Ngữ Văn</string>
-    <string name="hoahoc">Kiến Thức Hóa Học</string>
-    <string name="vatly">Kiến Thức Vật Lý</string>
-    <string name="lichsu">Kiến Thức Lịch Sử</string>
-    <string name="dialy">Kiến Thức Địa Lý</string>
-    <string name="sinhhoc">Kiến Thức Sinh Học</string>
-    <string name="toan_10">Toan_10</string>
     <string name="onthi_document">OnThiTNTHPTDocument</string>
 
     <!--Left menu-->

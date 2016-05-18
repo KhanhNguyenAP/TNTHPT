@@ -83,22 +83,28 @@ public class MainActivity extends AppCompatActivity {
                             Flags.chosen_mon = 2;
                             break;
                         case 2:
-                            intent = new Intent(MainActivity.this, AnhVan.class);
+                            intent = new Intent(MainActivity.this, ToanHoc.class);
+                            Flags.chosen_mon = 3;
                             break;
                         case 3:
-                            intent = new Intent(MainActivity.this, SinhHoc.class);
+                            intent = new Intent(MainActivity.this, ToanHoc.class);
+                            Flags.chosen_mon = 4;
                             break;
                         case 4:
-                            intent = new Intent(MainActivity.this, HoaHoc.class);
+                            intent = new Intent(MainActivity.this, ToanHoc.class);
+                            Flags.chosen_mon = 5;
                             break;
                         case 5:
-                            intent = new Intent(MainActivity.this, VatLy.class);
+                            intent = new Intent(MainActivity.this, ToanHoc.class);
+                            Flags.chosen_mon = 6;
                             break;
                         case 6:
-                            intent = new Intent(MainActivity.this, LichSu.class);
+                            intent = new Intent(MainActivity.this, ToanHoc.class);
+                            Flags.chosen_mon = 7;
                             break;
                         case 7:
-                            intent = new Intent(MainActivity.this, DiaLy.class);
+                            intent = new Intent(MainActivity.this, ToanHoc.class);
+                            Flags.chosen_mon = 8;
                             break;
                     }
                     startActivity(intent);

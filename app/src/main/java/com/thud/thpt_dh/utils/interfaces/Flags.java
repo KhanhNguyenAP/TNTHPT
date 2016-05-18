@@ -10,7 +10,7 @@ public class Flags {
 
     public static boolean main_toan = false;
     public static boolean main_nguvan = false;
-    
+
     public static String machuong = Def.STRING_EMPTY;
     public static String mabaihoc = Def.STRING_EMPTY;
 

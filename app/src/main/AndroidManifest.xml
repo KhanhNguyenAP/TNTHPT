@@ -32,29 +32,8 @@
             android:name=".activities.MainActivity"
             android:label="@string/app_name" />
         <activity
-            android:name=".activities.DiaLy"
-            android:label="@string/dialy" />
-        <activity
             android:name=".activities.ToanHoc"
-            android:label="@string/toanhoc" />
-        <activity
-            android:name=".activities.AnhVan"
-            android:label="@string/anhvan" />
-        <activity
-            android:name=".activities.NguVan"
-            android:label="@string/nguvan" />
-        <activity
-            android:name=".activities.HoaHoc"
-            android:label="@string/hoahoc" />
-        <activity
-            android:name=".activities.VatLy"
-            android:label="@string/vatly" />
-        <activity
-            android:name=".activities.LichSu"
-            android:label="@string/lichsu" />
-        <activity
-            android:name=".activities.SinhHoc"
-            android:label="@string/sinhhoc" />
+            android:label="@string/app_name" />
     </application>
 
 </manifest>
