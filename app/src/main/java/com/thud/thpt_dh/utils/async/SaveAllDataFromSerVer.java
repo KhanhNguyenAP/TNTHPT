@@ -56,8 +56,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     private TextView text_view_percent, text_view_title;
     private ProgressBar progress_custom;
     private Context context;
-    private Preference preference;
-    private  int countDataComplete = 0;
 
     public SaveAllDataFromSerVer(Context current){
         this.context = current;
@@ -68,7 +66,6 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
         alertDialogBuilder.setCancelable(false);
 
         initControl();
-        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
 
         //create an alert dialog
         alertDialog = alertDialogBuilder.create();

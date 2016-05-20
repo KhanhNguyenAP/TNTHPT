@@ -1,6 +1,7 @@
 package com.thud.thpt_dh.activities;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -70,10 +71,6 @@ public class ToanHoc extends BaseActivity implements ActivityInterface {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupNavigationDrawerContent(NavigationView navigationView)  {
-
-    }
-
     @Override
     public void initFlags() {
 
@@ -129,4 +126,70 @@ public class ToanHoc extends BaseActivity implements ActivityInterface {
         }
 
     }//--end showRangeList
+
+
+    private void setupNavigationDrawerContent(NavigationView navigationView)  {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem)  {
+                        Intent intent = new Intent(ToanHoc.this, ToanHoc.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        switch (menuItem.getItemId())  {
+                            case R.id.item_navigation_drawer_dethi:
+                                menuItem.setChecked(true);
+                                return true;
+
+                            case R.id.item_navigation_drawer_montoan:
+                                menuItem.setChecked(true);
+                                Flags.chosen_mon = 1;
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_monnguvan:
+                                menuItem.setChecked(true);
+                                Flags.chosen_mon = 2;
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_monanhvan:
+                                menuItem.setChecked(true);
+                                Flags.chosen_mon = 2;
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_monvatly:
+                                menuItem.setChecked(true);
+                                Flags.chosen_mon = 4;
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_monhoahoc:
+                                menuItem.setChecked(true);
+                                Flags.chosen_mon = 5;
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_monsinhoc:
+                                menuItem.setChecked(true);
+                                Flags.chosen_mon = 6;
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_monlichsu:
+                                menuItem.setChecked(true);
+                                Flags.chosen_mon = 7;
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_mondialy:
+                                menuItem.setChecked(true);
+                                Flags.chosen_mon = 8;
+                                startActivity(intent);
+                                return true;
+                        }
+                        return true;
+                    }
+                });
+    }
 }

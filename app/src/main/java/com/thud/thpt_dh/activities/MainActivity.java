@@ -88,15 +88,15 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case 3:
                             intent = new Intent(MainActivity.this, ToanHoc.class);
-                            Flags.chosen_mon = 4;
+                            Flags.chosen_mon = 6;
                             break;
                         case 4:
                             intent = new Intent(MainActivity.this, ToanHoc.class);
-                            Flags.chosen_mon = 5;
+                            Flags.chosen_mon = 4;
                             break;
                         case 5:
                             intent = new Intent(MainActivity.this, ToanHoc.class);
-                            Flags.chosen_mon = 6;
+                            Flags.chosen_mon = 5;
                             break;
                         case 6:
                             intent = new Intent(MainActivity.this, ToanHoc.class);
@@ -137,19 +137,76 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem)
                     {
                         switch (menuItem.getItemId())  {
-                            /*case R.id.item_navigation_drawer_home:
+                            case R.id.item_navigation_drawer_dethi:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 return true;
-                            case R.id.item_navigation_drawer_quyche:
+
+                            case R.id.item_navigation_drawer_montoan:
                                 menuItem.setChecked(true);
-                                Toast.makeText(MainActivity.this,menuItem.getTitle().toString() + " đang thực thi", Toast.LENGTH_SHORT).show();
                                 drawerLayout.closeDrawer(GravityCompat.START);
-                                intent = new Intent(MainActivity.this, QuyCheThi.class);
+                                Flags.chosen_mon = 1;
+                                intent = new Intent(MainActivity.this, ToanHoc.class);
                                 startActivity(intent);
-                                return true;*/
+                                return true;
+
+                            case R.id.item_navigation_drawer_monnguvan:
+                                menuItem.setChecked(true);
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                Flags.chosen_mon = 2;
+                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_monanhvan:
+                                menuItem.setChecked(true);
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                Flags.chosen_mon = 3;
+                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_monvatly:
+                                menuItem.setChecked(true);
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                Flags.chosen_mon = 4;
+                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_monhoahoc:
+                                menuItem.setChecked(true);
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                Flags.chosen_mon = 5;
+                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_monsinhoc:
+                                menuItem.setChecked(true);
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                Flags.chosen_mon = 6;
+                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_monlichsu:
+                                menuItem.setChecked(true);
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                Flags.chosen_mon = 7;
+                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_mondialy:
+                                menuItem.setChecked(true);
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                Flags.chosen_mon = 8;
+                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                startActivity(intent);
+                                return true;
                         }
                         return true;
                     }
