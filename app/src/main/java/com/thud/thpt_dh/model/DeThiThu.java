@@ -11,6 +11,7 @@ public class DeThiThu {
     public static final String MAMONHOC = "MAMONHOC";
     public static final String SOLUONG = "SOLUONG";
     public static final String TENDE = "TENDE";
+    public static final String LOAI = "LOAI";
 
     @SerializedName("objectId")
     private String id;
@@ -24,11 +25,15 @@ public class DeThiThu {
     @SerializedName("TENDE")
     private String tende;
 
-    public DeThiThu(String id, String manonhoc, String tende, int soluong){
+    @SerializedName("LOAI")
+    private int loai;
+
+    public DeThiThu(String id, String manonhoc, String tende, int soluong, int loai){
         this.id = id;
         this.manonhoc = manonhoc;
         this.tende = tende;
         this.soluong = soluong;
+        this.loai = loai;
     }
 
     public DeThiThu(){
@@ -62,7 +67,17 @@ public class DeThiThu {
         return tende;
     }
 
+    public int getLoai() {
+        return loai;
+    }
+
+    public void setLoai(int loai) {
+        this.loai = loai;
+    }
+
     public void setTende(String tende) {
         this.tende = tende;
     }
+
+
 }

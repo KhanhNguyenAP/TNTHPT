@@ -2,6 +2,7 @@ package com.thud.thpt_dh.datas;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -10,7 +11,9 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.thud.thpt_dh.R;
+import com.thud.thpt_dh.model.BaiHoc;
 import com.thud.thpt_dh.model.CauHoi;
+import com.thud.thpt_dh.model.DeThiThu;
 import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
 import com.thud.thpt_dh.utils.interfaces.Def;
@@ -87,5 +90,28 @@ public class CauHoiDAL {
         }
 
         return new Result<String>(ResultStatus.FALSE, null);
+    }
+
+    public Result<ArrayList<CauHoi>> getAllCauHoiFromLoCal(String madethi){
+        database = dbHelper.getReadableDatabase();
+        ArrayList<CauHoi> cauHois = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM " +CauHoi.TENBANG +" WHERE " +CauHoi.MADETHI +" ='" +madethi +"'";
+            Cursor cursor = database.rawQuery(query, null);
+            if (cursor != null && cursor.moveToFirst()){
+                do{
+                    CauHoi cauHoi = DbModel.getCauHoi(cursor);
+                    cauHois.add(cauHoi);
+                }while (cursor.moveToNext());
+            }
+
+            database.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Log.e(Def.ERROR, e.getMessage());
+        }
+
+        return new Result<ArrayList<CauHoi>>(ResultStatus.TRUE, cauHois);
     }
 }

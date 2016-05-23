@@ -8,8 +8,8 @@ import com.google.gson.annotations.SerializedName;
 public class DapAn {
     public static final String TENBANG = "DAPAN";
     public static final String ID = "ID";
-    public static final String DUNGSAI = "DUNGSAI";
     public static final String MACAUHOI = "MACAUHOI";
+    public static final String DUNGSAI = "DUNGSAI";
     public static final String NOIDUNGDA = "NOIDUNGDA";
 
     @SerializedName("objectId")

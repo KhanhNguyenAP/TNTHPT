@@ -7,7 +7,7 @@
 
     <!--Main content-->
     <string name="setting">Cài Đặt</string>
-    <string name="onthi_document">OnThiTNTHPTDocument</string>
+    <string name="onthi_document">TNTHPT_Document</string>
 
     <!--Left menu-->
     <string name="hdsd">Hướng dẫn sử dụng</string>
@@ -69,4 +69,24 @@
     <string name="left_yeuthich">Yêu Thích</string>
     <string name="left_dethi">Đề Thi</string>
     <string name="left_thoat">Thoát</string>
+
+    <!-- Infomation of test exam-->
+    <string name="title_soluong_cauhoi">Số lượng câu hỏi: </string>
+    <string name="title_thoigian_cauhoi">Thời gian làm bài: </string>
+    <string name="start">Bắt đầu</string>
+    <string name="thongtin_dethi">THÔNG TIN ĐỀ THI</string>
+    <string name="time_180">180 phút</string>
+    <string name="time_90">90 phút</string>
+    <string name="hinh_thuc_thi">Hình thức thi: </string>
+    <string name="thi_tracnghiem">Trắc ngiệm</string>
+    <string name="thi_tu_luan">Tự Luận</string>
+    <string name="title_cau">Câu</string>
+    <string name="dap_an_a">A</string>
+    <string name="dap_an_b">B</string>
+    <string name="dap_an_c">C</string>
+    <string name="dap_an_d">D</string>
+    <string name="btn_back">BACK</string>
+    <string name="btn_next">NEXT</string>
+    <string name="btn_resume">RESUME</string>
+    <string name="btn_check">CHECK</string>
 </resources>

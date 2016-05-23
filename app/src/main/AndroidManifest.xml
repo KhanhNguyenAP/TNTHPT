@@ -37,6 +37,9 @@
         <activity
             android:name=".activities.DeThiActivity"
             android:label="@string/dethi"/>
+        <activity
+            android:name=".activities.DeThiDeTailActivity"
+            android:label="@string/dethi"/>
     </application>
 
 </manifest>

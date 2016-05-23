@@ -2,6 +2,7 @@ package com.thud.thpt_dh.datas;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -87,5 +88,30 @@ public class DapAnDAL {
         }
 
         return new Result<String>(ResultStatus.FALSE, null);
+    }
+
+    public Result<ArrayList<DapAn>> getAllDapAnFromLoCal(String macauhoi){
+        database = dbHelper.getReadableDatabase();
+        ArrayList<DapAn> dapAns = new ArrayList<>();
+
+        try {
+            String query = "SELECT * FROM " +DapAn.TENBANG +" WHERE " +DapAn.MACAUHOI +" ='" + macauhoi +"'";
+            Cursor cursor = database.rawQuery(query, null);
+
+            if(cursor != null && cursor.moveToFirst()){
+                do {
+                    DapAn dapAn = DbModel.getDapAn(cursor);
+                    dapAns.add(dapAn);
+                }while (cursor.moveToNext());
+            }
+
+            database.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Log.e(Def.ERROR, e.getMessage());
+        }
+
+        return new Result<ArrayList<DapAn>>(ResultStatus.FALSE.TRUE, dapAns);
     }
 }

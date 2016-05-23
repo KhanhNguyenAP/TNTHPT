@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName;
  * Created by khanh on 5/11/2016.
  */
 public class CauHoi {
-    public static final  String TENBANG = "CAUHOI";
-    public static final  String ID = "id";
-    public static final  String LOAI = "LOAI";
-    public static final  String MADETHI = "MADETHI";
-    public static final  String NOIDUNGCH = "NOIDUNGCH";
+    public static final String TENBANG = "CAUHOI";
+    public static final String ID = "id";
+    public static final String LOAI = "LOAI";
+    public static final String MADETHI = "MADETHI";
+    public static final String NOIDUNGCH = "NOIDUNGCH";
 
     @SerializedName("objectId")
     private String id;

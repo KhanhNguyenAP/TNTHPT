@@ -197,16 +197,18 @@ public class DbModel {
         DeThiThuDb.put(DeThiThu.MAMONHOC, deThiThu.getManonhoc());
         DeThiThuDb.put(DeThiThu.SOLUONG, deThiThu.getSoluong());
         DeThiThuDb.put(DeThiThu.TENDE, deThiThu.getTende());
+        DeThiThuDb.put(DeThiThu.LOAI, deThiThu.getLoai());
 
         return DeThiThuDb;
     }
 
-    public static DeThiThu getDeThihu(Cursor cursor){
+    public static DeThiThu getDeThiThu(Cursor cursor){
         DeThiThu deThiThu = new DeThiThu();
         deThiThu.setId(cursor.getString(cursor.getColumnIndex(DeThiThu.ID)));
         deThiThu.setManonhoc(cursor.getString(cursor.getColumnIndex(DeThiThu.MAMONHOC)));
         deThiThu.setSoluong(cursor.getInt(cursor.getColumnIndex(DeThiThu.SOLUONG)));
         deThiThu.setTende(cursor.getString(cursor.getColumnIndex(DeThiThu.TENDE)));
+        deThiThu.setLoai(cursor.getInt(cursor.getColumnIndex(DeThiThu.LOAI)));
 
         return deThiThu;
     }

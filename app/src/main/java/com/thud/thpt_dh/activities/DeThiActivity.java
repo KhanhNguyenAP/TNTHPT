@@ -17,7 +17,6 @@ import android.widget.GridView;
 
 import com.thud.thpt_dh.R;
 import com.thud.thpt_dh.customcontrols.CustomGridView;
-import com.thud.thpt_dh.utils.async.SaveAllDataFromSerVer;
 import com.thud.thpt_dh.utils.interfaces.Flags;
 
 /**
@@ -73,35 +72,35 @@ public class DeThiActivity extends AppCompatActivity {
                     Intent intent = null;
                     switch (pos) {
                         case 0:
-                            intent = new Intent(DeThiActivity.this, ToanHocActivity.class);
+                            intent = new Intent(DeThiActivity.this, DeThiDeTailActivity.class);
                             Flags.chosen_dethi = 1;
                             break;
                         case 1:
-                            intent = new Intent(DeThiActivity.this, ToanHocActivity.class);
+                            intent = new Intent(DeThiActivity.this, DeThiDeTailActivity.class);
                             Flags.chosen_dethi = 2;
                             break;
                         case 2:
-                            intent = new Intent(DeThiActivity.this, ToanHocActivity.class);
+                            intent = new Intent(DeThiActivity.this, DeThiDeTailActivity.class);
                             Flags.chosen_dethi = 3;
                             break;
                         case 3:
-                            intent = new Intent(DeThiActivity.this, ToanHocActivity.class);
+                            intent = new Intent(DeThiActivity.this, DeThiDeTailActivity.class);
                             Flags.chosen_dethi = 6;
                             break;
                         case 4:
-                            intent = new Intent(DeThiActivity.this, ToanHocActivity.class);
+                            intent = new Intent(DeThiActivity.this, DeThiDeTailActivity.class);
                             Flags.chosen_dethi = 4;
                             break;
                         case 5:
-                            intent = new Intent(DeThiActivity.this, ToanHocActivity.class);
+                            intent = new Intent(DeThiActivity.this, DeThiDeTailActivity.class);
                             Flags.chosen_dethi = 5;
                             break;
                         case 6:
-                            intent = new Intent(DeThiActivity.this, ToanHocActivity.class);
+                            intent = new Intent(DeThiActivity.this, DeThiDeTailActivity.class);
                             Flags.chosen_dethi = 7;
                             break;
                         case 7:
-                            intent = new Intent(DeThiActivity.this, ToanHocActivity.class);
+                            intent = new Intent(DeThiActivity.this, DeThiDeTailActivity.class);
                             Flags.chosen_dethi = 8;
                             break;
                     }

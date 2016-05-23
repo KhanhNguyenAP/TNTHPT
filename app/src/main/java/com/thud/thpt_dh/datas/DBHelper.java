@@ -27,8 +27,7 @@ import com.thud.thpt_dh.utils.interfaces.Def;
  */
 public class DBHelper extends SQLiteOpenHelper{
     public static final String DATABASE_NAME = "onthithpt_db1.sqlite";
-    protected static String db_path = //Environment.getExternalStorageDirectory().getAbsolutePath() + "/android/data/com.thud.thpt/database/" +
-            DATABASE_NAME;
+    protected static String db_path = DATABASE_NAME;
     private static final int DATABASE_VERSION = 1;
     private SQLiteDatabase database;
 
@@ -76,6 +75,7 @@ public class DBHelper extends SQLiteOpenHelper{
             DeThiThu.ID + " TEXT PRIMARY KEY, " +
             DeThiThu.MAMONHOC + " TEXT, " +
             DeThiThu.SOLUONG + " INTEGER, " +
+            DeThiThu.LOAI + " INTEGER, " +
             DeThiThu.TENDE + " TEXT )";
 
     public static final String sql_dieukien = "CREATE TABLE IF NOT EXISTS " + DieuKien.TENBANG + "(" +

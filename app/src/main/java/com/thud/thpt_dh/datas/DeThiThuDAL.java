@@ -2,6 +2,7 @@ package com.thud.thpt_dh.datas;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -11,6 +12,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.thud.thpt_dh.R;
 import com.thud.thpt_dh.model.DeThiThu;
+import com.thud.thpt_dh.model.MonHoc;
 import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
 import com.thud.thpt_dh.utils.interfaces.Def;
@@ -46,7 +48,8 @@ public class DeThiThuDAL {
                         DeThiThu deThiThu = new DeThiThu(ob.getObjectId(),
                                 ob.getString(""+DeThiThu.MAMONHOC),
                                 ob.getString(""+DeThiThu.TENDE),
-                                ob.getInt(""+DeThiThu.SOLUONG));
+                                ob.getInt(""+DeThiThu.SOLUONG),
+                                ob.getInt(""+DeThiThu.LOAI));
                         arr_DeThiThu.add(deThiThu);
                     }
 
@@ -87,5 +90,59 @@ public class DeThiThuDAL {
         }
 
         return new Result<String>(ResultStatus.FALSE, null);
+    }
+
+    /*---------------------------SQLite---------------------------*/
+    public Result<ArrayList<DeThiThu>> getAllDeThiThuFromLoCal(int mamonhoc){
+        database = dbHelper.getReadableDatabase();
+        MonHoc monHoc = new MonHoc();
+        ArrayList<DeThiThu> deThiThus = new ArrayList<>();
+        try{
+            String query_mon = "SELECT * FROM " + MonHoc.TENBANG + " WHERE " + MonHoc.MAMON + " = " +mamonhoc;
+            Cursor cursor_mon = database.rawQuery(query_mon, null);
+
+            if(cursor_mon != null && cursor_mon.moveToFirst()){
+                monHoc = DbModel.getMonHoc(cursor_mon);
+            }
+
+            String query = "SELECT * FROM " + DeThiThu.TENBANG + " WHERE " + DeThiThu.MAMONHOC  +" = '" + monHoc.getId() +"'";
+            Cursor cursor = database.rawQuery(query, null);
+
+            if (cursor != null && cursor.moveToFirst()){
+                do{
+                    DeThiThu deThiThu = DbModel.getDeThiThu(cursor);
+                    deThiThus.add(deThiThu);
+                }while (cursor.moveToNext());
+            }
+
+            database.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Log.e(Def.ERROR, e.getMessage());
+        }
+
+        return new Result<ArrayList<DeThiThu>>(ResultStatus.TRUE, deThiThus);
+    }
+
+    public Result<DeThiThu> getDeThiThuFromLoCal(String madethi){
+        database = dbHelper.getReadableDatabase();
+        DeThiThu deThiThu = new DeThiThu();
+        try{
+            String query = "SELECT * FROM " + DeThiThu.TENBANG + " WHERE " + DeThiThu.ID  +" = '" + madethi +"'";
+            Cursor cursor = database.rawQuery(query, null);
+
+            if (cursor != null && cursor.moveToFirst()){
+                deThiThu = DbModel.getDeThiThu(cursor);
+            }
+
+            database.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Log.e(Def.ERROR, e.getMessage());
+        }
+
+        return new Result<DeThiThu>(ResultStatus.TRUE, deThiThu);
     }
 }
