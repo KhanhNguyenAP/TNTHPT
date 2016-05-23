@@ -26,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
     ActionBar actionBar;
 
     GridView grid;
-    String[] TenMon = {"Toán", "Ngữ Văn", "Anh Văn", "Sinh Học","Vật Lý", "Hóa", "Lịch Sử", "Địa Lý"};
+    String[] TenMon = {"Toán", "Ngữ Văn", "Anh Văn", "Sinh Học","Vật Lý", "Hóa", "Lịch Sử", "Địa Lý", "Đề Thi"};
     int[] Icon = {R.drawable.toan, R.drawable.nguvan, R.drawable.anhvan,
             R.drawable.sinh, R.drawable.vatly, R.drawable.hoa,
-            R.drawable.lichsu, R.drawable.dialy};
+            R.drawable.lichsu, R.drawable.dialy, R.drawable.lichsu};
 
     @Override
     protected void onCreate(Bundle savedInstanceState)   {
@@ -69,46 +69,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int pos, long id)
             {
-                if (pos == 8)
-                    finish();
-                else  {
-                    Intent intent = null;
-                    switch (pos) {
-                        case 0:
-                            intent = new Intent(MainActivity.this, ToanHoc.class);
-                            Flags.chosen_mon = 1;
-                            break;
-                        case 1:
-                            intent = new Intent(MainActivity.this, ToanHoc.class);
-                            Flags.chosen_mon = 2;
-                            break;
-                        case 2:
-                            intent = new Intent(MainActivity.this, ToanHoc.class);
-                            Flags.chosen_mon = 3;
-                            break;
-                        case 3:
-                            intent = new Intent(MainActivity.this, ToanHoc.class);
-                            Flags.chosen_mon = 6;
-                            break;
-                        case 4:
-                            intent = new Intent(MainActivity.this, ToanHoc.class);
-                            Flags.chosen_mon = 4;
-                            break;
-                        case 5:
-                            intent = new Intent(MainActivity.this, ToanHoc.class);
-                            Flags.chosen_mon = 5;
-                            break;
-                        case 6:
-                            intent = new Intent(MainActivity.this, ToanHoc.class);
-                            Flags.chosen_mon = 7;
-                            break;
-                        case 7:
-                            intent = new Intent(MainActivity.this, ToanHoc.class);
-                            Flags.chosen_mon = 8;
-                            break;
-                    }
-                    startActivity(intent);
+                Intent intent = null;
+                switch (pos) {
+                    case 0:
+                        intent = new Intent(MainActivity.this, ToanHocActivity.class);
+                        Flags.chosen_mon = 1;
+                        break;
+                    case 1:
+                        intent = new Intent(MainActivity.this, ToanHocActivity.class);
+                        Flags.chosen_mon = 2;
+                        break;
+                    case 2:
+                        intent = new Intent(MainActivity.this, ToanHocActivity.class);
+                        Flags.chosen_mon = 3;
+                        break;
+                    case 3:
+                        intent = new Intent(MainActivity.this, ToanHocActivity.class);
+                        Flags.chosen_mon = 6;
+                        break;
+                    case 4:
+                        intent = new Intent(MainActivity.this, ToanHocActivity.class);
+                        Flags.chosen_mon = 4;
+                        break;
+                    case 5:
+                        intent = new Intent(MainActivity.this, ToanHocActivity.class);
+                        Flags.chosen_mon = 5;
+                        break;
+                    case 6:
+                        intent = new Intent(MainActivity.this, ToanHocActivity.class);
+                        Flags.chosen_mon = 7;
+                        break;
+                    case 7:
+                        intent = new Intent(MainActivity.this, ToanHocActivity.class);
+                        Flags.chosen_mon = 8;
+                        break;
+                    case 8:
+                        intent = new Intent(MainActivity.this, DeThiActivity.class);
+                        break;
                 }
+                startActivity(intent);
             }
         });
     }
@@ -131,13 +130,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupNavigationDrawerContent(NavigationView navigationView)  {
         navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener()
-                {
+                new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem)
-                    {
+                    public boolean onNavigationItemSelected(MenuItem menuItem)  {
                         switch (menuItem.getItemId())  {
-                            case R.id.item_navigation_drawer_dethi:
+                            case R.id.item_navigation_drawer_trangchu:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
@@ -148,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 Flags.chosen_mon = 1;
-                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                intent = new Intent(MainActivity.this, ToanHocActivity.class);
                                 startActivity(intent);
                                 return true;
 
@@ -156,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 Flags.chosen_mon = 2;
-                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                intent = new Intent(MainActivity.this, ToanHocActivity.class);
                                 startActivity(intent);
                                 return true;
 
@@ -164,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 Flags.chosen_mon = 3;
-                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                intent = new Intent(MainActivity.this, ToanHocActivity.class);
                                 startActivity(intent);
                                 return true;
 
@@ -172,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 Flags.chosen_mon = 4;
-                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                intent = new Intent(MainActivity.this, ToanHocActivity.class);
                                 startActivity(intent);
                                 return true;
 
@@ -180,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 Flags.chosen_mon = 5;
-                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                intent = new Intent(MainActivity.this, ToanHocActivity.class);
                                 startActivity(intent);
                                 return true;
 
@@ -188,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 Flags.chosen_mon = 6;
-                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                intent = new Intent(MainActivity.this, ToanHocActivity.class);
                                 startActivity(intent);
                                 return true;
 
@@ -196,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 Flags.chosen_mon = 7;
-                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                intent = new Intent(MainActivity.this, ToanHocActivity.class);
                                 startActivity(intent);
                                 return true;
 
@@ -204,7 +201,14 @@ public class MainActivity extends AppCompatActivity {
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 Flags.chosen_mon = 8;
-                                intent = new Intent(MainActivity.this, ToanHoc.class);
+                                intent = new Intent(MainActivity.this, ToanHocActivity.class);
+                                startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_dethi:
+                                menuItem.setChecked(true);
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                intent = new Intent(MainActivity.this, DeThiActivity.class);
                                 startActivity(intent);
                                 return true;
                         }

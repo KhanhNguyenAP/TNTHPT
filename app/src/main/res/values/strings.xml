@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Ôn Thi THPT - ĐH</string>
+    <string name="dethi">Ôn Tập Đề Thi</string>
     <string name="hello_world">Hello world!</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -9,13 +10,8 @@
     <string name="onthi_document">OnThiTNTHPTDocument</string>
 
     <!--Left menu-->
-    <string name="quychethi">Quy chế thi</string>
-    <string name="quantrong">Quan trọng</string>
     <string name="hdsd">Hướng dẫn sử dụng</string>
     <string name="lichsu_left">Lịch sử</string>
-    <string name="gioithieu">Giới thiệu</string>
-    <string name="gopy">Góp ý</string>
-    <string name="danhgia">Đánh giá</string>
     <string name="action_settings">Cài đặt</string>
     
     <!--Header-->    

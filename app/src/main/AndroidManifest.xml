@@ -32,8 +32,11 @@
             android:name=".activities.MainActivity"
             android:label="@string/app_name" />
         <activity
-            android:name=".activities.ToanHoc"
+            android:name=".activities.ToanHocActivity"
             android:label="@string/app_name" />
+        <activity
+            android:name=".activities.DeThiActivity"
+            android:label="@string/dethi"/>
     </application>
 
 </manifest>

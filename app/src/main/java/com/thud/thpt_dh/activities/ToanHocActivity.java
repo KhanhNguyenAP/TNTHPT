@@ -4,9 +4,6 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -22,7 +19,7 @@ import com.thud.thpt_dh.utils.interfaces.ActivityInterface;
 import com.thud.thpt_dh.utils.interfaces.Def;
 import com.thud.thpt_dh.utils.interfaces.Flags;
 
-public class ToanHoc extends BaseActivity implements ActivityInterface {
+public class ToanHocActivity extends BaseActivity implements ActivityInterface {
     DrawerLayout drawerLayout_toan;
     Toolbar toolbar_toan;
     ActionBar actionBar_toan;
@@ -133,7 +130,7 @@ public class ToanHoc extends BaseActivity implements ActivityInterface {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem)  {
-                        Intent intent = new Intent(ToanHoc.this, ToanHoc.class);
+                        Intent intent = new Intent(ToanHocActivity.this, ToanHocActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         switch (menuItem.getItemId())  {
                             case R.id.item_navigation_drawer_dethi:
@@ -141,6 +138,9 @@ public class ToanHoc extends BaseActivity implements ActivityInterface {
                                 return true;
 
                             case R.id.item_navigation_drawer_montoan:
+                                if (Flags.chosen_mon == 1){
+                                    menuItem.setCheckable(true);
+                                }
                                 menuItem.setChecked(true);
                                 Flags.chosen_mon = 1;
                                 startActivity(intent);
