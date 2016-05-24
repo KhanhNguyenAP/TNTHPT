@@ -3,8 +3,10 @@ package com.thud.thpt_dh.datas;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.os.Environment;
 import android.util.Log;
 
+import com.thud.thpt_dh.R;
 import com.thud.thpt_dh.datas.BaiGiaiDAL;
 import com.thud.thpt_dh.datas.BaiHocDAL;
 import com.thud.thpt_dh.datas.CauHoiDAL;
@@ -34,6 +36,13 @@ import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
 import com.thud.thpt_dh.utils.interfaces.Def;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 

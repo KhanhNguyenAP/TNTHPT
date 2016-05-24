@@ -92,12 +92,12 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
                 vitri_cauhoi += 1;
 
                 //check and set value of array chosen anwer
-                int i = arr_cautraloi.size();
+               /* int i = arr_cautraloi.size();
                 if(i < vitri_cauhoi){
                     arr_cautraloi.add(group_rad_dapan.getCheckedRadioButtonId());
                 }else {
                     arr_cautraloi.set(vitri_cauhoi ,group_rad_dapan.getCheckedRadioButtonId());
-                }
+                }*/
                 setValue();
 
                 setData();
@@ -120,18 +120,24 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
 
     private void setValue(){
         if (Flags.vitri_cauhoi == 1){
+            btn_next.setVisibility(View.VISIBLE);
+
             btn_back.setVisibility(View.GONE);
             btn_resume.setVisibility(View.GONE);
             btn_check.setVisibility(View.GONE);
+
         }
 
         if (Flags.vitri_cauhoi > 1 && Flags.vitri_cauhoi < Flags.soluong_cauhoi){
             btn_resume.setVisibility(View.VISIBLE);
             btn_back.setVisibility(View.VISIBLE);
+            btn_next.setVisibility(View.VISIBLE);
         }
 
         if (Flags.vitri_cauhoi == Flags.soluong_cauhoi){
             btn_check.setVisibility(View.VISIBLE);
+            btn_back.setVisibility(View.VISIBLE);
+
             btn_resume.setVisibility(View.GONE);
             btn_next.setVisibility(View.GONE);
         }

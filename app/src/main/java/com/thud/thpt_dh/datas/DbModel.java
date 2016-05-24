@@ -297,13 +297,13 @@ public class DbModel {
         return HinhAnhDb;
     }
 
-    /*public static HinhAnh getHinhAnh(Cursor cursor){
+    public static HinhAnh getHinhAnh(Cursor cursor){
         HinhAnh hinhAnh = new HinhAnh();
         hinhAnh.setId(cursor.getString(cursor.getColumnIndex(HinhAnh.ID)));
-        hinhAnh.setHinhanh(cursor.getString(cursor.getColumnIndex(HinhAnh.HINHANH)));
+        hinhAnh.setImg(cursor.getString(cursor.getColumnIndex(HinhAnh.HINHANH)));
         hinhAnh.setMabaigiai(cursor.getString(cursor.getColumnIndex(HinhAnh.MABAIGIAI)));
         hinhAnh.setMactbg(cursor.getString(cursor.getColumnIndex(HinhAnh.MACHITIETBAIHOC)));
 
         return hinhAnh;
-    }*/
+    }
 }

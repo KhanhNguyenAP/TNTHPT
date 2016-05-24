@@ -25,7 +25,6 @@ import java.util.HashMap;
 public class ChiTietBaiHocAdapter extends ArrayAdapter<ChiTietBaiHoc> {
     private Context context;
     private ArrayList<ChiTietBaiHoc> values;
-    HashMap<Integer, Bitmap> hash_item = new HashMap<>();
 
     public ChiTietBaiHocAdapter(Context context, ArrayList<ChiTietBaiHoc> values) {
         super(context, -1, values);

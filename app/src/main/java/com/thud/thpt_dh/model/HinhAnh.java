@@ -25,6 +25,8 @@ public class HinhAnh {
     @SerializedName("MACHITIETBAIHOC")
     private String mactbg;
 
+    private String img;
+
     public HinhAnh(String id, ParseFile hinhanh, String mabaigiai, String mactbg){
         this.id = id;
         this.hinhanh = hinhanh;
@@ -65,5 +67,13 @@ public class HinhAnh {
 
     public void setHinhanh(ParseFile hinhanh) {
         this.hinhanh = hinhanh;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
