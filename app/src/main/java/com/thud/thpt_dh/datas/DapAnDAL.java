@@ -90,7 +90,7 @@ public class DapAnDAL {
         return new Result<String>(ResultStatus.FALSE, null);
     }
 
-    public Result<ArrayList<DapAn>> getAllDapAnFromLoCal(String macauhoi){
+    public ArrayList<DapAn> getAllDapAnFromLoCal(String macauhoi){
         database = dbHelper.getReadableDatabase();
         ArrayList<DapAn> dapAns = new ArrayList<>();
 
@@ -112,6 +112,6 @@ public class DapAnDAL {
             Log.e(Def.ERROR, e.getMessage());
         }
 
-        return new Result<ArrayList<DapAn>>(ResultStatus.FALSE.TRUE, dapAns);
+        return dapAns;
     }
 }

@@ -19,7 +19,10 @@ import com.thud.thpt_dh.model.CauHoi;
 import com.thud.thpt_dh.model.DapAn;
 import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
+import com.thud.thpt_dh.utils.dialogs.DialogShowFinish;
+import com.thud.thpt_dh.utils.dialogs.ToastMessage;
 import com.thud.thpt_dh.utils.interfaces.ActivityInterface;
+import com.thud.thpt_dh.utils.interfaces.Def;
 import com.thud.thpt_dh.utils.interfaces.Flags;
 
 import java.util.ArrayList;
@@ -32,13 +35,14 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
     private TextView txt_sothutu_cauhoi, txt_noidung_cauhoi;
     private RadioGroup group_rad_dapan;
     private RadioButton rad_dapan_a, rad_dapan_b, rad_dapan_c, rad_dapan_d;
-    private Button btn_back, btn_next, btn_check, btn_resume;
+    private Button btn_back, btn_next, btn_check;
 
     private ArrayList<CauHoi> arr_list_cauhoi = new ArrayList<>();
     private CauHoi cauHoi =  new CauHoi();
     private ArrayList<DapAn> array_list_dapan = new ArrayList<>();
-    private int vitri_cauhoi = 0;
+    private int vitri_cauhoi = 0, so_caudung = 0;
     private ArrayList<Integer> arr_cautraloi = new ArrayList<>();
+    private String id_cauhoi = Def.STRING_EMPTY;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState){
@@ -64,6 +68,7 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
 
     @Override
     public void initFlags() {
+        Flags.vitri_cauhoi = 1;
     }
 
     @Override
@@ -79,7 +84,6 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
 
         btn_back = (Button) view.findViewById(R.id.btn_back);
         btn_next = (Button) view.findViewById(R.id.btn_next);
-        btn_resume = (Button) view.findViewById(R.id.btn_resume);
         btn_check = (Button) view.findViewById(R.id.btn_check);
     }
 
@@ -88,34 +92,27 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Flags.vitri_cauhoi += 1;
-                vitri_cauhoi += 1;
-
-                //check and set value of array chosen anwer
-               /* int i = arr_cautraloi.size();
-                if(i < vitri_cauhoi){
-                    arr_cautraloi.add(group_rad_dapan.getCheckedRadioButtonId());
-                }else {
-                    arr_cautraloi.set(vitri_cauhoi ,group_rad_dapan.getCheckedRadioButtonId());
-                }*/
-                setValue();
-
-                setData();
+                selectedNext();
             }
         });
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Flags.vitri_cauhoi -= 1;
-                vitri_cauhoi -= 1;
-
-
-                setValue();
-
-                setData();
+               selectedBack();
             }
         });
+
+        btn_check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkTrueFalse();
+
+                //new ToastMessage(getActivity()).showToast(""+so_caudung);
+                new DialogShowFinish(getActivity()).showConfirm(so_caudung);
+            }
+        });
+
     }
 
     private void setValue(){
@@ -123,22 +120,20 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
             btn_next.setVisibility(View.VISIBLE);
 
             btn_back.setVisibility(View.GONE);
-            btn_resume.setVisibility(View.GONE);
             btn_check.setVisibility(View.GONE);
-
         }
 
         if (Flags.vitri_cauhoi > 1 && Flags.vitri_cauhoi < Flags.soluong_cauhoi){
-            btn_resume.setVisibility(View.VISIBLE);
             btn_back.setVisibility(View.VISIBLE);
             btn_next.setVisibility(View.VISIBLE);
+
+            btn_check.setVisibility(View.GONE);
         }
 
         if (Flags.vitri_cauhoi == Flags.soluong_cauhoi){
             btn_check.setVisibility(View.VISIBLE);
             btn_back.setVisibility(View.VISIBLE);
 
-            btn_resume.setVisibility(View.GONE);
             btn_next.setVisibility(View.GONE);
         }
 
@@ -182,23 +177,73 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
         }
     }
 
-    private class apiGetDapAn extends AsyncTask<String, Void, Result<ArrayList<DapAn>>>{
-        @Override
-        protected void onPreExecute(){
-            super.onPreExecute();
+    protected void selectedNext(){
+        int selectedId = group_rad_dapan.getCheckedRadioButtonId();
+        if (selectedId == -1){
+            new ToastMessage(getActivity()).showToast(getResources().getString(R.string.msg_not_select_dapan));
         }
+        else {
+            RadioButton checked = (RadioButton) group_rad_dapan.findViewById(selectedId);
+            int check = group_rad_dapan.indexOfChild(checked);
 
-        @Override
-        protected Result<ArrayList<DapAn>> doInBackground(String... params) {
-            return new DapAnDAL(getActivity()).getAllDapAnFromLoCal(arr_list_cauhoi.get(vitri_cauhoi).getMadethi()) ;
+            Flags.vitri_cauhoi += 1;
+            vitri_cauhoi += 1;
+
+            int i = arr_cautraloi.size();
+            if(i < vitri_cauhoi){
+                arr_cautraloi.add(check);
+            }else {
+                arr_cautraloi.set(vitri_cauhoi -1 ,check);
+            }
+            setValue();
+
+            setData();
+
+            group_rad_dapan.clearCheck();
         }
+    }
 
-        @Override
-        protected void onPostExecute(Result<ArrayList<DapAn>> arrayListResult){
-            super.onPostExecute(arrayListResult);
-            if (arrayListResult.getKey() == ResultStatus.TRUE){
-                array_list_dapan = arrayListResult.getValue();
+    protected void selectedBack(){
+        Flags.vitri_cauhoi -= 1;
+        vitri_cauhoi -= 1;
+
+        setValue();
+
+        setData();
+
+        setSelected();
+    }
+
+    private void setSelected(){
+        int vt = arr_cautraloi.get(vitri_cauhoi);
+        if (vt == 0){
+            rad_dapan_a.setChecked(true);
+        }
+        if (vt == 1){
+            rad_dapan_b.setChecked(true);
+        }
+        if (vt == 2){
+            rad_dapan_c.setChecked(true);
+        }
+        if (vt == 3){
+            rad_dapan_d.setChecked(true);
+        }
+    }
+
+    private void checkTrueFalse(){
+        int selectedId = group_rad_dapan.getCheckedRadioButtonId();
+        RadioButton checked = (RadioButton) group_rad_dapan.findViewById(selectedId);
+        int check = group_rad_dapan.indexOfChild(checked);
+        arr_cautraloi.add(check);
+
+        for(int i=0; i<arr_cautraloi.size(); i++){
+            id_cauhoi = arr_list_cauhoi.get(i).getId();
+            array_list_dapan = new DapAnDAL(getActivity()).getAllDapAnFromLoCal(id_cauhoi);
+
+            if(array_list_dapan.get(arr_cautraloi.get(i)).getDung() == 1){
+                so_caudung = so_caudung + 1;
             }
         }
+
     }
 }

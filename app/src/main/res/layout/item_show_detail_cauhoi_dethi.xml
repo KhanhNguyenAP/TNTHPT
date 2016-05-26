@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_blue_light_50"
     android:paddingTop="@dimen/layout_padding_65">
     <LinearLayout
         android:id="@+id/linear_cauhoi"
@@ -67,8 +68,7 @@
         android:id="@+id/linear_show_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/layout_padding_15"
-        android:layout_gravity="center_horizontal"
+        android:gravity="center"
         android:orientation="horizontal">
         <Button
             android:id="@+id/btn_back"
@@ -88,16 +88,6 @@
             android:textStyle="bold"
             android:paddingLeft="@dimen/layout_padding_10"
             android:text="@string/btn_next"/>
-
-        <Button
-            android:id="@+id/btn_resume"
-            android:layout_width="@dimen/layout_padding_100"
-            android:layout_height="wrap_content"
-            android:background="@color/md_blue_500"
-            android:textColor="@color/bg_white"
-            android:textStyle="bold"
-            android:paddingLeft="@dimen/layout_padding_5"
-            android:text="@string/btn_resume"/>
 
         <Button
             android:id="@+id/btn_check"

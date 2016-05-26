@@ -35,6 +35,7 @@ public class HinhAnhDAL {
     private Context context;
     private DBHelper dbHelper;
     SQLiteDatabase database;
+    public static String path_document = Def.STRING_EMPTY;
 
     public HinhAnhDAL(Context current){
         this.context = current;
@@ -66,7 +67,7 @@ public class HinhAnhDAL {
 
                     /*for(int i=0; i<arr_HinhAnh.size(); i++){
                         String name = arr_HinhAnh.get(i).getHinhanh().getName();
-                        downloadDocumentByURL(arr_HinhAnh.get(i).getHinhanh(), name);
+                        downloadDocumentByURL(arr_HinhAnh.get(i).getHinhanh().getUrl(), name);
                     }*/
                 }
             }

@@ -25,7 +25,9 @@ import com.thud.thpt_dh.utils.interfaces.Flags;
 public class FragShowInfoDeThi extends Fragment implements ActivityInterface{
     private View view;
     private DeThiThu deThiThu = new DeThiThu();
-    private TextView txt_ten_dethi, txt_soluong, txt_thoigian, txt_loai;
+    private TextView txt_ten_dethi, txt_soluong, txt_thoigian, txt_loai,
+            txt_title_info_dethi, txt_title_soluong_dethi, txt_title_time_dethi,
+            txt_title_hinhthuc_dethi;
     private Button btn_start_dethi;
 
     @Override
@@ -60,6 +62,11 @@ public class FragShowInfoDeThi extends Fragment implements ActivityInterface{
 
     @Override
     public void initControl() {
+        txt_title_hinhthuc_dethi = (TextView) view.findViewById(R.id.txt_title_hinhthuc_dethi);
+        txt_title_info_dethi = (TextView) view.findViewById(R.id.txt_title_info_dethi);
+        txt_title_soluong_dethi = (TextView) view.findViewById(R.id.txt_title_soluong_dethi);
+        txt_title_time_dethi = (TextView) view.findViewById(R.id.txt_title_time_dethi);
+
         txt_ten_dethi = (TextView) view.findViewById(R.id.txt_ten_dethi);
         txt_soluong = (TextView) view.findViewById(R.id.txt_soluong);
         txt_thoigian = (TextView) view.findViewById(R.id.txt_thoigian);
@@ -84,6 +91,11 @@ public class FragShowInfoDeThi extends Fragment implements ActivityInterface{
 
     @Override
     public void setData() {
+        txt_title_info_dethi.setText(R.string.thongtin_dethi);
+        txt_title_hinhthuc_dethi.setText(R.string.hinh_thuc_thi);
+        txt_title_soluong_dethi.setText(R.string.title_soluong_cauhoi);
+        txt_title_time_dethi.setText(R.string.title_thoigian_cauhoi);
+
         txt_ten_dethi.setText(deThiThu.getTende());
         txt_soluong.setText(""+deThiThu.getSoluong());
 

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:background="@color/md_blue_light_50"
-    android:paddingTop="@dimen/layout_padding_65">
+    android:background="@color/md_blue_light_50">
 
     <TextView
         android:id="@+id/txt_title_info_dethi"
@@ -91,7 +90,7 @@
 
     <Button
         android:id="@+id/btn_start_dethi"
-        android:layout_width="@dimen/layout_padding_100"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/layout_padding_50"
         android:background="@color/md_blue_700"
         android:textColor="@color/bg_white"
