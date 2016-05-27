@@ -4,7 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.util.Log;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -116,5 +119,4 @@ public class ChiTietBaiHocDAL {
 
         return  new Result<ArrayList<ChiTietBaiHoc>>(ResultStatus.TRUE, chiTietBaiHocs);
     }
-
 }

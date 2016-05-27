@@ -1,22 +1,16 @@
 package com.thud.thpt_dh.fragment;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.thud.thpt_dh.R;
-import com.thud.thpt_dh.adapters.BaiHocAdapter;
 import com.thud.thpt_dh.adapters.ChiTietBaiHocAdapter;
-import com.thud.thpt_dh.datas.BaiHocDAL;
 import com.thud.thpt_dh.datas.ChiTietBaiHocDAL;
-import com.thud.thpt_dh.model.BaiHoc;
 import com.thud.thpt_dh.model.ChiTietBaiHoc;
 import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;

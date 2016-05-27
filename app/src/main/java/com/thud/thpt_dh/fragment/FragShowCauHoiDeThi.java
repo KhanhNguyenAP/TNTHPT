@@ -1,7 +1,6 @@
 package com.thud.thpt_dh.fragment;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,7 +18,8 @@ import com.thud.thpt_dh.model.CauHoi;
 import com.thud.thpt_dh.model.DapAn;
 import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
-import com.thud.thpt_dh.utils.dialogs.DialogShowFinish;
+import com.thud.thpt_dh.utils.dialogs.DialogShowFinishTracNghiem;
+import com.thud.thpt_dh.utils.dialogs.DialogShowFinishTuLuan;
 import com.thud.thpt_dh.utils.dialogs.ToastMessage;
 import com.thud.thpt_dh.utils.interfaces.ActivityInterface;
 import com.thud.thpt_dh.utils.interfaces.Def;
@@ -85,6 +85,10 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
         btn_back = (Button) view.findViewById(R.id.btn_back);
         btn_next = (Button) view.findViewById(R.id.btn_next);
         btn_check = (Button) view.findViewById(R.id.btn_check);
+
+        if (Flags.loai_dethi == true){
+            group_rad_dapan.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -106,10 +110,15 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
         btn_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkTrueFalse();
+                if (Flags.loai_dethi == false){
+                    checkTrueFalse();
+                    new DialogShowFinishTracNghiem(getActivity()).showConfirm(so_caudung);
+                }
 
-                //new ToastMessage(getActivity()).showToast(""+so_caudung);
-                new DialogShowFinish(getActivity()).showConfirm(so_caudung);
+                if(Flags.loai_dethi == true){
+                    btn_check.setVisibility(View.GONE);
+                    new DialogShowFinishTuLuan(getActivity()).showConfirm(arr_list_cauhoi);
+                }
             }
         });
 
@@ -135,10 +144,6 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
             btn_back.setVisibility(View.VISIBLE);
 
             btn_next.setVisibility(View.GONE);
-        }
-
-        if (Flags.loai_dethi == true){
-            group_rad_dapan.setVisibility(View.GONE);
         }
     }
 
@@ -178,28 +183,38 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
     }
 
     protected void selectedNext(){
-        int selectedId = group_rad_dapan.getCheckedRadioButtonId();
-        if (selectedId == -1){
-            new ToastMessage(getActivity()).showToast(getResources().getString(R.string.msg_not_select_dapan));
+        if (Flags.loai_dethi == false){
+            int selectedId = group_rad_dapan.getCheckedRadioButtonId();
+            if (selectedId == -1){
+                new ToastMessage(getActivity()).showToast(getResources().getString(R.string.msg_not_select_dapan));
+            }
+            else {
+                RadioButton checked = (RadioButton) group_rad_dapan.findViewById(selectedId);
+                int check = group_rad_dapan.indexOfChild(checked);
+
+                Flags.vitri_cauhoi += 1;
+                vitri_cauhoi += 1;
+
+                int i = arr_cautraloi.size();
+                if(i < vitri_cauhoi){
+                    arr_cautraloi.add(check);
+                }else {
+                    arr_cautraloi.set(vitri_cauhoi -1 ,check);
+                }
+                setValue();
+
+                setData();
+
+                group_rad_dapan.clearCheck();
+            }
         }
         else {
-            RadioButton checked = (RadioButton) group_rad_dapan.findViewById(selectedId);
-            int check = group_rad_dapan.indexOfChild(checked);
-
             Flags.vitri_cauhoi += 1;
             vitri_cauhoi += 1;
 
-            int i = arr_cautraloi.size();
-            if(i < vitri_cauhoi){
-                arr_cautraloi.add(check);
-            }else {
-                arr_cautraloi.set(vitri_cauhoi -1 ,check);
-            }
             setValue();
 
             setData();
-
-            group_rad_dapan.clearCheck();
         }
     }
 
@@ -211,7 +226,9 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
 
         setData();
 
-        setSelected();
+        if(Flags.loai_dethi == false){
+            setSelected();
+        }
     }
 
     private void setSelected(){

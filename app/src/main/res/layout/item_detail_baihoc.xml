@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="@dimen/layout_padding_300"
     android:layout_height="match_parent"
+    xmlns:auto="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
     android:orientation="vertical">
 
@@ -26,6 +27,13 @@
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
         android:textSize="@dimen/title_size_20"/>
+
+    <io.github.kexanie.library.MathView
+        android:id="@+id/mathview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        auto:engine="MathJax">
+    </io.github.kexanie.library.MathView>
 
     <TextView
         android:id="@+id/text_view_noidung_congthuc"
