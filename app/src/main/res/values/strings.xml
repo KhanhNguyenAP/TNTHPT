@@ -97,4 +97,9 @@
     <string name="dialog_socaudung">Số câu đúng: </string>
     <string name="dialog_thoigian">Thời gian: </string>
     <string name="dialog_close">ĐÓNG</string>
+
+    <!--dialog exit app-->
+    <string name="close_app">Bạn có muốn thoát ứng dụng ?</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
 </resources>

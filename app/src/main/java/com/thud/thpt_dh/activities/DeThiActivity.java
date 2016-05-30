@@ -1,5 +1,6 @@
 package com.thud.thpt_dh.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -52,6 +54,7 @@ public class DeThiActivity extends AppCompatActivity {
             setupNavigationDrawerContent(navigationView);
         }
         setupNavigationDrawerContent(navigationView);
+        navigationView.getMenu().getItem(9).setChecked(true);
 
         //Main Menu
         onContentGridView();
@@ -134,8 +137,9 @@ public class DeThiActivity extends AppCompatActivity {
                         Intent intent = new Intent(DeThiActivity.this, ToanHocActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         switch (menuItem.getItemId())  {
-                            case R.id.item_navigation_drawer_dethi:
-                                menuItem.setChecked(true);
+                            case R.id.item_navigation_drawer_trangchu:
+                                Intent intent_home = new Intent(DeThiActivity.this, MainActivity.class);
+                                startActivity(intent_home);
                                 return true;
 
                             case R.id.item_navigation_drawer_montoan:
@@ -188,9 +192,40 @@ public class DeThiActivity extends AppCompatActivity {
                                 Flags.chosen_mon = 8;
                                 startActivity(intent);
                                 return true;
+
+                            case R.id.item_navigation_drawer_dethi:
+                                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.navigation_drawer_layout_dethi);
+                                drawer.closeDrawer(GravityCompat.START);
+                                return true;
+
+                            case R.id.item_navigation_drawer_thoat:
+                                showDialog();
+                                return true;
                         }
                         return true;
                     }
                 });
+    }
+
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to close this application ?")
+                .setCancelable(false)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finishAffinity();
+                        finish();
+                        System.exit(0);
+                    }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert = builder.create();
+        alert.setTitle(R.string.close_app);
+        alert.show();
     }
 }

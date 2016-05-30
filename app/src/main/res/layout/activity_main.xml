@@ -15,7 +15,7 @@
             android:id="@+id/fra_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/md_blue_100" />
+            android:background="@color/md_blue_500" />
 
         <GridView
             android:id="@+id/gdv_menu"

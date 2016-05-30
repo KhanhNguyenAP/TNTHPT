@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id ="@+id/linear_detail"
     android:background="@color/md_blue_light_50"
-    android:paddingTop="@dimen/layout_padding_55"
+    android:paddingTop="@dimen/layout_padding_65"
     android:paddingLeft="@dimen/layout_padding_10"
     android:paddingRight="@dimen/layout_padding_10">
     <ListView

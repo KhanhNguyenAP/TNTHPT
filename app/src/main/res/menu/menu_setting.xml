@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activities.MainActivity">
 
-    <item android:id="@+id/thongtincanhan"
+    <!--<item android:id="@+id/thongtincanhan"
         android:title="@string/thongtincanhan"
         android:orderInCategory="100"
         app:showAsAction="never" />
@@ -11,5 +11,5 @@
     <item android:id="@+id/dangxuat"
         android:title="@string/dangxuat"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        app:showAsAction="never" />-->
 </menu>

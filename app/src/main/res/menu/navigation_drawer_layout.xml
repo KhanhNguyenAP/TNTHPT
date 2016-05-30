@@ -9,57 +9,57 @@
 
         <item
             android:id="@+id/item_navigation_drawer_montoan"
-            android:icon="@drawable/quyche"
+            android:icon="@drawable/math"
             android:title="@string/left_montoan"/>
 
         <item
             android:id="@+id/item_navigation_drawer_monnguvan"
-            android:icon="@drawable/hdsd"
+            android:icon="@drawable/literature"
             android:title="@string/left_monnguvan"/>
 
         <item
             android:id="@+id/item_navigation_drawer_monanhvan"
-            android:icon="@drawable/ilichsu"
+            android:icon="@drawable/history"
             android:title="@string/left_monanhvan" />
 
         <item
             android:id="@+id/item_navigation_drawer_monvatly"
-            android:icon="@drawable/about"
+            android:icon="@drawable/physical"
             android:title="@string/left_monvatly" />
 
         <item
             android:id="@+id/item_navigation_drawer_monhoahoc"
-            android:icon="@drawable/gopy"
+            android:icon="@drawable/chemistry"
             android:title="@string/left_monhoahoc" />
 
         <item
             android:id="@+id/item_navigation_drawer_monsinhoc"
-            android:icon="@drawable/gopy"
+            android:icon="@drawable/biologi"
             android:title="@string/left_monsinhhoc" />
 
         <item
             android:id="@+id/item_navigation_drawer_monlichsu"
-            android:icon="@drawable/star"
+            android:icon="@drawable/history"
             android:title="@string/left_monlichsu" />
 
         <item
             android:id="@+id/item_navigation_drawer_mondialy"
-            android:icon="@drawable/setting"
+            android:icon="@drawable/geography"
             android:title="@string/left_mondialy" />
 
         <item
             android:id="@+id/item_navigation_drawer_dethi"
-            android:icon="@drawable/setting"
+            android:icon="@drawable/exam"
             android:title="@string/left_dethi" />
 
         <item
             android:id="@+id/item_navigation_drawer_yeuthich"
-            android:icon="@drawable/yeuthich"
+            android:icon="@drawable/like"
             android:title="@string/left_yeuthich" />
 
         <item
             android:id="@+id/item_navigation_drawer_thoat"
-            android:icon="@drawable/thoat"
+            android:icon="@drawable/exit"
             android:title="Thoát" />
     </group>
 </menu>

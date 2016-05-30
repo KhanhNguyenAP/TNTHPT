@@ -42,6 +42,9 @@ public class ToanHocActivity extends BaseActivity implements ActivityInterface {
             setupNavigationDrawerContent(navigationView_toan);
         }
         setupNavigationDrawerContent(navigationView_toan);
+        navigationView_toan.getMenu().getItem(Flags.chosen_mon).setChecked(true);
+
+
         Flags.main_toan = false;
 
         FragToanHoc fragToanHoc = (FragToanHoc) getFragmentManager().findFragmentById(R.id.fra_toanhoc);
@@ -133,9 +136,10 @@ public class ToanHocActivity extends BaseActivity implements ActivityInterface {
                         Intent intent = new Intent(ToanHocActivity.this, ToanHocActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         switch (menuItem.getItemId())  {
-                            case R.id.item_navigation_drawer_dethi:
-                                menuItem.setChecked(true);
-                                return true;
+                            case R.id.item_navigation_drawer_trangchu:
+                                Intent intent_home = new Intent(ToanHocActivity.this, MainActivity.class);
+                                startActivity(intent_home);
+                                break;
 
                             case R.id.item_navigation_drawer_montoan:
                                 if (Flags.chosen_mon == 1){
@@ -154,7 +158,7 @@ public class ToanHocActivity extends BaseActivity implements ActivityInterface {
 
                             case R.id.item_navigation_drawer_monanhvan:
                                 menuItem.setChecked(true);
-                                Flags.chosen_mon = 2;
+                                Flags.chosen_mon = 3;
                                 startActivity(intent);
                                 return true;
 
@@ -186,6 +190,11 @@ public class ToanHocActivity extends BaseActivity implements ActivityInterface {
                                 menuItem.setChecked(true);
                                 Flags.chosen_mon = 8;
                                 startActivity(intent);
+                                return true;
+
+                            case R.id.item_navigation_drawer_dethi:
+                                Intent intentdethi = new Intent(ToanHocActivity.this, DeThiActivity.class);
+                                startActivity(intentdethi);
                                 return true;
                         }
                         return true;

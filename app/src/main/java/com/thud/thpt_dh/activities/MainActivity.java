@@ -1,4 +1,5 @@
 package com.thud.thpt_dh.activities;
+    import android.content.DialogInterface;
     import android.content.Intent;
     import android.os.AsyncTask;
     import android.os.Bundle;
@@ -6,6 +7,7 @@ package com.thud.thpt_dh.activities;
     import android.support.v4.view.GravityCompat;
     import android.support.v4.widget.DrawerLayout;
     import android.support.v7.app.ActionBar;
+    import android.support.v7.app.AlertDialog;
     import android.support.v7.app.AppCompatActivity;
     import android.support.v7.widget.Toolbar;
     import android.view.Menu;
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             setupNavigationDrawerContent(navigationView);
         }
         setupNavigationDrawerContent(navigationView);
+        navigationView.getMenu().getItem(0).setChecked(true);
 
         //Main Menu
         onContentGridView();
@@ -64,11 +67,9 @@ public class MainActivity extends AppCompatActivity {
         CustomGridView adapter = new CustomGridView(MainActivity.this, TenMon, Icon);
         grid = (GridView) findViewById(R.id.gdv_menu);
         grid.setAdapter(new CustomGridView(this, TenMon, Icon));
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener()   {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int pos, long id)
-            {
+            public void onItemClick(AdapterView<?> parent, View view, int pos, long id)   {
                 Intent intent = null;
                 switch (pos) {
                     case 0:
@@ -211,9 +212,40 @@ public class MainActivity extends AppCompatActivity {
                                 intent = new Intent(MainActivity.this, DeThiActivity.class);
                                 startActivity(intent);
                                 return true;
+
+                            case R.id.item_navigation_drawer_thoat:
+                                showDialog();
+                                return true;
                         }
                         return true;
                     }
                 });
+    }
+
+    @Override
+    public void onBackPressed(){
+        showDialog();
+    }
+
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to close this application ?")
+                .setCancelable(false)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finishAffinity();
+                        finish();
+                        System.exit(0);
+                    }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert = builder.create();
+        alert.setTitle(R.string.close_app);
+        alert.show();
     }
 }
