@@ -65,7 +65,9 @@ public class ChiTietBaiHocAdapter extends ArrayAdapter<ChiTietBaiHoc> {
             text_view_noidung_congthuc.setVisibility(View.GONE);
         }
 
-        if(Flags.chosen_mon == 1){
+        if(Flags.chosen_mon == 1
+           || Flags.chosen_mon == 5
+           || Flags.chosen_mon == 6){
             mathview.setVisibility(View.VISIBLE);
             text_view_noidung_monhoc.setVisibility(View.GONE);
         }
