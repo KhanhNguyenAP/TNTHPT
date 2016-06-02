@@ -10,8 +10,11 @@ import android.widget.TextView;
 import com.thud.thpt_dh.R;
 import com.thud.thpt_dh.model.ChiTietBaiHoc;
 import com.thud.thpt_dh.model.DapAn;
+import com.thud.thpt_dh.utils.interfaces.Flags;
 
 import java.util.ArrayList;
+
+import io.github.kexanie.library.MathView;
 
 /**
  * Created by KhanhNguyen on 5/15/2016.
@@ -41,14 +44,21 @@ public class DapAnAdapter extends ArrayAdapter<DapAn> {
 
         final TextView text_view_title_monhoc = (TextView) rowView.findViewById(R.id.textview_title);
         final TextView text_view_noidung_monhoc = (TextView) rowView.findViewById(R.id.text_view_noidung_monhoc);
-        final TextView text_view_noidung_congthuc = (TextView) rowView.findViewById(R.id.text_view_noidung_congthuc);
+        final MathView mathview = (MathView) rowView.findViewById(R.id.mathview);
 
-        text_view_noidung_congthuc.setVisibility(View.GONE);
         text_view_title_monhoc.setText("Câu " + (position+1));
         text_view_noidung_monhoc.setText(values.get(position).getNoidungda());
+        mathview.setText(values.get(position).getNoidungda());
 
-        if (text_view_noidung_congthuc.getText().equals("null")){
-            text_view_noidung_congthuc.setVisibility(View.GONE);
+        if (Flags.chosen_dethi == 1
+            || Flags.chosen_dethi == 5
+            || Flags.chosen_dethi == 6){
+            mathview.setVisibility(View.VISIBLE);
+            text_view_noidung_monhoc.setVisibility(View.GONE);
+        }
+        else {
+            mathview.setVisibility(View.GONE);
+            text_view_noidung_monhoc.setVisibility(View.VISIBLE);
         }
 
         return rowView;

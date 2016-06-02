@@ -27,12 +27,15 @@ import com.thud.thpt_dh.utils.interfaces.Flags;
 
 import java.util.ArrayList;
 
+import io.github.kexanie.library.MathView;
+
 /**
  * Created by KhanhNguyen on 5/23/2016.
  */
 public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
     private View view;
     private TextView txt_sothutu_cauhoi, txt_noidung_cauhoi;
+    private MathView mathview_dethi;
     private RadioGroup group_rad_dapan;
     private RadioButton rad_dapan_a, rad_dapan_b, rad_dapan_c, rad_dapan_d;
     private Button btn_back, btn_next, btn_check;
@@ -75,6 +78,7 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
     public void initControl() {
         txt_sothutu_cauhoi = (TextView) view.findViewById(R.id.txt_sothutu_cauhoi);
         txt_noidung_cauhoi = (TextView) view.findViewById(R.id.txt_noidung_cauhoi);
+        mathview_dethi = (MathView) view.findViewById(R.id.mathview_dethi);
 
         group_rad_dapan = (RadioGroup) view.findViewById(R.id.group_rad_dapan);
         rad_dapan_a = (RadioButton) view.findViewById(R.id.rad_dapan_a);
@@ -88,6 +92,11 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
 
         if (Flags.loai_dethi == true){
             group_rad_dapan.setVisibility(View.GONE);
+            txt_noidung_cauhoi.setVisibility(View.GONE);
+        }
+
+        if (Flags.loai_dethi == false){
+            mathview_dethi.setVisibility(View.GONE);
         }
     }
 
@@ -155,8 +164,10 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
     @Override
     public void setData() {
         cauHoi = arr_list_cauhoi.get(vitri_cauhoi);
-        txt_sothutu_cauhoi.setText(""+Flags.vitri_cauhoi + "/" + Flags.soluong_cauhoi+":");
-        txt_noidung_cauhoi.setText(""+cauHoi.getNoidungch());
+        txt_sothutu_cauhoi.setText(Flags.vitri_cauhoi + "/" + Flags.soluong_cauhoi+":");
+        txt_noidung_cauhoi.setText(cauHoi.getNoidungch());
+
+        mathview_dethi.setText(cauHoi.getNoidungch());
     }
 
     private class apiGetCauHoi extends AsyncTask<String, Void, Result<ArrayList<CauHoi>>>{
