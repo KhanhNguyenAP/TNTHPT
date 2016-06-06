@@ -49,7 +49,7 @@ public class FragDeTailToanHocBaiHoc extends Fragment implements ActivityInterfa
 
     @Override
     public void initFlags() {
-        Flags.chosen_fragment_vitri = 2;
+        Flags.chosen_fragment_vitri = 3;
     }
 
     @Override

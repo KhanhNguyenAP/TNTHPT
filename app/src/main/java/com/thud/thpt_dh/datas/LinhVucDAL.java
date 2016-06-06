@@ -7,21 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.thud.thpt_dh.R;
-import com.thud.thpt_dh.model.BaiHoc;
-import com.thud.thpt_dh.model.CauHoi;
-import com.thud.thpt_dh.model.ChiTietBaiHoc;
 import com.thud.thpt_dh.model.Chuong;
-import com.thud.thpt_dh.model.CongThuc;
-import com.thud.thpt_dh.model.DapAn;
-import com.thud.thpt_dh.model.DeThiThu;
-import com.thud.thpt_dh.model.DieuKien;
-import com.thud.thpt_dh.model.DinhLy;
-import com.thud.thpt_dh.model.HinhAnh;
+import com.thud.thpt_dh.model.LinhVuc;
 import com.thud.thpt_dh.model.MonHoc;
 import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
@@ -33,59 +24,58 @@ import java.util.List;
 /**
  * Created by khanh on 5/12/2016.
  */
-public class ChuongDAL {
+public class LinhVucDAL {
     private Context context;
     private DBHelper dbHelper;
     SQLiteDatabase database;
 
-    public ChuongDAL(Context current){
+    public LinhVucDAL(Context current){
         this.context = current;
         dbHelper = new DBHelper(context);
         database = dbHelper.getWritableDatabase();
     }
 
     //get all chuong from server
-    public Result<ArrayList<Chuong>> getAllChuong() {
-        final ArrayList<Chuong> arr_Chuong = new ArrayList<>();
+    public Result<ArrayList<LinhVuc>> getAllLinhVuc() {
+        final ArrayList<LinhVuc> arr_LinhVuc = new ArrayList<>();
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery(""+Chuong.TENBANG);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(""+LinhVuc.TENBANG);
         query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if ( e ==  null){
                     for (ParseObject ob : objects){
-                        Chuong chuong = new Chuong(ob.getObjectId(),
-                                ob.getString(""+Chuong.MAMON),
-                                ob.getString(""+Chuong.TENCHUONG),
-                                ob.getString(""+Chuong.MALINHVUC));
-                        arr_Chuong.add(chuong);
+                        LinhVuc linhVuc = new LinhVuc(ob.getObjectId(),
+                                ob.getString(""+LinhVuc.MAMON),
+                                ob.getString(""+LinhVuc.TENLINHVUC));
+                        arr_LinhVuc.add(linhVuc);
                     }
 
-                    if (arr_Chuong.size() > 0){
-                        Result<String> result = new AllDAL(context).saveAll(arr_Chuong);
+                    if (arr_LinhVuc.size() > 0){
+                        Result<String> result = new AllDAL(context).saveAll(arr_LinhVuc);
                     }
                 }
             }
         });
 
 
-        return new Result<ArrayList<Chuong>>(ResultStatus.TRUE, arr_Chuong);
+        return new Result<ArrayList<LinhVuc>>(ResultStatus.TRUE, arr_LinhVuc);
     }
 
     /*
     * insert all data from server
     * */
-    public Result<String> insertChuongFromLocal(ArrayList<Chuong> chuongs){
+    public Result<String> insertLinhVucFromLocal(ArrayList<LinhVuc> linhVucs){
         try {
             database = dbHelper.getWritableDatabase();
             database.beginTransaction();
 
-            for(Chuong chuong : chuongs){
-                ContentValues ChuongDb = DbModel.getContentValueChuong(chuong);
+            for(LinhVuc linhVuc : linhVucs){
+                ContentValues LinhVucDb = DbModel.getContentValueLinhVuc(linhVuc);
 
                 //insert database
-                database.insert(Chuong.TENBANG, null, ChuongDb);
+                database.insert(LinhVuc.TENBANG, null, LinhVucDb);
             }
 
             database.setTransactionSuccessful();
@@ -104,18 +94,26 @@ public class ChuongDAL {
 
     /*-------------------SQLite--------------------*/
 
-    public Result<ArrayList<Chuong>> getAllChuongFromLocal(String malinhvuc){
+    public Result<ArrayList<LinhVuc>> getAllLinhVucFromLocal(int mamon){
         database = dbHelper.getReadableDatabase();
-        ArrayList<Chuong> chuongs = new ArrayList<>();
+        MonHoc monHoc = new MonHoc();
+        ArrayList<LinhVuc> linhVucs = new ArrayList<>();
         try {
-            String query = "SELECT * FROM " + Chuong.TENBANG + " WHERE "
-                    + Chuong.MALINHVUC + " = '" + malinhvuc +"'";
+            String query_mon = "SELECT * FROM " + MonHoc.TENBANG + " WHERE " + MonHoc.MAMON + " = " +mamon;
+            Cursor cursor_mon = database.rawQuery(query_mon, null);
+
+            if(cursor_mon != null && cursor_mon.moveToFirst()){
+                monHoc = DbModel.getMonHoc(cursor_mon);
+            }
+
+            String query = "SELECT * FROM " + LinhVuc.TENBANG + " WHERE "
+                    + LinhVuc.MAMON + " = '" + monHoc.getId() +"'";
 
             Cursor cursor = database.rawQuery(query, null);
             if(cursor != null && cursor.moveToFirst()){
                 do{
-                    Chuong chuong = DbModel.getChuong(cursor);
-                    chuongs.add(chuong);
+                    LinhVuc linhVuc = DbModel.getLinhVuc(cursor);
+                    linhVucs.add(linhVuc);
                 }while (cursor.moveToNext());
             }
 
@@ -125,6 +123,6 @@ public class ChuongDAL {
             ex.printStackTrace();
             Log.e(Def.ERROR, ex.getMessage());
         }
-        return  new Result<ArrayList<Chuong>>(ResultStatus.TRUE, chuongs);
+        return  new Result<ArrayList<LinhVuc>>(ResultStatus.TRUE, linhVucs);
     }
 }

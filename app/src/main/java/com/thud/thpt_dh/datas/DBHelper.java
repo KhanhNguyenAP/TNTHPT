@@ -18,6 +18,7 @@ import com.thud.thpt_dh.model.DeThiThu;
 import com.thud.thpt_dh.model.DieuKien;
 import com.thud.thpt_dh.model.DinhLy;
 import com.thud.thpt_dh.model.HinhAnh;
+import com.thud.thpt_dh.model.LinhVuc;
 import com.thud.thpt_dh.model.MonHoc;
 import com.thud.thpt_dh.model.ViDu;
 import com.thud.thpt_dh.utils.interfaces.Def;
@@ -57,6 +58,7 @@ public class DBHelper extends SQLiteOpenHelper{
     public static final String sql_chuong = "CREATE TABLE IF NOT EXISTS " + Chuong.TENBANG + "(" +
             Chuong.ID + " TEXT PRIMARY KEY, " +
             Chuong.TENCHUONG + " TEXT, " +
+            Chuong.MALINHVUC + " TEXT, " +
             Chuong.MAMON + " TEXT )";
 
     public static final String sql_congthuc = "CREATE TABLE IF NOT EXISTS " + CongThuc.TENBANG + "(" +
@@ -106,6 +108,11 @@ public class DBHelper extends SQLiteOpenHelper{
             ViDu.MACONGTHUC + " TEXT, " +
             ViDu.BAIGIAIVD + " TEXT )";
 
+    public static final String sql_linhvuc = "CREATE TABLE IF NOT EXISTS " + LinhVuc.TENBANG + "(" +
+            LinhVuc.ID + " TEXT PRIMARY KEY, " +
+            LinhVuc.MAMON + " TEXT, " +
+            LinhVuc.TENLINHVUC + " TEXT )";
+
     public static DBHelper DBHelperInstance = null;
     public DBHelper(Context context){
         super(context, db_path, null, DATABASE_VERSION);
@@ -134,6 +141,7 @@ public class DBHelper extends SQLiteOpenHelper{
             db.execSQL(sql_monhoc);
             db.execSQL(sql_hinhanh);
             db.execSQL(sql_vidu);
+            db.execSQL(sql_linhvuc);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -158,6 +166,7 @@ public class DBHelper extends SQLiteOpenHelper{
             db.execSQL("DROP TABLE IF EXISTS " + MonHoc.TENBANG);
             db.execSQL("DROP TABLE IF EXISTS " + HinhAnh.TENBANG);
             db.execSQL("DROP TABLE IF EXISTS " + ViDu.TENBANG);
+            db.execSQL("DROP TABLE IF EXISTS " + LinhVuc.TENBANG);
             onCreate(db);
         }
         catch (Exception e){
@@ -184,6 +193,7 @@ public class DBHelper extends SQLiteOpenHelper{
             db.execSQL("DROP TABLE IF EXISTS " + MonHoc.TENBANG);
             db.execSQL("DROP TABLE IF EXISTS " + HinhAnh.TENBANG);
             db.execSQL("DROP TABLE IF EXISTS " + ViDu.TENBANG);
+            db.execSQL("DROP TABLE IF EXISTS " + LinhVuc.TENBANG);
             onCreate(db);
         }
         catch (Exception e){

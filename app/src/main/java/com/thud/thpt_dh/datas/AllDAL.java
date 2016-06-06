@@ -31,6 +31,7 @@ import com.thud.thpt_dh.model.DeThiThu;
 import com.thud.thpt_dh.model.DieuKien;
 import com.thud.thpt_dh.model.DinhLy;
 import com.thud.thpt_dh.model.HinhAnh;
+import com.thud.thpt_dh.model.LinhVuc;
 import com.thud.thpt_dh.model.MonHoc;
 import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
@@ -126,9 +127,15 @@ public class AllDAL {
                                                             result = new HinhAnhDAL(context).insertHinhAnhFromLocal(hinhAnhs);
                                                         }
                                                         else {
-                                                            ArrayList<MonHoc> monHocs = ((ArrayList) object[0]);
-                                                            result = new MonHocDAL(context).insertMonHocFromLocal(monHocs);
-                                                        }
+                                                            if(firstObject != null && firstObject instanceof MonHoc){
+                                                                ArrayList<MonHoc> monHocs = ((ArrayList) object[0]);
+                                                                result = new MonHocDAL(context).insertMonHocFromLocal(monHocs);
+                                                            }
+                                                            else {
+                                                                ArrayList<LinhVuc> linhVucs = ((ArrayList) object[0]);
+                                                                result = new LinhVucDAL(context).insertLinhVucFromLocal(linhVucs);
+                                                            }
+                                                        }//end Mon Hoc
                                                     }//end Dinh Ly
                                                 }//end Dieu Kien
                                             }//end De Thi Thu

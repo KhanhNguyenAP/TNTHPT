@@ -121,6 +121,4 @@ public class FragDeThi extends Fragment implements ActivityInterface {
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
     }
-
-
 }

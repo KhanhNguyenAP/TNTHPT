@@ -15,6 +15,7 @@ import com.thud.thpt_dh.model.DeThiThu;
 import com.thud.thpt_dh.model.DieuKien;
 import com.thud.thpt_dh.model.DinhLy;
 import com.thud.thpt_dh.model.HinhAnh;
+import com.thud.thpt_dh.model.LinhVuc;
 import com.thud.thpt_dh.model.MonHoc;
 import com.thud.thpt_dh.utils.interfaces.Flags;
 
@@ -126,6 +127,7 @@ public class DbModel {
         ChuongDb.put(Chuong.ID, chuong.getId());
         ChuongDb.put(Chuong.MAMON, chuong.getMamon());
         ChuongDb.put(Chuong.TENCHUONG, chuong.getTenchuong());
+        ChuongDb.put(Chuong.MALINHVUC, chuong.getMalinhvuc());
 
         return ChuongDb;
     }
@@ -135,6 +137,7 @@ public class DbModel {
         chuong.setId(cursor.getString(cursor.getColumnIndex(Chuong.ID)));
         chuong.setMamon(cursor.getString(cursor.getColumnIndex(Chuong.MAMON)));
         chuong.setTenchuong(cursor.getString(cursor.getColumnIndex(Chuong.TENCHUONG)));
+        chuong.setMalinhvuc(cursor.getString(cursor.getColumnIndex(Chuong.MALINHVUC)));
 
         return chuong;
     }
@@ -306,4 +309,27 @@ public class DbModel {
 
         return hinhAnh;
     }
+
+    /*
+    * @author: KhanhNguyen
+    * @function: getContentValueLinhVuc
+    * */
+    public static ContentValues getContentValueLinhVuc(LinhVuc linhVuc){
+        ContentValues linhvucDb = new ContentValues();
+        linhvucDb.put(LinhVuc.ID, linhVuc.getId());
+        linhvucDb.put(LinhVuc.MAMON, linhVuc.getMamon());
+        linhvucDb.put(LinhVuc.TENLINHVUC, linhVuc.getTenlinhvuc());
+
+        return linhvucDb;
+    }
+
+    public static LinhVuc getLinhVuc(Cursor cursor){
+        LinhVuc linhVuc = new LinhVuc();
+        linhVuc.setId(cursor.getString(cursor.getColumnIndex(LinhVuc.ID)));
+        linhVuc.setMamon(cursor.getString(cursor.getColumnIndex(LinhVuc.MAMON)));
+        linhVuc.setTenlinhvuc(cursor.getString(cursor.getColumnIndex(LinhVuc.TENLINHVUC)));
+
+        return linhVuc;
+    }
+
 }

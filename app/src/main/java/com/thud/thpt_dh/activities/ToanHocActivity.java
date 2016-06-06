@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import com.thud.thpt_dh.R;
 
 import com.thud.thpt_dh.fragment.FragDeTailToanHoc;
+import com.thud.thpt_dh.fragment.FragLinhVuc;
 import com.thud.thpt_dh.fragment.FragToanHoc;
 import com.thud.thpt_dh.utils.interfaces.ActivityInterface;
 import com.thud.thpt_dh.utils.interfaces.Def;
@@ -47,10 +48,10 @@ public class ToanHocActivity extends BaseActivity implements ActivityInterface {
 
         Flags.main_toan = false;
 
-        FragToanHoc fragToanHoc = (FragToanHoc) getFragmentManager().findFragmentById(R.id.fra_toanhoc);
+        FragLinhVuc fragLinhVuc = (FragLinhVuc) getFragmentManager().findFragmentById(R.id.fra_toanhoc);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragToanHoc = new FragToanHoc();
-        fragmentTransaction.replace(R.id.fra_toanhoc, fragToanHoc, "Toan Hoc");
+        fragLinhVuc = new FragLinhVuc();
+        fragmentTransaction.replace(R.id.fra_toanhoc, fragLinhVuc, "Toan Hoc");
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
 
@@ -100,6 +101,7 @@ public class ToanHocActivity extends BaseActivity implements ActivityInterface {
     public void onBackPressed(){
         if(Flags.main_toan == true){
             finish();
+            Flags.chosen_mon = 0;
         }
         showRangeList(fragmentManager);
     }
@@ -113,8 +115,11 @@ public class ToanHocActivity extends BaseActivity implements ActivityInterface {
                 fragmentManager.beginTransaction().remove(fragmentRangeList).commitAllowingStateLoss();
             }
 
-            fragmentRangeList = new FragToanHoc();
+            fragmentRangeList = new FragLinhVuc();
             if (Flags.chosen_fragment_vitri == 2){
+                fragmentRangeList = new FragToanHoc();
+            }
+            if (Flags.chosen_fragment_vitri == 3){
                 fragmentRangeList = new FragDeTailToanHoc();
             }
             fragmentManager.beginTransaction()

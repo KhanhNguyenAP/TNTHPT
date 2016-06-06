@@ -12,9 +12,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.thud.thpt_dh.R;
-import com.thud.thpt_dh.adapters.BaiHocAdapter;
-import com.thud.thpt_dh.datas.BaiHocDAL;
-import com.thud.thpt_dh.model.BaiHoc;
+import com.thud.thpt_dh.adapters.ChuongAdapter;
+import com.thud.thpt_dh.adapters.LinhVucAdapter;
+import com.thud.thpt_dh.datas.ChuongDAL;
+import com.thud.thpt_dh.datas.LinhVucDAL;
+import com.thud.thpt_dh.model.Chuong;
+import com.thud.thpt_dh.model.LinhVuc;
 import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
 import com.thud.thpt_dh.utils.interfaces.ActivityInterface;
@@ -25,11 +28,11 @@ import java.util.ArrayList;
 /**
  * Created by KhanhNguyen on 5/15/2016.
  */
-public class FragDeTailToanHoc extends Fragment implements ActivityInterface {
+public class FragLinhVuc extends Fragment implements ActivityInterface {
     private View view;
-    private ListView lst_toanhoc;
-    private ArrayList<BaiHoc> array_baihoc = new ArrayList<>();
-    private BaiHocAdapter baihoc_list_adapter;
+    private ListView lst_linhvuc;
+    private ArrayList<LinhVuc> array_linhvuc = new ArrayList<>();
+    private LinhVucAdapter linhvuc_adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -43,7 +46,7 @@ public class FragDeTailToanHoc extends Fragment implements ActivityInterface {
 
         initFlags();
 
-        initControl();;
+        initControl();
 
         setEventForControl();
 
@@ -51,32 +54,37 @@ public class FragDeTailToanHoc extends Fragment implements ActivityInterface {
     }
 
     @Override
+    public void onResume(){
+        super.onResume();
+        Flags.main_toan = true;
+        Flags.main_nguvan = true;
+        getData();
+    }
+
+    @Override
     public void initFlags() {
-        Flags.main_toan = false;
-        Flags.main_nguvan = false;
-        Flags.chosen_fragment_vitri = 2;
+        Flags.main_toan = true;
     }
 
     @Override
     public void initControl() {
-        lst_toanhoc = (ListView) view.findViewById(R.id.lst_list_view);
+        lst_linhvuc = (ListView) view.findViewById(R.id.lst_list_view);
     }
 
     @Override
     public void setEventForControl() {
-        lst_toanhoc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Flags.mabaihoc = array_baihoc.get(i).getId();
-
-                showDeTail();
-            }
-        });
+      lst_linhvuc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               Flags.malinhvuc = array_linhvuc.get(position).getId();
+               showFragToanHoc();
+           }
+       });
     }
 
     @Override
     public void getData(String... params) {
-        new apiGetBaiHoc().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new apiGetLinhVuc().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     @Override
@@ -84,43 +92,39 @@ public class FragDeTailToanHoc extends Fragment implements ActivityInterface {
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getData();
-    }
-
-    private  class apiGetBaiHoc extends AsyncTask<String, Void, Result<ArrayList<BaiHoc>>>{
+    private  class apiGetLinhVuc extends AsyncTask<String, Void, Result<ArrayList<LinhVuc>>>{
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
         }
 
         @Override
-        protected Result<ArrayList<BaiHoc>> doInBackground(String... strings) {
-            return new BaiHocDAL(getActivity()).getAllBaiHocFromLocal(Flags.machuong);
+        protected Result<ArrayList<LinhVuc>> doInBackground(String... strings) {
+            return new LinhVucDAL(getActivity()).getAllLinhVucFromLocal(Flags.chosen_mon);
         }
 
         @Override
-        protected void onPostExecute(Result<ArrayList<BaiHoc>> arrayListResult){
+        protected void onPostExecute(Result<ArrayList<LinhVuc>> arrayListResult){
             super.onPostExecute(arrayListResult);
             if (arrayListResult.getKey() == ResultStatus.TRUE){
-                array_baihoc = arrayListResult.getValue();
+                array_linhvuc = arrayListResult.getValue();
 
-                if(array_baihoc != null){
-                    baihoc_list_adapter = new BaiHocAdapter(getActivity(), array_baihoc);
-                    lst_toanhoc.setAdapter(baihoc_list_adapter);
+                if(array_linhvuc != null){
+                    linhvuc_adapter = new LinhVucAdapter(getActivity(), array_linhvuc);
+                    lst_linhvuc.setAdapter(linhvuc_adapter);
                 }
             }
         }
     }
 
-    public void showDeTail(){
+    public void showFragToanHoc(){
         FragmentManager fragmentManager = getActivity().getFragmentManager();
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        Fragment fragDeTail = new FragDeTailToanHocBaiHoc();
-        fragmentTransaction.replace(R.id.fra_toanhoc, fragDeTail, "Toan Hoc");
+        Fragment fragToanHoc = new FragToanHoc();
+        fragmentTransaction.replace(R.id.fra_toanhoc, fragToanHoc, "Toan Hoc");
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
     }
+
+
 }

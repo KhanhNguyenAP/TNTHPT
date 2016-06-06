@@ -1,5 +1,7 @@
 package com.thud.thpt_dh.utils.interfaces;
 
+import java.util.ArrayList;
+
 /**
  * Created by khanh on 5/11/2016.
  */
@@ -22,4 +24,7 @@ public class Flags {
     public static String machuong = Def.STRING_EMPTY;
     public static String mabaihoc = Def.STRING_EMPTY;
     public static String madethi = Def.STRING_EMPTY;
+    public static String malinhvuc = Def.STRING_EMPTY;
+
+    public static ArrayList<Integer> traloi_tracnghiem = null;
 }

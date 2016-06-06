@@ -59,14 +59,13 @@ public class FragToanHoc extends Fragment implements ActivityInterface {
     @Override
     public void onResume(){
         super.onResume();
-        Flags.main_toan = true;
-        Flags.main_nguvan = true;
+        Flags.chosen_fragment_vitri = 1;
         getData();
     }
 
     @Override
     public void initFlags() {
-        Flags.main_toan = true;
+        Flags.main_toan = false;
     }
 
     @Override
@@ -103,7 +102,7 @@ public class FragToanHoc extends Fragment implements ActivityInterface {
 
         @Override
         protected Result<ArrayList<Chuong>> doInBackground(String... strings) {
-            return new ChuongDAL(getActivity()).getAllChuongFromLocal(Flags.chosen_mon);
+            return new ChuongDAL(getActivity()).getAllChuongFromLocal(Flags.malinhvuc);
         }
 
         @Override

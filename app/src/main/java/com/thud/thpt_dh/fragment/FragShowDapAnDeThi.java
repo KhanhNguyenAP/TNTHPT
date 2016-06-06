@@ -1,8 +1,6 @@
 package com.thud.thpt_dh.fragment;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,7 +18,6 @@ import com.thud.thpt_dh.model.CauHoi;
 import com.thud.thpt_dh.model.DapAn;
 import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
-import com.thud.thpt_dh.utils.dialogs.ToastMessage;
 import com.thud.thpt_dh.utils.interfaces.ActivityInterface;
 import com.thud.thpt_dh.utils.interfaces.Def;
 import com.thud.thpt_dh.utils.interfaces.Flags;
@@ -32,19 +29,19 @@ import io.github.kexanie.library.MathView;
 /**
  * Created by KhanhNguyen on 5/23/2016.
  */
-public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
+public class FragShowDapAnDeThi extends Fragment implements ActivityInterface{
     private View view;
-    private TextView txt_sothutu_cauhoi, txt_noidung_cauhoi;
+    private TextView txt_sothutu_cauhoi, txt_noidung_cauhoi, txt_noidung_dapan;
     private MathView mathview_dethi, mathview_dapan;
     private RadioGroup group_rad_dapan;
     private RadioButton rad_dapan_a, rad_dapan_b, rad_dapan_c, rad_dapan_d;
-    private Button btn_back, btn_next, btn_check;
+    private Button btn_back, btn_next, btn_close;
 
     private ArrayList<CauHoi> arr_list_cauhoi = new ArrayList<>();
     private CauHoi cauHoi =  new CauHoi();
     private ArrayList<DapAn> array_list_dapan = new ArrayList<>();
     private ArrayList<ArrayList<DapAn>> array_dapan = new ArrayList<>();
-    private int vitri_cauhoi = 0, so_caudung = 0;
+    private int vitri_cauhoi = 0;
     private ArrayList<Integer> arr_cautraloi = new ArrayList<>();
     private String id_cauhoi = Def.STRING_EMPTY;
 
@@ -79,6 +76,7 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
     public void initControl() {
         txt_sothutu_cauhoi = (TextView) view.findViewById(R.id.txt_sothutu_cauhoi);
         txt_noidung_cauhoi = (TextView) view.findViewById(R.id.txt_noidung_cauhoi);
+        txt_noidung_dapan = (TextView) view.findViewById(R.id.txt_noidung_dapan);
         mathview_dethi = (MathView) view.findViewById(R.id.mathview_dethi);
         mathview_dapan = (MathView) view.findViewById(R.id.mathview_dapan);
 
@@ -90,17 +88,20 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
 
         btn_back = (Button) view.findViewById(R.id.btn_back);
         btn_next = (Button) view.findViewById(R.id.btn_next);
-        btn_check = (Button) view.findViewById(R.id.btn_check);
+        btn_close = (Button) view.findViewById(R.id.btn_check);
 
-        mathview_dapan.setVisibility(View.GONE);
+        btn_close.setText(R.string.btn_close);
 
         if (Flags.loai_dethi == true){
             group_rad_dapan.setVisibility(View.GONE);
-            txt_noidung_cauhoi.setVisibility(View.GONE);
+            mathview_dapan.setVisibility(View.VISIBLE);
         }
-        else {
+        else{
             group_rad_dapan.setVisibility(View.VISIBLE);
+            mathview_dapan.setVisibility(View.GONE);
         }
+
+        arr_cautraloi = Flags.traloi_tracnghiem;
     }
 
     @Override
@@ -115,24 +116,15 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               selectedBack();
+                selectedBack();
             }
         });
 
-        btn_check.setOnClickListener(new View.OnClickListener() {
+        btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if (Flags.loai_dethi == false){
-                    checkTrueFalse();
-                }
-
-                if(Flags.loai_dethi == true){
-                    btn_check.setVisibility(View.GONE);
-                }
-
-                Flags.traloi_tracnghiem = arr_cautraloi;
-
-                showDapAn();
+                Flags.traloi_tracnghiem = null;
+                getActivity().onBackPressed();
             }
         });
 
@@ -143,18 +135,14 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
             btn_next.setVisibility(View.VISIBLE);
 
             btn_back.setVisibility(View.GONE);
-            btn_check.setVisibility(View.GONE);
         }
 
         if (Flags.vitri_cauhoi > 1 && Flags.vitri_cauhoi < Flags.soluong_cauhoi){
             btn_back.setVisibility(View.VISIBLE);
             btn_next.setVisibility(View.VISIBLE);
-
-            btn_check.setVisibility(View.GONE);
         }
 
         if (Flags.vitri_cauhoi == Flags.soluong_cauhoi){
-            btn_check.setVisibility(View.VISIBLE);
             btn_back.setVisibility(View.VISIBLE);
 
             btn_next.setVisibility(View.GONE);
@@ -173,7 +161,7 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
         txt_noidung_cauhoi.setText(cauHoi.getNoidungch());
         mathview_dethi.setText(cauHoi.getNoidungch());
 
-        //if Toan, Ly, Hoa thi2 load mathview
+        //if Toan, Ly, Hoa thi load mathview
         if (Flags.chosen_dethi == 1 ||
                 Flags.chosen_dethi == 5||
                 Flags.chosen_dethi == 6){
@@ -182,6 +170,7 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
         }
         else {
             txt_noidung_cauhoi.setVisibility(View.VISIBLE);
+            txt_noidung_dapan.setVisibility(View.VISIBLE);
             mathview_dethi.setVisibility(View.GONE);
         }
 
@@ -190,6 +179,22 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
             rad_dapan_b.setText(array_dapan.get(vitri_cauhoi).get(1).getNoidungda());
             rad_dapan_c.setText(array_dapan.get(vitri_cauhoi).get(2).getNoidungda());
             rad_dapan_d.setText(array_dapan.get(vitri_cauhoi).get(3).getNoidungda());
+
+            setSelected();
+        }
+        else{
+            String noidung_dapan = Def.STRING_EMPTY;
+            for(int i = 0; i< array_dapan.get(vitri_cauhoi).size(); i++){
+                noidung_dapan = noidung_dapan + " " + array_dapan.get(vitri_cauhoi).get(i).getNoidungda();
+            }
+            if (Flags.chosen_dethi == 1 ||
+                    Flags.chosen_dethi == 5||
+                    Flags.chosen_dethi == 6) {
+                mathview_dapan.setText(noidung_dapan);
+            }
+            else {
+                txt_noidung_dapan.setText(noidung_dapan);
+            }
         }
     }
 
@@ -225,29 +230,16 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
 
     protected void selectedNext(){
         if (Flags.loai_dethi == false){
-            int selectedId = group_rad_dapan.getCheckedRadioButtonId();
-            if (selectedId == -1){
-                new ToastMessage(getActivity()).showToast(getResources().getString(R.string.msg_not_select_dapan));
-            }
-            else {
-                RadioButton checked = (RadioButton) group_rad_dapan.findViewById(selectedId);
-                int check = group_rad_dapan.indexOfChild(checked);
+            Flags.vitri_cauhoi += 1;
+            vitri_cauhoi += 1;
 
-                Flags.vitri_cauhoi += 1;
-                vitri_cauhoi += 1;
+            setValue();
 
-                int i = arr_cautraloi.size();
-                if(i < vitri_cauhoi){
-                    arr_cautraloi.add(check);
-                }else {
-                    arr_cautraloi.set(vitri_cauhoi -1 ,check);
-                }
-                setValue();
+            setData();
 
-                setData();
+            group_rad_dapan.clearCheck();
 
-                group_rad_dapan.clearCheck();
-            }
+            setSelected();
         }
         else {
             Flags.vitri_cauhoi += 1;
@@ -286,27 +278,5 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
         if (vt == 3){
             rad_dapan_d.setChecked(true);
         }
-    }
-
-    private void checkTrueFalse(){
-        int selectedId = group_rad_dapan.getCheckedRadioButtonId();
-        RadioButton checked = (RadioButton) group_rad_dapan.findViewById(selectedId);
-        int check = group_rad_dapan.indexOfChild(checked);
-        arr_cautraloi.add(check);
-
-        for(int i=0; i<arr_cautraloi.size(); i++){
-            if(array_dapan.get(i).get(arr_cautraloi.get(i)).getDung() == 1){
-                so_caudung = so_caudung + 1;
-            }
-        }
-    }
-
-    public void showDapAn(){
-        FragmentManager fragmentManager = getActivity().getFragmentManager();
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        Fragment fragDapAnDeThi = new FragShowDapAnDeThi();
-        fragmentTransaction.replace(R.id.fra_toanhoc, fragDapAnDeThi, "De Thi");
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        fragmentTransaction.commit();
     }
 }

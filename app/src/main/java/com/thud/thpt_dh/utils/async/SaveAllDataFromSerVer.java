@@ -22,6 +22,7 @@ import com.thud.thpt_dh.datas.DeThiThuDAL;
 import com.thud.thpt_dh.datas.DieuKienDAL;
 import com.thud.thpt_dh.datas.DinhLyDAL;
 import com.thud.thpt_dh.datas.HinhAnhDAL;
+import com.thud.thpt_dh.datas.LinhVucDAL;
 import com.thud.thpt_dh.datas.MonHocDAL;
 import com.thud.thpt_dh.datas.AllDAL;
 import com.thud.thpt_dh.model.BaiGiai;
@@ -35,6 +36,7 @@ import com.thud.thpt_dh.model.DeThiThu;
 import com.thud.thpt_dh.model.DieuKien;
 import com.thud.thpt_dh.model.DinhLy;
 import com.thud.thpt_dh.model.HinhAnh;
+import com.thud.thpt_dh.model.LinhVuc;
 import com.thud.thpt_dh.model.MonHoc;
 import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
@@ -106,6 +108,7 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
             getHinhAnh();
             publishProgress(9);
             getMonHoc();
+            getLinhVuc();
             return new Result<String>(ResultStatus.TRUE, null);
         }
         catch (Exception e){
@@ -310,6 +313,18 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
                 Result<String> result = new AllDAL(context).saveAll(monHocs);
 
             }
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //get LinhVuc
+    private boolean getLinhVuc(){
+        try {
+            Result<ArrayList<LinhVuc>> resultLinhVuc = new LinhVucDAL(context).getAllLinhVuc();
             return true;
         }
         catch (Exception e){
