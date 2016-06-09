@@ -2,6 +2,7 @@ package com.thud.thpt_dh.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.thud.thpt_dh.R;
 import com.thud.thpt_dh.customcontrols.CustomGridView;
@@ -198,6 +200,13 @@ public class DeThiActivity extends AppCompatActivity {
                                 drawer.closeDrawer(GravityCompat.START);
                                 return true;
 
+                            case R.id.item_navigation_drawer_taidulieu:
+                                inInternetOn();
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                intent = new Intent(DeThiActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                return true;
+
                             case R.id.item_navigation_drawer_thoat:
                                 showDialog();
                                 return true;
@@ -227,5 +236,30 @@ public class DeThiActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.setTitle(R.string.close_app);
         alert.show();
+    }
+
+    public final boolean inInternetOn(){
+        ConnectivityManager connec = (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+        if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+
+            // if connected with internet
+            Flags.synch_data = 0;
+            Flags.chosen_synch_data = 1;
+            return true;
+
+        } else if (
+                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
+                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
+
+            Flags.synch_data = 1;
+            Flags.chosen_synch_data = 0;
+
+            Toast.makeText(this, "You are not connect to the internet ", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return false;
     }
 }

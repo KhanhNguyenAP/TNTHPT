@@ -53,6 +53,11 @@
             android:title="@string/left_dethi" />
 
         <item
+            android:id="@+id/item_navigation_drawer_taidulieu"
+            android:icon="@drawable/download"
+            android:title="@string/left_taidulieu" />
+
+        <item
             android:id="@+id/item_navigation_drawer_thoat"
             android:icon="@drawable/exit"
             android:title="Thoát" />

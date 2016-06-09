@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class Flags {
     public static int synch_data = 0;
+    public static int chosen_synch_data = 0;
     public static int chosen_mon = 0;
     public static int chosen_dethi = 0;
     public static int chosen_fragment_vitri = 0;

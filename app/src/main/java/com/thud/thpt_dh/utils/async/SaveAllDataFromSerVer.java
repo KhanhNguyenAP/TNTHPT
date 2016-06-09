@@ -3,12 +3,14 @@ package com.thud.thpt_dh.utils.async;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.thud.thpt_dh.R;
 import com.thud.thpt_dh.datas.BaiGiaiDAL;
@@ -83,10 +85,11 @@ public class SaveAllDataFromSerVer extends AsyncTask<Void, Integer, Result<Strin
     @Override
     protected Result<String> doInBackground(Void... params) {
         try {
-            if (Flags.synch_data == 0){
+            if (Flags.synch_data == 0 && Flags.chosen_synch_data == 1){
                 new AllDAL(context).dropAllTable();
             }
             Flags.synch_data = 1;
+            Flags.chosen_synch_data = 1;
             getBaiGiai();
             getBaiHoc();
             publishProgress(1);
