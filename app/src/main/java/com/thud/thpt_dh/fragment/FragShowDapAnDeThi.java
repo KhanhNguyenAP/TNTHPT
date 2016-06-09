@@ -1,6 +1,7 @@
 package com.thud.thpt_dh.fragment;
 
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -266,16 +267,37 @@ public class FragShowDapAnDeThi extends Fragment implements ActivityInterface{
 
     private void setSelected(){
         int vt = arr_cautraloi.get(vitri_cauhoi);
+        int vitri = 0;
+        for( int i=0 ; i<array_dapan.get(vitri_cauhoi).size(); i++){
+            if (array_dapan.get(vitri_cauhoi).get(i).getDung() == 1){
+                vitri = i;
+            }
+        }
+
         if (vt == 0){
-            rad_dapan_a.setChecked(true);
+            rad_dapan_a.setTextColor(Color.BLUE);
         }
         if (vt == 1){
-            rad_dapan_b.setChecked(true);
+            rad_dapan_b.setTextColor(Color.BLUE);
         }
         if (vt == 2){
-            rad_dapan_c.setChecked(true);
+            rad_dapan_c.setTextColor(Color.BLUE);
         }
         if (vt == 3){
+            rad_dapan_d.setTextColor(Color.BLUE);
+        }
+
+        //set checked
+        if (vitri == 0){
+            rad_dapan_a.setChecked(true);
+        }
+        if (vitri == 1){
+            rad_dapan_b.setChecked(true);
+        }
+        if (vitri == 2){
+            rad_dapan_c.setChecked(true);
+        }
+        if (vitri == 3){
             rad_dapan_d.setChecked(true);
         }
     }
