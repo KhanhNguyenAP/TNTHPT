@@ -234,13 +234,12 @@ public class FragShowDapAnDeThi extends Fragment implements ActivityInterface{
             Flags.vitri_cauhoi += 1;
             vitri_cauhoi += 1;
 
+            group_rad_dapan.clearCheck();
+
             setValue();
 
             setData();
 
-            group_rad_dapan.clearCheck();
-
-            setSelected();
         }
         else {
             Flags.vitri_cauhoi += 1;
@@ -259,13 +258,15 @@ public class FragShowDapAnDeThi extends Fragment implements ActivityInterface{
         setValue();
 
         setData();
-
-        if(Flags.loai_dethi == false){
-            setSelected();
-        }
     }
 
     private void setSelected(){
+        rad_dapan_a.setTextColor(Color.BLACK);
+        rad_dapan_b.setTextColor(Color.BLACK);
+        rad_dapan_c.setTextColor(Color.BLACK);
+        rad_dapan_d.setTextColor(Color.BLACK);
+
+
         int vt = arr_cautraloi.get(vitri_cauhoi);
         int vitri = 0;
         for( int i=0 ; i<array_dapan.get(vitri_cauhoi).size(); i++){
