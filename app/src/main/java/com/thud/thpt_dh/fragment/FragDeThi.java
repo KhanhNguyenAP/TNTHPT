@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.thud.thpt_dh.R;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 public class FragDeThi extends Fragment implements ActivityInterface {
     private View view;
     private ListView lst_dethi;
+    private Button btn_back_list;
     private ArrayList<DeThiThu> array_dethi = new ArrayList<>();
     private DeThiThuAdapter dethithu_list_adapter;
 
@@ -66,6 +68,7 @@ public class FragDeThi extends Fragment implements ActivityInterface {
     @Override
     public void initControl() {
         lst_dethi = (ListView) view.findViewById(R.id.lst_list_view);
+        btn_back_list= (Button) view.findViewById(R.id.btn_back_list);
     }
 
     @Override
@@ -77,6 +80,13 @@ public class FragDeThi extends Fragment implements ActivityInterface {
                showDeTail();
            }
        });
+
+        btn_back_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
     }
 
     @Override

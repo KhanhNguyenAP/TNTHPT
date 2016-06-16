@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.thud.thpt_dh.R;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 public class FragLinhVuc extends Fragment implements ActivityInterface {
     private View view;
     private ListView lst_linhvuc;
+    private Button btn_back_list;
     private ArrayList<LinhVuc> array_linhvuc = new ArrayList<>();
     private LinhVucAdapter linhvuc_adapter;
 
@@ -69,17 +71,25 @@ public class FragLinhVuc extends Fragment implements ActivityInterface {
     @Override
     public void initControl() {
         lst_linhvuc = (ListView) view.findViewById(R.id.lst_list_view);
+        btn_back_list = (Button) view.findViewById(R.id.btn_back_list);
     }
 
     @Override
     public void setEventForControl() {
-      lst_linhvuc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       lst_linhvuc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                Flags.malinhvuc = array_linhvuc.get(position).getId();
                showFragToanHoc();
            }
        });
+
+        btn_back_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
     }
 
     @Override

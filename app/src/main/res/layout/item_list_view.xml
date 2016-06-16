@@ -13,5 +13,24 @@
         android:nestedScrollingEnabled="true"
         android:id="@+id/lst_list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_weight="0.8"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="@dimen/layout_padding_5"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_back_list"
+            android:layout_width="@dimen/layout_padding_100"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/md_blue_100"
+            android:paddingLeft="@dimen/layout_padding_5"
+            android:textColor="@color/bg_white"
+            android:textStyle="bold"
+            android:text="@string/btn_back"/>
+    </LinearLayout>
 </LinearLayout>

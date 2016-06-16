@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 public class FragToanHoc extends Fragment implements ActivityInterface {
     private View view;
     private ListView lst_toanhoc;
+    private Button btn_back_list;
     private ArrayList<Chuong> array_chuong = new ArrayList<>();
     private ChuongAdapter chuong_list_adapter;
 
@@ -71,6 +73,7 @@ public class FragToanHoc extends Fragment implements ActivityInterface {
     @Override
     public void initControl() {
         lst_toanhoc = (ListView) view.findViewById(R.id.lst_list_view);
+        btn_back_list = (Button) view.findViewById(R.id.btn_back_list);
     }
 
     @Override
@@ -82,6 +85,13 @@ public class FragToanHoc extends Fragment implements ActivityInterface {
                showDeTail();
            }
        });
+
+        btn_back_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
     }
 
     @Override
@@ -127,6 +137,4 @@ public class FragToanHoc extends Fragment implements ActivityInterface {
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
     }
-
-
 }

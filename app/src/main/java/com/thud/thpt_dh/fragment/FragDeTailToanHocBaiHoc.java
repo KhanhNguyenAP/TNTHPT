@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.thud.thpt_dh.R;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 public class FragDeTailToanHocBaiHoc extends Fragment implements ActivityInterface {
     private View view;
     private ListView lst_list_view;
+    private Button btn_back_list;
     private ArrayList<ChiTietBaiHoc> array_baihoc = new ArrayList<>();
     private ChiTietBaiHocAdapter baihoc_list_adapter;
 
@@ -55,10 +57,17 @@ public class FragDeTailToanHocBaiHoc extends Fragment implements ActivityInterfa
     @Override
     public void initControl() {
         lst_list_view = (ListView) view.findViewById(R.id.lst_list_view);
+        btn_back_list= (Button) view.findViewById(R.id.btn_back_list);
     }
 
     @Override
     public void setEventForControl() {
+        btn_back_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
     }
 
     @Override

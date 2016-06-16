@@ -30,4 +30,5 @@ dependencies {
     compile 'com.parse:parse-android:1.+'
 
     compile 'io.github.kexanie.library:MathView:0.0.6'
+    compile 'me.biubiubiu.justifytext:library:1.1'
 }

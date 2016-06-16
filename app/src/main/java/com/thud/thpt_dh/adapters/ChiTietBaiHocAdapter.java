@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.thud.thpt_dh.R;
+import com.thud.thpt_dh.customcontrols.TextViewEx;
 import com.thud.thpt_dh.model.BaiHoc;
 import com.thud.thpt_dh.model.ChiTietBaiHoc;
 import com.thud.thpt_dh.utils.interfaces.Flags;
@@ -52,12 +53,12 @@ public class ChiTietBaiHocAdapter extends ArrayAdapter<ChiTietBaiHoc> {
         rowView.setTag(values.get(position).getId());
 
         final TextView text_view_title_monhoc = (TextView) rowView.findViewById(R.id.textview_title);
-        final TextView text_view_noidung_monhoc = (TextView) rowView.findViewById(R.id.text_view_noidung_monhoc);
+        final TextViewEx text_view_noidung_monhoc = (TextViewEx) rowView.findViewById(R.id.text_view_noidung_monhoc);
         final TextView text_view_noidung_congthuc = (TextView) rowView.findViewById(R.id.text_view_noidung_congthuc);
         final MathView mathview = (MathView) rowView.findViewById(R.id.mathview);
 
         text_view_title_monhoc.setText(values.get(position).getTenctbh());
-        text_view_noidung_monhoc.setText(values.get(position).getNoidungctbh());
+        text_view_noidung_monhoc.setText(values.get(position).getNoidungctbh(), true);
         text_view_noidung_congthuc.setText(values.get(position).getNoidungct());
         mathview.setText(values.get(position).getNoidungctbh());
 

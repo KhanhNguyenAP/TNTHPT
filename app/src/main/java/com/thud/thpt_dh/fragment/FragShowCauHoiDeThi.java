@@ -122,17 +122,26 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
         btn_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if (Flags.loai_dethi == false){
-                    checkTrueFalse();
-                }
+                if (Flags.loai_dethi == false){
+                    int selectedId = group_rad_dapan.getCheckedRadioButtonId();
+                    if (selectedId == -1){
+                        new ToastMessage(getActivity()).showToast(getResources().getString(R.string.msg_not_select_dapan));
+                    }
+                    else {
+                        btn_check.setVisibility(View.GONE);
 
-                if(Flags.loai_dethi == true){
+                        checkTrueFalse();
+
+                        Flags.traloi_tracnghiem = arr_cautraloi;
+
+                        showDapAn();
+                    }
+                }
+                else {
                     btn_check.setVisibility(View.GONE);
+
+                    showDapAn();
                 }
-
-                Flags.traloi_tracnghiem = arr_cautraloi;
-
-                showDapAn();
             }
         });
 
