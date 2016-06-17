@@ -201,6 +201,7 @@ public class DbModel {
         DeThiThuDb.put(DeThiThu.SOLUONG, deThiThu.getSoluong());
         DeThiThuDb.put(DeThiThu.TENDE, deThiThu.getTende());
         DeThiThuDb.put(DeThiThu.LOAI, deThiThu.getLoai());
+        DeThiThuDb.put(DeThiThu.PDF, deThiThu.getPdf().getUrl());
 
         return DeThiThuDb;
     }
@@ -212,6 +213,7 @@ public class DbModel {
         deThiThu.setSoluong(cursor.getInt(cursor.getColumnIndex(DeThiThu.SOLUONG)));
         deThiThu.setTende(cursor.getString(cursor.getColumnIndex(DeThiThu.TENDE)));
         deThiThu.setLoai(cursor.getInt(cursor.getColumnIndex(DeThiThu.LOAI)));
+        deThiThu.setPdfile(cursor.getString(cursor.getColumnIndex(DeThiThu.PDF)));
 
         return deThiThu;
     }

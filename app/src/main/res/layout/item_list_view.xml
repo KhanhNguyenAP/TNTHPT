@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id ="@+id/linear_detail"
-    android:background="@color/md_blue_light_50"
     android:paddingTop="@dimen/layout_padding_65"
+    android:background="@color/md_white"
     android:paddingLeft="@dimen/layout_padding_10"
     android:paddingRight="@dimen/layout_padding_10">
     <ListView
@@ -14,6 +14,7 @@
         android:id="@+id/lst_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
         android:layout_weight="0.8"/>
 
     <LinearLayout

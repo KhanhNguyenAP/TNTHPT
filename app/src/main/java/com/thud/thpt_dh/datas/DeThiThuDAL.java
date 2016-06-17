@@ -17,6 +17,7 @@ import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
 import com.thud.thpt_dh.utils.interfaces.Def;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +50,8 @@ public class DeThiThuDAL {
                                 ob.getString(""+DeThiThu.MAMONHOC),
                                 ob.getString(""+DeThiThu.TENDE),
                                 ob.getInt(""+DeThiThu.SOLUONG),
-                                ob.getInt(""+DeThiThu.LOAI));
+                                ob.getInt(""+DeThiThu.LOAI),
+                                ob.getParseFile(""+DeThiThu.PDF));
                         arr_DeThiThu.add(deThiThu);
                     }
 

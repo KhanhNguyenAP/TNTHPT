@@ -126,8 +126,9 @@ public class DeThiDeTailActivity extends BaseActivity implements ActivityInterfa
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem)  {
-                        Intent intent = new Intent(DeThiDeTailActivity.this, DeThiDeTailActivity.class);
+                        Intent intent = new Intent(DeThiDeTailActivity.this, ToanHocActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        finish();
                         switch (menuItem.getItemId())  {
                             case R.id.item_navigation_drawer_dethi:
                                 menuItem.setChecked(true);

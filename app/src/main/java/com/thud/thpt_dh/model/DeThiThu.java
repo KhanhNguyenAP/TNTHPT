@@ -1,6 +1,7 @@
 package com.thud.thpt_dh.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.parse.ParseFile;
 
 /**
  * Created by khanh on 5/11/2016.
@@ -12,6 +13,7 @@ public class DeThiThu {
     public static final String SOLUONG = "SOLUONG";
     public static final String TENDE = "TENDE";
     public static final String LOAI = "LOAI";
+    public static final String PDF = "PDF";
 
     @SerializedName("objectId")
     private String id;
@@ -28,12 +30,18 @@ public class DeThiThu {
     @SerializedName("LOAI")
     private int loai;
 
-    public DeThiThu(String id, String manonhoc, String tende, int soluong, int loai){
+    @SerializedName("PDF")
+    private ParseFile pdf;
+
+    private String pdfile;
+
+    public DeThiThu(String id, String manonhoc, String tende, int soluong, int loai, ParseFile pdf){
         this.id = id;
         this.manonhoc = manonhoc;
         this.tende = tende;
         this.soluong = soluong;
         this.loai = loai;
+        this.pdf = pdf;
     }
 
     public DeThiThu(){
@@ -79,5 +87,19 @@ public class DeThiThu {
         this.tende = tende;
     }
 
+    public ParseFile getPdf() {
+        return pdf;
+    }
 
+    public void setPdf(ParseFile pdf) {
+        this.pdf = pdf;
+    }
+
+    public String getPdfile() {
+        return pdfile;
+    }
+
+    public void setPdfile(String pdfile) {
+        this.pdfile = pdfile;
+    }
 }

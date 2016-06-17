@@ -6,6 +6,7 @@
     android:layout_gravity="center"
     android:paddingLeft="@dimen/layout_padding_10"
     android:paddingRight="@dimen/layout_padding_10"
+    android:paddingBottom="@dimen/layout_padding_10"
     android:orientation="vertical">
 
     <TextView
@@ -25,7 +26,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginLeft="@dimen/layout_padding_10"
         android:layout_gravity="right"
         android:textSize="@dimen/title_size_20"/>
 
