@@ -28,7 +28,7 @@
             android:textColor="@color/md_blue_700" />
     </LinearLayout>
 
-    <TextView
+    <com.thud.thpt_dh.customcontrols.TextViewEx
         android:id="@+id/txt_noidung_cauhoi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
+            <com.thud.thpt_dh.customcontrols.TextViewEx
                 android:id="@+id/txt_noidung_dapan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

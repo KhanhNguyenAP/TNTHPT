@@ -14,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.thud.thpt_dh.R;
+import com.thud.thpt_dh.customcontrols.TextViewEx;
 import com.thud.thpt_dh.datas.CauHoiDAL;
 import com.thud.thpt_dh.datas.DapAnDAL;
 import com.thud.thpt_dh.model.CauHoi;
@@ -34,7 +35,8 @@ import io.github.kexanie.library.MathView;
  */
 public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
     private View view;
-    private TextView txt_sothutu_cauhoi, txt_noidung_cauhoi;
+    private TextView txt_sothutu_cauhoi;
+    private TextViewEx txt_noidung_cauhoi;
     private MathView mathview_dethi, mathview_dapan;
     private RadioGroup group_rad_dapan;
     private RadioButton rad_dapan_a, rad_dapan_b, rad_dapan_c, rad_dapan_d;
@@ -78,7 +80,7 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
     @Override
     public void initControl() {
         txt_sothutu_cauhoi = (TextView) view.findViewById(R.id.txt_sothutu_cauhoi);
-        txt_noidung_cauhoi = (TextView) view.findViewById(R.id.txt_noidung_cauhoi);
+        txt_noidung_cauhoi = (TextViewEx) view.findViewById(R.id.txt_noidung_cauhoi);
         mathview_dethi = (MathView) view.findViewById(R.id.mathview_dethi);
         mathview_dapan = (MathView) view.findViewById(R.id.mathview_dapan);
 
@@ -179,7 +181,7 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
     public void setData() {
         cauHoi = arr_list_cauhoi.get(vitri_cauhoi);
         txt_sothutu_cauhoi.setText(Flags.vitri_cauhoi + "/" + Flags.soluong_cauhoi+":");
-        txt_noidung_cauhoi.setText(cauHoi.getNoidungch());
+        txt_noidung_cauhoi.setText(cauHoi.getNoidungch(), true);
         mathview_dethi.setText(cauHoi.getNoidungch());
 
         //if Toan, Ly, Hoa thi2 load mathview
