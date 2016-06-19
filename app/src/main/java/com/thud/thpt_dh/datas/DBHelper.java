@@ -78,7 +78,9 @@ public class DBHelper extends SQLiteOpenHelper{
             DeThiThu.MAMONHOC + " TEXT, " +
             DeThiThu.SOLUONG + " INTEGER, " +
             DeThiThu.LOAI + " INTEGER, " +
+            DeThiThu.SHOWPDF + " INTEGER, " +
             DeThiThu.PDF + " TEXT, " +
+            DeThiThu.PDFNAME + " TEXT, " +
             DeThiThu.TENDE + " TEXT )";
 
     public static final String sql_dieukien = "CREATE TABLE IF NOT EXISTS " + DieuKien.TENBANG + "(" +

@@ -91,6 +91,7 @@
     <string name="btn_resume">RESUME</string>
     <string name="btn_check">CHECK</string>
     <string name="btn_close">CLOSE</string>
+    <string name="btn_view_pdf">XEM PDF</string>
     <string name="msg_not_select_dapan">Bạn phải chọn câu trả lời</string>
 
     <!--show dialog-->

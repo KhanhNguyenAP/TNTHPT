@@ -16,6 +16,7 @@ public class Flags {
     public static int soluong_cauhoi = 0;
     public static int vitri_cauhoi = 1;
     public static int thoigian_lambai = 0;
+    public static int xem_pdf_dethi = 1;
 
     public static boolean main_toan = false;
     public static boolean main_nguvan = false;

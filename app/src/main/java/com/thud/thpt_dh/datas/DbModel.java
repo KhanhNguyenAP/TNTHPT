@@ -202,6 +202,8 @@ public class DbModel {
         DeThiThuDb.put(DeThiThu.TENDE, deThiThu.getTende());
         DeThiThuDb.put(DeThiThu.LOAI, deThiThu.getLoai());
         DeThiThuDb.put(DeThiThu.PDF, deThiThu.getPdf().getUrl());
+        DeThiThuDb.put(DeThiThu.PDFNAME, deThiThu.getPdf().getName());
+        DeThiThuDb.put(DeThiThu.SHOWPDF, deThiThu.getShowpdf());
 
         return DeThiThuDb;
     }
@@ -214,6 +216,8 @@ public class DbModel {
         deThiThu.setTende(cursor.getString(cursor.getColumnIndex(DeThiThu.TENDE)));
         deThiThu.setLoai(cursor.getInt(cursor.getColumnIndex(DeThiThu.LOAI)));
         deThiThu.setPdfile(cursor.getString(cursor.getColumnIndex(DeThiThu.PDF)));
+        deThiThu.setPdfname(cursor.getString(cursor.getColumnIndex(DeThiThu.PDFNAME)));
+        deThiThu.setShowpdf(cursor.getInt(cursor.getColumnIndex(DeThiThu.SHOWPDF)));
 
         return deThiThu;
     }

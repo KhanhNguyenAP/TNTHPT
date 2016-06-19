@@ -3,8 +3,13 @@ package com.thud.thpt_dh.fragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +23,10 @@ import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
 import com.thud.thpt_dh.utils.interfaces.ActivityInterface;
 import com.thud.thpt_dh.utils.interfaces.Flags;
+import android.os.Environment;
+import android.widget.Toast;
+
+import java.io.File;
 
 /**
  * Created by KhanhNguyen on 5/23/2016.
@@ -28,11 +37,12 @@ public class FragShowInfoDeThi extends Fragment implements ActivityInterface{
     private TextView txt_ten_dethi, txt_soluong, txt_thoigian, txt_loai,
             txt_title_info_dethi, txt_title_soluong_dethi, txt_title_time_dethi,
             txt_title_hinhthuc_dethi;
-    private Button btn_start_dethi;
+    private Button btn_start_dethi, btn_view_pdf_dethi, btn_close_info_dethi;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         view = inflater.inflate(R.layout.item_info_dethithu, container, false);
+
         return view;
     }
 
@@ -71,7 +81,12 @@ public class FragShowInfoDeThi extends Fragment implements ActivityInterface{
         txt_soluong = (TextView) view.findViewById(R.id.txt_soluong);
         txt_thoigian = (TextView) view.findViewById(R.id.txt_thoigian);
         txt_loai = (TextView) view.findViewById(R.id.txt_loai);
+
         btn_start_dethi = (Button) view.findViewById(R.id.btn_start_dethi);
+        btn_view_pdf_dethi = (Button) view.findViewById(R.id.btn_view_pdf_dethi);
+        btn_close_info_dethi = (Button) view.findViewById(R.id.btn_close_info_dethi);
+
+        btn_view_pdf_dethi.setVisibility(View.GONE);
     }
 
     @Override
@@ -80,6 +95,20 @@ public class FragShowInfoDeThi extends Fragment implements ActivityInterface{
             @Override
             public void onClick(View v) {
                 showCauHoiDeThi();
+        }
+        });
+
+        btn_view_pdf_dethi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPDF(v);
+            }
+        });
+
+        btn_close_info_dethi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
             }
         });
     }
@@ -91,6 +120,10 @@ public class FragShowInfoDeThi extends Fragment implements ActivityInterface{
 
     @Override
     public void setData() {
+        if (deThiThu.getShowpdf() == Flags.xem_pdf_dethi){
+            btn_view_pdf_dethi.setVisibility(View.VISIBLE);
+        }
+
         txt_title_info_dethi.setText(R.string.thongtin_dethi);
         txt_title_hinhthuc_dethi.setText(R.string.hinh_thuc_thi);
         txt_title_soluong_dethi.setText(R.string.title_soluong_cauhoi);
@@ -157,5 +190,20 @@ public class FragShowInfoDeThi extends Fragment implements ActivityInterface{
         fragmentTransaction.replace(R.id.fra_toanhoc, fragShowCauHoi, "Cau Hoi");
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
+    }
+
+    public void viewPDF(View v)
+    {
+        File pdfFile = new File(Environment.getExternalStorageDirectory() + "/PDF DOWNLOAD/" + "" +deThiThu.getPdfname());  // -> filename = maven.pdf
+        Uri path = Uri.fromFile(pdfFile);
+        Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
+        pdfIntent.setDataAndType(path, "application/pdf");
+        pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        try{
+            startActivity(pdfIntent);
+        }catch(ActivityNotFoundException e){
+            Toast.makeText(getActivity(), "No Application available to view PDF", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -4,7 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
+import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -16,8 +19,17 @@ import com.thud.thpt_dh.model.MonHoc;
 import com.thud.thpt_dh.model.Result;
 import com.thud.thpt_dh.model.ResultStatus;
 import com.thud.thpt_dh.utils.interfaces.Def;
+import com.thud.thpt_dh.utils.interfaces.Flags;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,12 +63,20 @@ public class DeThiThuDAL {
                                 ob.getString(""+DeThiThu.TENDE),
                                 ob.getInt(""+DeThiThu.SOLUONG),
                                 ob.getInt(""+DeThiThu.LOAI),
-                                ob.getParseFile(""+DeThiThu.PDF));
+                                ob.getParseFile(""+DeThiThu.PDF),
+                                ob.getInt(""+DeThiThu.SHOWPDF));
                         arr_DeThiThu.add(deThiThu);
                     }
 
                     if (arr_DeThiThu.size() >0){
                         Result<String> result = new AllDAL(context).saveAll(arr_DeThiThu);
+
+                        for (int i=0; i<arr_DeThiThu.size(); i++){
+                            if (arr_DeThiThu.get(i).getShowpdf() == Flags.xem_pdf_dethi){
+                                new DownloadFile().execute(""+arr_DeThiThu.get(i).getPdf().getUrl(),""+ arr_DeThiThu.get(i).getPdf().getName());
+                            }
+                        }
+
                     }
                 }
             }
@@ -146,5 +166,64 @@ public class DeThiThuDAL {
         }
 
         return new Result<DeThiThu>(ResultStatus.TRUE, deThiThu);
+    }
+
+    private class DownloadFile extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(String... strings) {
+
+            String fileUrl = strings[0];
+            String fileName = strings[1];
+            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+            File folder = new File(extStorageDirectory, "PDF DOWNLOAD");
+            folder.mkdir();
+
+            File pdfFile = new File(folder, fileName);
+
+            try{
+                pdfFile.createNewFile();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            downloadFile(fileUrl, pdfFile);
+            return null;
+
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
+    }
+
+    public static void downloadFile(String fileUrl, File directory){
+        try {
+
+            URL url = new URL(fileUrl);
+            HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
+            urlConnection.connect();
+
+            InputStream inputStream = urlConnection.getInputStream();
+            FileOutputStream fileOutputStream = new FileOutputStream(directory);
+            int totalSize = urlConnection.getContentLength();
+
+            byte[] buffer = new byte[1024 * 1024];
+            int bufferLength = 0;
+            while((bufferLength = inputStream.read(buffer)) >0 )
+                fileOutputStream.write(buffer, 0, bufferLength);
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

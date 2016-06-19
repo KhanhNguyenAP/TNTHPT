@@ -14,6 +14,8 @@ public class DeThiThu {
     public static final String TENDE = "TENDE";
     public static final String LOAI = "LOAI";
     public static final String PDF = "PDF";
+    public static final String PDFNAME = "PDFNAME";
+    public static final String SHOWPDF = "SHOWPDF";
 
     @SerializedName("objectId")
     private String id;
@@ -30,18 +32,25 @@ public class DeThiThu {
     @SerializedName("LOAI")
     private int loai;
 
+    @SerializedName("SHOWPDF")
+    private int showpdf;
+
     @SerializedName("PDF")
     private ParseFile pdf;
 
     private String pdfile;
 
-    public DeThiThu(String id, String manonhoc, String tende, int soluong, int loai, ParseFile pdf){
+    private String pdfname;
+
+
+    public DeThiThu(String id, String manonhoc, String tende, int soluong, int loai, ParseFile pdf, int showpdf){
         this.id = id;
         this.manonhoc = manonhoc;
         this.tende = tende;
         this.soluong = soluong;
         this.loai = loai;
         this.pdf = pdf;
+        this.showpdf = showpdf;
     }
 
     public DeThiThu(){
@@ -101,5 +110,21 @@ public class DeThiThu {
 
     public void setPdfile(String pdfile) {
         this.pdfile = pdfile;
+    }
+
+    public String getPdfname() {
+        return pdfname;
+    }
+
+    public void setPdfname(String pdfname) {
+        this.pdfname = pdfname;
+    }
+
+    public int getShowpdf() {
+        return showpdf;
+    }
+
+    public void setShowpdf(int showpdf) {
+        this.showpdf = showpdf;
     }
 }

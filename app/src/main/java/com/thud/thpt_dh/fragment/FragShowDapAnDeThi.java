@@ -162,6 +162,7 @@ public class FragShowDapAnDeThi extends Fragment implements ActivityInterface{
         cauHoi = arr_list_cauhoi.get(vitri_cauhoi);
         txt_sothutu_cauhoi.setText(Flags.vitri_cauhoi + "/" + Flags.soluong_cauhoi+":");
         txt_noidung_cauhoi.setText(cauHoi.getNoidungch(), true);
+        txt_noidung_cauhoi.setTextColor(Color.BLUE);
         mathview_dethi.setText(cauHoi.getNoidungch());
 
         //if Toan, Ly, Hoa thi load mathview
