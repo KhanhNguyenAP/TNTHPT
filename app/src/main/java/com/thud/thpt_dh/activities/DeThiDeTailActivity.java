@@ -135,6 +135,7 @@ public class DeThiDeTailActivity extends BaseActivity implements ActivityInterfa
                         switch (menuItem.getItemId())  {
                             case R.id.item_navigation_drawer_dethi:
                                 menuItem.setChecked(true);
+                                finish();
                                 return true;
 
                             case R.id.item_navigation_drawer_montoan:
