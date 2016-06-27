@@ -132,7 +132,6 @@ public class FragShowInfoDeThi extends Fragment implements ActivityInterface{
         txt_ten_dethi.setText(deThiThu.getTende());
         txt_soluong.setText(""+deThiThu.getSoluong());
 
-        Flags.soluong_cauhoi = deThiThu.getSoluong();
         //Toán, Ngữ Văn, Lịch Sử, Địa Lí: 180p
         //Anh Văn, Sinh Học, Vật Lý, Hóa Học: 90p
         if ((Flags.chosen_dethi == 1) ||

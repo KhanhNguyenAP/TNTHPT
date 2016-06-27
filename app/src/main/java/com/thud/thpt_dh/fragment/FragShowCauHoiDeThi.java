@@ -230,6 +230,8 @@ public class FragShowCauHoiDeThi extends Fragment implements ActivityInterface{
                 array_dapan.add(array_list_dapan);
             }
 
+            Flags.soluong_cauhoi = arr_list_cauhoi.size();
+
             setData();
         }
     }
